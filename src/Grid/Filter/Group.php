@@ -29,9 +29,8 @@ class Group extends AbstractFilter
     /**
      * Group constructor.
      *
-     * @param string        $column
-     * @param string        $label
-     * @param \Closure|null $builder
+     * @param string $column
+     * @param string $label
      */
     public function __construct($column, \Closure $builder = null, $label = '')
     {
@@ -40,9 +39,6 @@ class Group extends AbstractFilter
         $this->label = $this->formatLabel($label);
     }
 
-    /**
-     * @param Filter $filter
-     */
     public function setParent(Filter $filter)
     {
         parent::setParent($filter);
@@ -63,7 +59,6 @@ class Group extends AbstractFilter
      * Join a query to group.
      *
      * @param string $label
-     * @param array  $condition
      *
      * @return $this
      */
@@ -170,8 +165,7 @@ class Group extends AbstractFilter
     /**
      * Specify a where query.
      *
-     * @param string   $label
-     * @param \Closure $builder
+     * @param string $label
      *
      * @return Group
      */
@@ -264,7 +258,7 @@ class Group extends AbstractFilter
     {
         $value = Arr::get($inputs, $this->column);
 
-        if (! isset($value)) {
+        if (!isset($value)) {
             return;
         }
 
@@ -307,7 +301,7 @@ JS;
 
         return array_merge(parent::defaultVariables(), [
             'group_name' => $this->name,
-            'default'    => $default,
+            'default' => $default,
         ]);
     }
 

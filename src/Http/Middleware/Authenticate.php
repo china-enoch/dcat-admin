@@ -13,15 +13,14 @@ class Authenticate
      * Handle an incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
      *
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
         if (
-            ! config('admin.auth.enable', true)
-            || ! Admin::guard()->guest()
+            !config('admin.auth.enable', true)
+            || !Admin::guard()->guest()
             || $this->shouldPassThrough($request)
         ) {
             return $next($request);
@@ -29,7 +28,7 @@ class Authenticate
 
         $loginPage = admin_base_path('auth/login');
 
-        if ($request->ajax() && ! $request->pjax()) {
+        if ($request->ajax() && !$request->pjax()) {
             return response()->json(['message' => 'Unauthorized.', 'login' => $loginPage], 401);
         }
 
@@ -61,7 +60,7 @@ class Authenticate
 
             $except = admin_base_path($except);
 
-            if ($except !== '/') {
+            if ('/' !== $except) {
                 $except = trim($except, '/');
             }
 

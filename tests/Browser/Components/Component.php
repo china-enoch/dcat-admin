@@ -10,7 +10,6 @@ abstract class Component extends BaseComponent
     /**
      * 解析css选择器别名.
      *
-     * @param Browser $browser
      * @param string $selector
      *
      * @return string
@@ -23,7 +22,6 @@ abstract class Component extends BaseComponent
     /**
      * 解析css选择器别名但不使用前缀.
      *
-     * @param \Laravel\Dusk\Browser $browser
      * @param string $selector
      *
      * @return string
@@ -38,8 +36,6 @@ abstract class Component extends BaseComponent
     }
 
     /**
-     * @param Browser $browser
-     *
      * @return string
      */
     public function parentSelector(Browser $browser)

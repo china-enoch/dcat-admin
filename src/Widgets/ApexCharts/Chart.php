@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
 /**
  * Class Chart.
  *
- *
  * @see https://apexcharts.com/
  */
 class Chart extends Widget
@@ -28,7 +27,7 @@ class Chart extends Widget
 
     public function __construct($selector = null, $options = [])
     {
-        if ($selector && ! is_string($selector)) {
+        if ($selector && !is_string($selector)) {
             $options = $selector;
             $selector = null;
         }
@@ -41,19 +40,17 @@ class Chart extends Widget
     /**
      * 设置或获取图表容器选择器.
      *
-     * @param string|null $selector
-     *
      * @return $this|string|null
      */
     public function selector(?string $selector = null)
     {
-        if ($selector === null) {
+        if (null === $selector) {
             return $this->containerSelector;
         }
 
         $this->containerSelector = $selector;
 
-        if ($selector && ! $this->built) {
+        if ($selector && !$this->built) {
             $this->autoRender();
         }
 
@@ -227,7 +224,7 @@ JS;
      */
     public function addScript()
     {
-        if (! $this->allowBuildRequest()) {
+        if (!$this->allowBuildRequest()) {
             return $this->script = $this->buildDefaultScript();
         }
 
@@ -273,7 +270,7 @@ JS
     {
         $hasSelector = $this->containerSelector ? true : false;
 
-        if (! $hasSelector) {
+        if (!$hasSelector) {
             // 没有指定ID，需要自动生成
             $id = $this->generateId();
 
@@ -304,9 +301,9 @@ HTML;
     public function valueResult()
     {
         return [
-            'status'   => 1,
+            'status' => 1,
             'selector' => $this->containerSelector,
-            'options'  => $this->formatScriptOptions(),
+            'options' => $this->formatScriptOptions(),
         ];
     }
 

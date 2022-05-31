@@ -58,7 +58,7 @@ class Select extends Presenter
      * all configurations see https://select2.org/configuration/options-api
      *
      * @param string|array $key
-     * @param mixed  $val
+     * @param mixed        $val
      *
      * @return $this
      */
@@ -85,8 +85,6 @@ class Select extends Presenter
 
     /**
      * Build options.
-     *
-     * @return array
      */
     protected function buildOptions(): array
     {
@@ -103,9 +101,9 @@ class Select extends Presenter
         }
 
         $this->addDefaultConfig([
-            'allowClear'  => true,
+            'allowClear' => true,
             'placeholder' => [
-                'id'   => '',
+                'id' => '',
                 'text' => $this->placeholder(),
             ],
         ]);
@@ -117,15 +115,13 @@ class Select extends Presenter
      * Load options from current selected resource(s).
      *
      * @param string $model
-     * @param string $idField
-     * @param string $textField
      *
      * @return $this
      */
     public function model($model, string $idField = 'id', string $textField = 'name')
     {
-        if (! class_exists($model)
-            || ! in_array(Model::class, class_parents($model))
+        if (!class_exists($model)
+            || !in_array(Model::class, class_parents($model))
         ) {
             throw new RuntimeException("[$model] must be a valid model class");
         }
@@ -156,10 +152,6 @@ class Select extends Presenter
     /**
      * Load options from remote.
      *
-     * @param string $url
-     * @param array  $parameters
-     * @param array  $options
-     *
      * @return $this
      */
     protected function loadRemoteOptions(string $url, array $parameters = [], array $options = [])
@@ -168,9 +160,9 @@ class Select extends Presenter
             'url' => Helper::urlWithQuery(admin_url($url), $parameters),
         ];
         $this->config([
-            'allowClear'  => true,
+            'allowClear' => true,
             'placeholder' => [
-                'id'   => '',
+                'id' => '',
                 'text' => $this->placeholder(),
             ],
         ]);
@@ -200,7 +192,7 @@ class Select extends Presenter
             return $this;
         }
 
-        if (! isset($this->config[$key])) {
+        if (!isset($this->config[$key])) {
             $this->config[$key] = $value;
         }
 
@@ -216,7 +208,7 @@ class Select extends Presenter
      */
     public function placeholder(string $placeholder = null)
     {
-        if ($placeholder === null) {
+        if (null === $placeholder) {
             return $this->placeholder ?: __('admin.choose');
         }
 
@@ -228,7 +220,6 @@ class Select extends Presenter
     /**
      * Load options from ajax.
      *
-     * @param string $resourceUrl
      * @param $idField
      * @param $textField
      *
@@ -237,8 +228,8 @@ class Select extends Presenter
     public function ajax(string $resourceUrl, string $idField = 'id', string $textField = 'text')
     {
         $this->config([
-            'allowClear'         => true,
-            'placeholder'        => $this->placeholder(),
+            'allowClear' => true,
+            'placeholder' => $this->placeholder(),
             'minimumInputLength' => 1,
         ]);
 
@@ -247,17 +238,14 @@ class Select extends Presenter
         return $this->addVariables(['ajax' => compact('url', 'idField', 'textField')]);
     }
 
-    /**
-     * @return array
-     */
     public function defaultVariables(): array
     {
         return [
-            'options'   => $this->buildOptions(),
-            'class'     => $this->getElementClass(),
-            'selector'  => $this->getElementClassSelector(),
+            'options' => $this->buildOptions(),
+            'class' => $this->getElementClass(),
+            'selector' => $this->getElementClassSelector(),
             'selectAll' => $this->selectAll,
-            'configs'   => $this->config,
+            'configs' => $this->config,
         ];
     }
 
@@ -266,9 +254,6 @@ class Select extends Presenter
         return '.'.$this->getElementClass();
     }
 
-    /**
-     * @return string
-     */
     public function getElementClass(): string
     {
         return $this->elementClass ?:
@@ -279,9 +264,6 @@ class Select extends Presenter
      * Load options for other select when change.
      *
      * @param string $target
-     * @param string $resourceUrl
-     * @param string $idField
-     * @param string $textField
      *
      * @return $this
      */

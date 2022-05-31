@@ -27,8 +27,6 @@ trait HasTools
     }
 
     /**
-     * @param bool $value
-     *
      * @return $this
      */
     public function toolsWithOutline(bool $value = true)
@@ -47,7 +45,7 @@ trait HasTools
      */
     public function tools($value = null)
     {
-        if ($value === null) {
+        if (null === $value) {
             return $this->tools;
         }
 
@@ -57,7 +55,7 @@ trait HasTools
             return $this;
         }
 
-        if (! is_array($value)) {
+        if (!is_array($value)) {
             $value = [$value];
         }
 
@@ -95,29 +93,23 @@ trait HasTools
     }
 
     /**
-     * @param bool $val
-     *
      * @return mixed
      */
     public function disableToolbar(bool $val = true)
     {
-        return $this->option('show_toolbar', ! $val);
+        return $this->option('show_toolbar', !$val);
     }
 
     /**
-     * @param bool $val
-     *
      * @return mixed
      */
     public function showToolbar(bool $val = true)
     {
-        return $this->disableToolbar(! $val);
+        return $this->disableToolbar(!$val);
     }
 
     /**
      * Disable batch actions.
-     *
-     * @param bool $disable
      *
      * @return $this
      */
@@ -131,19 +123,15 @@ trait HasTools
     /**
      * Show batch actions.
      *
-     * @param bool $val
-     *
      * @return $this
      */
     public function showBatchActions(bool $val = true)
     {
-        return $this->disableBatchActions(! $val);
+        return $this->disableBatchActions(!$val);
     }
 
     /**
      * Disable batch delete.
-     *
-     * @param bool $disable
      *
      * @return $this
      */
@@ -159,19 +147,15 @@ trait HasTools
     /**
      * Show batch delete.
      *
-     * @param bool $val
-     *
      * @return $this
      */
     public function showBatchDelete(bool $val = true)
     {
-        return $this->disableBatchDelete(! $val);
+        return $this->disableBatchDelete(!$val);
     }
 
     /**
      * Disable refresh button.
-     *
-     * @param bool $disable
      *
      * @return $this
      */
@@ -185,13 +169,11 @@ trait HasTools
     /**
      * Show refresh button.
      *
-     * @param bool $val
-     *
      * @return $this
      */
     public function showRefreshButton(bool $val = true)
     {
-        return $this->disableRefreshButton(! $val);
+        return $this->disableRefreshButton(!$val);
     }
 
     /**
@@ -207,7 +189,7 @@ trait HasTools
                 $this->tools()->has()
                 || $this->allowExporter()
                 || $this->allowCreateButton()
-                || ! empty($this->variables['title'])
+                || !empty($this->variables['title'])
             )
         ) {
             return true;

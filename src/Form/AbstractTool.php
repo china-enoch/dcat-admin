@@ -32,8 +32,6 @@ abstract class AbstractTool extends Action
     public $allowOnlyEditing = false;
 
     /**
-     * @param Form $form
-     *
      * @return void
      */
     public function setForm(Form $form)
@@ -58,11 +56,11 @@ abstract class AbstractTool extends Action
      */
     public function render()
     {
-        if ($this->allowOnlyEditing && ! $this->parent->isEditing()) {
+        if ($this->allowOnlyEditing && !$this->parent->isEditing()) {
             return '';
         }
 
-        if ($this->allowOnlyCreating && ! $this->parent->isCreating()) {
+        if ($this->allowOnlyCreating && !$this->parent->isCreating()) {
             return '';
         }
 

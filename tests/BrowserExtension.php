@@ -156,7 +156,7 @@ JS
             public function __call($method, $arguments = [])
             {
                 $this->callbacks[] = [
-                    'method'    => $method,
+                    'method' => $method,
                     'arguments' => $arguments,
                 ];
 

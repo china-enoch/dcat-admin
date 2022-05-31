@@ -104,7 +104,7 @@ class HasManyTest extends TestCase
     {
         return [
             'username' => 'uuu',
-            'bio'      => 'bxbxbxbxbxbx',
+            'bio' => 'bxbxbxbxbxbx',
             'paintings' => [
                 [
                     'title' => '蒙娜丽莎',

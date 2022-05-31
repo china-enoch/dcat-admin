@@ -10,59 +10,59 @@ use Illuminate\Support\Collection;
 /**
  * Class EmbeddedForm.
  *
- * @method Field\Text                   text($column, $label = '')
- * @method Field\Checkbox               checkbox($column, $label = '')
- * @method Field\Radio                  radio($column, $label = '')
- * @method Field\Select                 select($column, $label = '')
- * @method Field\MultipleSelect         multipleSelect($column, $label = '')
- * @method Field\Textarea               textarea($column, $label = '')
- * @method Field\Hidden                 hidden($column, $label = '')
- * @method Field\Id                     id($column, $label = '')
- * @method Field\Ip                     ip($column, $label = '')
- * @method Field\Url                    url($column, $label = '')
- * @method Field\Email                  email($column, $label = '')
- * @method Field\Mobile                 mobile($column, $label = '')
- * @method Field\Slider                 slider($column, $label = '')
- * @method Field\Map                    map($latitude, $longitude, $label = '')
- * @method Field\Editor                 editor($column, $label = '')
- * @method Field\Date                   date($column, $label = '')
- * @method Field\Datetime               datetime($column, $label = '')
- * @method Field\Time                   time($column, $label = '')
- * @method Field\Year                   year($column, $label = '')
- * @method Field\Month                  month($column, $label = '')
- * @method Field\DateRange              dateRange($start, $end, $label = '')
- * @method Field\DateTimeRange          datetimeRange($start, $end, $label = '')
- * @method Field\TimeRange              timeRange($start, $end, $label = '')
- * @method Field\Number                 number($column, $label = '')
- * @method Field\Currency               currency($column, $label = '')
- * @method Field\SwitchField            switch($column, $label = '')
- * @method Field\Display                display($column, $label = '')
- * @method Field\Rate                   rate($column, $label = '')
- * @method Field\Divide                 divider()
- * @method Field\Password               password($column, $label = '')
- * @method Field\Decimal                decimal($column, $label = '')
- * @method Field\Html                   html($html, $label = '')
- * @method Field\Tags                   tags($column, $label = '')
- * @method Field\Icon                   icon($column, $label = '')
- * @method Field\Embeds                 embeds($column, $label = '')
- * @method Field\Captcha                captcha()
- * @method Field\Listbox                listbox($column, $label = '')
- * @method Field\File                   file($column, $label = '')
- * @method Field\Image                  image($column, $label = '')
- * @method Field\MultipleFile           multipleFile($column, $label = '')
- * @method Field\MultipleImage          multipleImage($column, $label = '')
- * @method Field\Tree                   tree($column, $label = '')
- * @method Field\Table                  table($column, $labelOrCallback, $callback = null)
- * @method Field\ListField              list($column, $label = '')
- * @method Field\Timezone               timezone($column, $label = '')
- * @method Field\KeyValue               keyValue($column, $label = '')
- * @method Field\Tel                    tel($column, $label = '')
- * @method Field\Markdown               markdown($column, $label = '')
- * @method Field\Range                  range($start, $end, $label = '')
- * @method Field\Color                  color($column, $label = '')
- * @method Field\ArrayField             array($column, $labelOrCallback, $callback = null)
- * @method Field\SelectTable            selectTable($column, $label = '')
- * @method Field\MultipleSelectTable    multipleSelectTable($column, $label = '')
+ * @method Field\Text                text($column, $label = '')
+ * @method Field\Checkbox            checkbox($column, $label = '')
+ * @method Field\Radio               radio($column, $label = '')
+ * @method Field\Select              select($column, $label = '')
+ * @method Field\MultipleSelect      multipleSelect($column, $label = '')
+ * @method Field\Textarea            textarea($column, $label = '')
+ * @method Field\Hidden              hidden($column, $label = '')
+ * @method Field\Id                  id($column, $label = '')
+ * @method Field\Ip                  ip($column, $label = '')
+ * @method Field\Url                 url($column, $label = '')
+ * @method Field\Email               email($column, $label = '')
+ * @method Field\Mobile              mobile($column, $label = '')
+ * @method Field\Slider              slider($column, $label = '')
+ * @method Field\Map                 map($latitude, $longitude, $label = '')
+ * @method Field\Editor              editor($column, $label = '')
+ * @method Field\Date                date($column, $label = '')
+ * @method Field\Datetime            datetime($column, $label = '')
+ * @method Field\Time                time($column, $label = '')
+ * @method Field\Year                year($column, $label = '')
+ * @method Field\Month               month($column, $label = '')
+ * @method Field\DateRange           dateRange($start, $end, $label = '')
+ * @method Field\DateTimeRange       datetimeRange($start, $end, $label = '')
+ * @method Field\TimeRange           timeRange($start, $end, $label = '')
+ * @method Field\Number              number($column, $label = '')
+ * @method Field\Currency            currency($column, $label = '')
+ * @method Field\SwitchField         switch($column, $label = '')
+ * @method Field\Display             display($column, $label = '')
+ * @method Field\Rate                rate($column, $label = '')
+ * @method Field\Divide              divider()
+ * @method Field\Password            password($column, $label = '')
+ * @method Field\Decimal             decimal($column, $label = '')
+ * @method Field\Html                html($html, $label = '')
+ * @method Field\Tags                tags($column, $label = '')
+ * @method Field\Icon                icon($column, $label = '')
+ * @method Field\Embeds              embeds($column, $label = '')
+ * @method Field\Captcha             captcha()
+ * @method Field\Listbox             listbox($column, $label = '')
+ * @method Field\File                file($column, $label = '')
+ * @method Field\Image               image($column, $label = '')
+ * @method Field\MultipleFile        multipleFile($column, $label = '')
+ * @method Field\MultipleImage       multipleImage($column, $label = '')
+ * @method Field\Tree                tree($column, $label = '')
+ * @method Field\Table               table($column, $labelOrCallback, $callback = null)
+ * @method Field\ListField           list($column, $label = '')
+ * @method Field\Timezone            timezone($column, $label = '')
+ * @method Field\KeyValue            keyValue($column, $label = '')
+ * @method Field\Tel                 tel($column, $label = '')
+ * @method Field\Markdown            markdown($column, $label = '')
+ * @method Field\Range               range($start, $end, $label = '')
+ * @method Field\Color               color($column, $label = '')
+ * @method Field\ArrayField          array($column, $labelOrCallback, $callback = null)
+ * @method Field\SelectTable         selectTable($column, $label = '')
+ * @method Field\MultipleSelectTable multipleSelectTable($column, $label = '')
  */
 class EmbeddedForm
 {
@@ -219,8 +219,6 @@ class EmbeddedForm
     /**
      * Fill data to all fields in form.
      *
-     * @param array $data
-     *
      * @return $this
      */
     public function fill(array $data)
@@ -234,8 +232,6 @@ class EmbeddedForm
 
     /**
      * Format form, set `element name` `error key` and `element class`.
-     *
-     * @param Field $field
      *
      * @return Field
      */
@@ -276,8 +272,6 @@ class EmbeddedForm
 
     /**
      * Add a field to form.
-     *
-     * @param Field $field
      *
      * @return $this
      */

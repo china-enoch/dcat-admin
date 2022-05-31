@@ -15,7 +15,7 @@ class Gt extends Equal
     public function addBinding($value, Model $model)
     {
         $value = trim($value);
-        if ($value === '') {
+        if ('' === $value) {
             return;
         }
 

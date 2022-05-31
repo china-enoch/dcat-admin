@@ -27,8 +27,6 @@ class DateTime extends Presenter
     }
 
     /**
-     * @param array $options
-     *
      * @return mixed
      */
     protected function getOptions(array $options): array
@@ -42,7 +40,7 @@ class DateTime extends Presenter
     public function defaultVariables(): array
     {
         return [
-            'group'   => $this->filter->group,
+            'group' => $this->filter->group,
             'options' => $this->options,
         ];
     }

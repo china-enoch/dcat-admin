@@ -6,7 +6,6 @@ trait ShowCreator
 {
     /**
      * @param string $primaryKey
-     * @param array  $fields
      *
      * @return string
      */
@@ -14,7 +13,7 @@ trait ShowCreator
     {
         $primaryKey = $primaryKey ?: request('primary_key', 'id');
         $fields = $fields ?: request('fields', []);
-        $timestamps = $timestamps === null ? request('timestamps') : $timestamps;
+        $timestamps = null === $timestamps ? request('timestamps') : $timestamps;
 
         $rows = [];
 

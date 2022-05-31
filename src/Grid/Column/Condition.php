@@ -53,7 +53,7 @@ class Condition
         $self = $this;
 
         $condition = $this->column->if(function () use ($self) {
-            return ! $self->getResult();
+            return !$self->getResult();
         });
 
         if ($next) {
@@ -72,7 +72,7 @@ class Condition
 
     protected function callCallbacks(array $callbacks)
     {
-        if (! $callbacks) {
+        if (!$callbacks) {
             return;
         }
 
@@ -125,7 +125,7 @@ class Condition
 
     public function __call($name, $arguments)
     {
-        if ($name == 'if') {
+        if ('if' == $name) {
             return $this->column->if(...$arguments);
         }
 

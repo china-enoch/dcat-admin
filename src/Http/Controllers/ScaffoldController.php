@@ -31,40 +31,40 @@ class ScaffoldController extends Controller
     ];
 
     public static $dataTypeMap = [
-        'int'                => 'integer',
-        'int@unsigned'       => 'unsignedInteger',
-        'tinyint'            => 'tinyInteger',
-        'tinyint@unsigned'   => 'unsignedTinyInteger',
-        'smallint'           => 'smallInteger',
-        'smallint@unsigned'  => 'unsignedSmallInteger',
-        'mediumint'          => 'mediumInteger',
+        'int' => 'integer',
+        'int@unsigned' => 'unsignedInteger',
+        'tinyint' => 'tinyInteger',
+        'tinyint@unsigned' => 'unsignedTinyInteger',
+        'smallint' => 'smallInteger',
+        'smallint@unsigned' => 'unsignedSmallInteger',
+        'mediumint' => 'mediumInteger',
         'mediumint@unsigned' => 'unsignedMediumInteger',
-        'bigint'             => 'bigInteger',
-        'bigint@unsigned'    => 'unsignedBigInteger',
+        'bigint' => 'bigInteger',
+        'bigint@unsigned' => 'unsignedBigInteger',
 
-        'date'      => 'date',
-        'time'      => 'time',
-        'datetime'  => 'dateTime',
+        'date' => 'date',
+        'time' => 'time',
+        'datetime' => 'dateTime',
         'timestamp' => 'timestamp',
 
-        'enum'   => 'enum',
-        'json'   => 'json',
+        'enum' => 'enum',
+        'json' => 'json',
         'binary' => 'binary',
 
-        'float'   => 'float',
-        'double'  => 'double',
+        'float' => 'float',
+        'double' => 'double',
         'decimal' => 'decimal',
 
-        'varchar'    => 'string',
-        'char'       => 'char',
-        'text'       => 'text',
+        'varchar' => 'string',
+        'char' => 'char',
+        'text' => 'text',
         'mediumtext' => 'mediumText',
-        'longtext'   => 'longText',
+        'longtext' => 'longText',
     ];
 
     public function index(Content $content)
     {
-        if (! config('app.debug')) {
+        if (!config('app.debug')) {
             Permission::error();
         }
 
@@ -95,13 +95,13 @@ class ScaffoldController extends Controller
     {
         return [
             'status' => 1,
-            'value'  => Str::singular($tableName),
+            'value' => Str::singular($tableName),
         ];
     }
 
     public function store(Request $request)
     {
-        if (! config('app.debug')) {
+        if (!config('app.debug')) {
             Permission::error();
         }
 
@@ -121,8 +121,8 @@ class ScaffoldController extends Controller
 
                 $paths['model'] = $modelCreator->create(
                     $request->get('primary_key'),
-                    $request->get('timestamps') == 1,
-                    $request->get('soft_deletes') == 1
+                    1 == $request->get('timestamps'),
+                    1 == $request->get('soft_deletes')
                 );
             }
 
@@ -139,8 +139,8 @@ class ScaffoldController extends Controller
                 $paths['migration'] = (new MigrationCreator(app('files')))->buildBluePrint(
                     $request->get('fields'),
                     $request->get('primary_key', 'id'),
-                    $request->get('timestamps') == 1,
-                    $request->get('soft_deletes') == 1
+                    1 == $request->get('timestamps'),
+                    1 == $request->get('soft_deletes')
                 )->create($migrationName, database_path('migrations'), $table);
             }
 
@@ -186,7 +186,7 @@ class ScaffoldController extends Controller
     {
         $db = addslashes(\request('db'));
         $table = \request('tb');
-        if (! $table || ! $db) {
+        if (!$table || !$db) {
             return ['status' => 1, 'list' => []];
         }
 
@@ -232,7 +232,7 @@ class ScaffoldController extends Controller
                 $tmp = DB::connection($connectName)->select($sql);
 
                 $collection = collect($tmp)->map(function ($v) use ($value) {
-                    if (! $p = Arr::get($value, 'prefix')) {
+                    if (!$p = Arr::get($value, 'prefix')) {
                         return (array) $v;
                     }
                     $v = (array) $v;
@@ -252,12 +252,12 @@ class ScaffoldController extends Controller
                         }
 
                         return [
-                            'type'     => $v['DATA_TYPE'],
-                            'default'  => $v['COLUMN_DEFAULT'],
+                            'type' => $v['DATA_TYPE'],
+                            'default' => $v['COLUMN_DEFAULT'],
                             'nullable' => $v['IS_NULLABLE'],
-                            'key'      => $v['COLUMN_KEY'],
-                            'id'       => $v['COLUMN_KEY'] === 'PRI',
-                            'comment'  => $v['COLUMN_COMMENT'],
+                            'key' => $v['COLUMN_KEY'],
+                            'id' => 'PRI' === $v['COLUMN_KEY'],
+                            'comment' => $v['COLUMN_COMMENT'],
                         ];
                     })->toArray();
                 })->toArray();
@@ -271,7 +271,7 @@ class ScaffoldController extends Controller
     protected function backWithException(\Exception $exception)
     {
         $error = new MessageBag([
-            'title'   => 'Error',
+            'title' => 'Error',
             'message' => $exception->getMessage(),
         ]);
 
@@ -289,7 +289,7 @@ class ScaffoldController extends Controller
         $messages[] = "<br />$message";
 
         $success = new MessageBag([
-            'title'   => 'Success',
+            'title' => 'Success',
             'message' => implode('<br />', $messages),
         ]);
 

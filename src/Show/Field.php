@@ -112,8 +112,6 @@ class Field implements Renderable
     /**
      * Set parent show instance.
      *
-     * @param Show $show
-     *
      * @return $this
      */
     public function setParent(Show $show)
@@ -193,8 +191,7 @@ class Field implements Renderable
     /**
      * Display field using array value map.
      *
-     * @param array $values
-     * @param null  $default
+     * @param null $default
      *
      * @return $this
      */
@@ -276,7 +273,7 @@ class Field implements Renderable
                 }
             }
 
-            if (! $url) {
+            if (!$url) {
                 return '';
             }
 
@@ -351,7 +348,7 @@ HTML;
         return $this->unescape()->prepend(function ($_, $original) use ($options, $default) {
             $style = is_null($original) ? $default : Arr::get((array) $options, $original, $default);
 
-            $style = $style === 'default' ? 'dark70' : $style;
+            $style = 'default' === $style ? 'dark70' : $style;
 
             $background = Admin::color()->get($style, $style);
 
@@ -389,7 +386,7 @@ HTML;
         $class = 'default';
         $background = '';
 
-        if ($style !== 'default') {
+        if ('default' !== $style) {
             $class = '';
 
             $style = Admin::color()->get($style, $style);
@@ -472,8 +469,6 @@ HTML;
     /**
      * Split a string by string.
      *
-     * @param string $d
-     *
      * @return $this
      */
     public function explode(string $d = ',')
@@ -548,7 +543,7 @@ HTML;
      */
     public function value($value = null)
     {
-        if ($value === null) {
+        if (null === $value) {
             return $this->value;
         }
 
@@ -568,8 +563,8 @@ HTML;
     }
 
     /**
-     * @param  mixed  $value
-     * @param  callable  $callback
+     * @param mixed    $value
+     * @param callable $callback
      *
      * @return $this|mixed
      */
@@ -625,20 +620,20 @@ HTML;
             $extend = $abstract;
         }
 
-        if (! isset($extend)) {
+        if (!isset($extend)) {
             admin_warning("[$abstract] is not a valid Show field.");
 
             return $this;
         }
 
-        if (! $extend->escape) {
+        if (!$extend->escape) {
             $this->unescape();
         }
 
         $field = $this;
 
         return $this->as(function ($value) use ($extend, $field, $arguments) {
-            if (! $extend->border) {
+            if (!$extend->border) {
                 $field->wrap(false);
             }
 
@@ -680,10 +675,10 @@ HTML;
     {
         return [
             'content' => $this->value,
-            'escape'  => $this->escape,
-            'label'   => $this->getLabel(),
+            'escape' => $this->escape,
+            'label' => $this->getLabel(),
             'wrapped' => $this->border,
-            'width'   => $this->width,
+            'width' => $this->width,
         ];
     }
 
@@ -698,7 +693,7 @@ HTML;
             $this->showAs->each(function ($callable) {
                 [$callable, $params] = $callable;
 
-                if (! $callable instanceof \Closure) {
+                if (!$callable instanceof \Closure) {
                     $this->value = $callable;
 
                     return;

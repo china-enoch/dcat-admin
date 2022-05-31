@@ -37,8 +37,6 @@ class Footer implements Renderable
 
     /**
      * Footer constructor.
-     *
-     * @param Builder $builder
      */
     public function __construct(Builder $builder)
     {
@@ -48,13 +46,11 @@ class Footer implements Renderable
     /**
      * Disable reset button.
      *
-     * @param bool $disable
-     *
      * @return $this
      */
     public function disableReset(bool $disable = true)
     {
-        $this->buttons['reset'] = ! $disable;
+        $this->buttons['reset'] = !$disable;
 
         return $this;
     }
@@ -62,13 +58,11 @@ class Footer implements Renderable
     /**
      * Disable submit button.
      *
-     * @param bool $disable
-     *
      * @return $this
      */
     public function disableSubmit(bool $disable = true)
     {
-        $this->buttons['submit'] = ! $disable;
+        $this->buttons['submit'] = !$disable;
 
         return $this;
     }
@@ -76,13 +70,11 @@ class Footer implements Renderable
     /**
      * Disable View Checkbox.
      *
-     * @param bool $disable
-     *
      * @return $this
      */
     public function disableViewCheck(bool $disable = true)
     {
-        $this->checkboxes['view'] = ! $disable;
+        $this->checkboxes['view'] = !$disable;
 
         return $this;
     }
@@ -90,13 +82,11 @@ class Footer implements Renderable
     /**
      * Disable Editing Checkbox.
      *
-     * @param bool $disable
-     *
      * @return $this
      */
     public function disableEditingCheck(bool $disable = true)
     {
-        $this->checkboxes['continue_editing'] = ! $disable;
+        $this->checkboxes['continue_editing'] = !$disable;
 
         return $this;
     }
@@ -104,13 +94,11 @@ class Footer implements Renderable
     /**
      * Disable Creating Checkbox.
      *
-     * @param bool $disable
-     *
      * @return $this
      */
     public function disableCreatingCheck(bool $disable = true)
     {
-        $this->checkboxes['continue_creating'] = ! $disable;
+        $this->checkboxes['continue_creating'] = !$disable;
 
         return $this;
     }
@@ -140,7 +128,7 @@ class Footer implements Renderable
             $options[3] = sprintf('<span class="text-80 text-bold">%s</span>', trans('admin.view'));
         }
 
-        if (! $options) {
+        if (!$options) {
             return;
         }
 
@@ -155,9 +143,9 @@ class Footer implements Renderable
     public function render()
     {
         $data = [
-            'buttons'    => $this->buttons,
+            'buttons' => $this->buttons,
             'checkboxes' => $this->buildCheckboxes(),
-            'width'      => $this->builder->getWidth(),
+            'width' => $this->builder->getWidth(),
         ];
 
         return view($this->view, $data)->render();

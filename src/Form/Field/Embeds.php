@@ -26,12 +26,12 @@ class Embeds extends Field
     {
         $this->column = $column;
 
-        if (count($arguments) == 1) {
+        if (1 == count($arguments)) {
             $this->label = $this->formatLabel();
             $this->builder = $arguments[0];
         }
 
-        if (count($arguments) == 2) {
+        if (2 == count($arguments)) {
             [$this->label, $this->builder] = $arguments;
         }
     }
@@ -55,17 +55,17 @@ class Embeds extends Field
      */
     public function getValidator(array $input)
     {
-        if (! Arr::has($input, $this->column)) {
+        if (!Arr::has($input, $this->column)) {
             return false;
         }
 
-        //$input = Arr::only($input, $this->column);
+        // $input = Arr::only($input, $this->column);
 
         $rules = $attributes = $messages = [];
 
         /** @var Field $field */
         foreach ($this->buildEmbeddedForm()->fields() as $field) {
-            if (! $fieldRules = $field->getRules()) {
+            if (!$fieldRules = $field->getRules()) {
                 continue;
             }
 
@@ -141,9 +141,6 @@ class Embeds extends Field
     /**
      * Format validation messages.
      *
-     * @param array $input
-     * @param array $messages
-     *
      * @return array
      */
     protected function formatValidationMessages(array $input, array $messages)
@@ -195,17 +192,16 @@ class Embeds extends Field
     /**
      * Reset input key for validation.
      *
-     * @param array $input
      * @param array $column $column is the column name array set
      *
-     * @return void.
+     * @return void
      */
     public function resetInputKey(array &$input, array $column)
     {
         $column = array_flip($column);
 
         foreach (Arr::get($input, $this->column) as $key => $value) {
-            if (! array_key_exists($key, $column)) {
+            if (!array_key_exists($key, $column)) {
                 continue;
             }
 

@@ -98,8 +98,6 @@ class Alert extends Widget
     /**
      * Show close button.
      *
-     * @param bool $value
-     *
      * @return $this
      */
     public function removable(bool $value = true)
@@ -145,10 +143,10 @@ class Alert extends Widget
         $this->class("alert alert-{$this->style} alert-dismissable");
 
         return [
-            'title'        => $this->title,
-            'content'      => $this->content,
-            'icon'         => $this->icon,
-            'attributes'   => $this->formatHtmlAttributes(),
+            'title' => $this->title,
+            'content' => $this->content,
+            'icon' => $this->icon,
+            'attributes' => $this->formatHtmlAttributes(),
             'showCloseBtn' => $this->showCloseBtn,
         ];
     }

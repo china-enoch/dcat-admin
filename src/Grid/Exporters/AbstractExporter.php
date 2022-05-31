@@ -69,11 +69,11 @@ abstract class AbstractExporter implements ExporterInterface
      */
     public function titles($titles = null)
     {
-        if ($titles === null) {
+        if (null === $titles) {
             return $this->titles ?: ($this->titles = $this->defaultTitles());
         }
 
-        if (is_array($titles) || $titles === false) {
+        if (is_array($titles) || false === $titles) {
             $this->titles = $titles;
         }
 
@@ -115,8 +115,6 @@ abstract class AbstractExporter implements ExporterInterface
 
     /**
      * Set export data callback function.
-     *
-     * @param \Closure $builder
      *
      * @return $this
      */
@@ -166,8 +164,6 @@ abstract class AbstractExporter implements ExporterInterface
     /**
      * Set grid for exporter.
      *
-     * @param Grid $grid
-     *
      * @return $this
      */
     public function setGrid(Grid $grid)
@@ -199,14 +195,14 @@ abstract class AbstractExporter implements ExporterInterface
         $model = $this->getGridModel();
 
         // current page
-        if ($this->scope === Grid\Exporter::SCOPE_CURRENT_PAGE) {
+        if (Grid\Exporter::SCOPE_CURRENT_PAGE === $this->scope) {
             $page = $model->getCurrentPage();
             $perPage = $model->getPerPage();
         }
 
         $model->usePaginate(false);
 
-        if ($page && $this->scope !== Grid\Exporter::SCOPE_SELECTED_ROWS) {
+        if ($page && Grid\Exporter::SCOPE_SELECTED_ROWS !== $this->scope) {
             $perPage = $perPage ?: $this->getChunkSize();
 
             $model->forPage($page, $perPage);
@@ -221,8 +217,6 @@ abstract class AbstractExporter implements ExporterInterface
 
     /**
      * 格式化待导出数据.
-     *
-     * @param array $data
      *
      * @return array
      */
@@ -254,8 +248,6 @@ abstract class AbstractExporter implements ExporterInterface
     }
 
     /**
-     * @param array $data
-     *
      * @return array
      */
     protected function callBuilder(array &$data)
@@ -290,7 +282,7 @@ abstract class AbstractExporter implements ExporterInterface
 
         $this->scope = $scope;
 
-        if ($scope == Grid\Exporter::SCOPE_SELECTED_ROWS) {
+        if (Grid\Exporter::SCOPE_SELECTED_ROWS == $scope) {
             $selected = explode(',', $args);
 
             $this->grid->model()->whereIn($this->grid->getKeyName(), $selected);

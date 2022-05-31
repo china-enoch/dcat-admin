@@ -44,6 +44,6 @@ JS;
 </a>&nbsp;{$this->value}
 HTML;
 
-        return $this->value === '' || $this->value === null ? $this->value : $html;
+        return '' === $this->value || null === $this->value ? $this->value : $html;
     }
 }

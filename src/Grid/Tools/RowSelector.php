@@ -107,7 +107,7 @@ JS
     {
         if ($key = $this->titleColumn) {
             $label = Arr::get($row->toArray(), $key);
-            if ($label !== null && $label !== '') {
+            if (null !== $label && '' !== $label) {
                 return $label;
             }
 

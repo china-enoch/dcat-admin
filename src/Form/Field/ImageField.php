@@ -49,7 +49,7 @@ trait ImageField
      */
     public function callInterventionMethods($target, $mime)
     {
-        if (! empty($this->interventionCalls)) {
+        if (!empty($this->interventionCalls)) {
             $image = ImageManagerStatic::make($target);
 
             $mime = $mime ?: finfo_file(finfo_open(FILEINFO_MIME_TYPE), $target);
@@ -81,12 +81,12 @@ trait ImageField
             return parent::__call($method, $arguments);
         }
 
-        if (! class_exists(ImageManagerStatic::class)) {
+        if (!class_exists(ImageManagerStatic::class)) {
             throw new AdminException('To use image handling and manipulation, please install [intervention/image] first.');
         }
 
         $this->interventionCalls[] = [
-            'method'    => static::$interventionAlias[$method] ?? $method,
+            'method' => static::$interventionAlias[$method] ?? $method,
             'arguments' => $arguments,
         ];
 
@@ -102,13 +102,13 @@ trait ImageField
      */
     public function thumbnail($name, int $width = null, int $height = null)
     {
-        if (func_num_args() == 1 && is_array($name)) {
+        if (1 == func_num_args() && is_array($name)) {
             foreach ($name as $key => $size) {
                 if (count($size) >= 2) {
                     $this->thumbnails[$key] = $size;
                 }
             }
-        } elseif (func_num_args() == 3) {
+        } elseif (3 == func_num_args()) {
             $this->thumbnails[$name] = [$width, $height];
         }
 
@@ -119,18 +119,17 @@ trait ImageField
      * Destroy original thumbnail files.
      *
      * @param string|array $file
-     * @param bool         $force
      *
-     * @return void.
+     * @return void
      */
     public function destroyThumbnail($file = null, bool $force = false)
     {
-        if ($this->retainable && ! $force) {
+        if ($this->retainable && !$force) {
             return;
         }
 
         $file = $file ?: $this->original;
-        if (! $file) {
+        if (!$file) {
             return;
         }
 
@@ -161,8 +160,6 @@ trait ImageField
     /**
      * Upload file and delete original thumbnail files.
      *
-     * @param UploadedFile $file
-     *
      * @return $this
      */
     protected function uploadAndDeleteOriginalThumbnail(UploadedFile $file)
@@ -186,7 +183,7 @@ trait ImageField
                 $constraint->aspectRatio();
             });
 
-            if (! is_null($this->storagePermission)) {
+            if (!is_null($this->storagePermission)) {
                 $this->getStorage()->put("{$this->getDirectory()}/{$path}", $image->encode(), $this->storagePermission);
             } else {
                 $this->getStorage()->put("{$this->getDirectory()}/{$path}", $image->encode());

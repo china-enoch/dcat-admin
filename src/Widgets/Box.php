@@ -28,8 +28,6 @@ class Box extends Widget
 
     /**
      * Set content padding.
-     *
-     * @param string $padding
      */
     public function padding(string $padding)
     {
@@ -144,11 +142,11 @@ class Box extends Widget
     public function defaultVariables()
     {
         return [
-            'title'      => $this->title,
-            'content'    => $this->toString($this->content),
-            'tools'      => $this->tools,
+            'title' => $this->title,
+            'content' => $this->toString($this->content),
+            'tools' => $this->tools,
             'attributes' => $this->formatHtmlAttributes(),
-            'padding'    => $this->padding,
+            'padding' => $this->padding,
         ];
     }
 }

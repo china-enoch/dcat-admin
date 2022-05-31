@@ -17,8 +17,6 @@ trait HasComplexHeaders
     /**
      * Merge cells.
      *
-     * @param string $column
-     * @param array  $columnNames
      * @param string $label
      *
      * @return ComplexHeader
@@ -29,7 +27,7 @@ trait HasComplexHeaders
             throw new InvalidArgumentException('Invalid column names.');
         }
 
-        if (! $this->complexHeaders) {
+        if (!$this->complexHeaders) {
             $this->complexHeaders = new Collection();
         }
 
@@ -43,7 +41,7 @@ trait HasComplexHeaders
      */
     public function getComplexHeaderNames()
     {
-        if (! $this->complexHeaders) {
+        if (!$this->complexHeaders) {
             return [];
         }
 
@@ -65,7 +63,7 @@ trait HasComplexHeaders
      */
     protected function sortHeaders()
     {
-        if (! $this->complexHeaders) {
+        if (!$this->complexHeaders) {
             return;
         }
 
@@ -89,12 +87,12 @@ trait HasComplexHeaders
         $before = $after = [];
         $isBefore = true;
         foreach ($originalColumns as $name => $column) {
-            if ($isBefore && ! isset($this->columns[$name])) {
+            if ($isBefore && !isset($this->columns[$name])) {
                 $before[$name] = $column;
                 continue;
             }
             $isBefore = false;
-            if (! isset($this->columns[$name])) {
+            if (!isset($this->columns[$name])) {
                 $after[$name] = $column;
             }
         }

@@ -92,8 +92,6 @@ class Row implements Arrayable
 
     /**
      * Set attributes.
-     *
-     * @param array $attributes
      */
     public function setAttributes(array $attributes)
     {
@@ -209,7 +207,7 @@ class Row implements Arrayable
             $value = $value->toJson();
         }
 
-        if (! is_null($value) && ! is_scalar($value)) {
+        if (!is_null($value) && !is_scalar($value)) {
             return sprintf('<pre class="dump">%s</pre>', json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         }
 

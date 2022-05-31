@@ -29,11 +29,11 @@ class MenuTest extends TestCase
     {
         $this->browse(function (Browser $browser) {
             $item = [
-                'parent_id'   => '0',
-                'title'       => 'Test',
-                'uri'         => 'test',
-                'icon'        => 'fa-user',
-                'roles'       => [1],
+                'parent_id' => '0',
+                'title' => 'Test',
+                'uri' => 'test',
+                'icon' => 'fa-user',
+                'roles' => [1],
                 'permissions' => [4, 5],
             ];
 
@@ -93,10 +93,10 @@ class MenuTest extends TestCase
             $id = 5;
 
             $updates = [
-                'title'       => 'balabala',
-                'icon'        => 'fa-list',
-                'parent_id'   => 0,
-                'roles'       => 1,
+                'title' => 'balabala',
+                'icon' => 'fa-list',
+                'parent_id' => 0,
+                'roles' => 1,
                 'permissions' => [4, 5, 6],
             ];
 

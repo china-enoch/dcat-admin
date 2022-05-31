@@ -13,7 +13,8 @@ use Illuminate\Support\ViewErrorBag;
 
 class Content implements Renderable
 {
-    use HasBuilderEvents, Macroable;
+    use HasBuilderEvents;
+    use Macroable;
 
     /**
      * @var string
@@ -58,10 +59,8 @@ class Content implements Renderable
 
     /**
      * Content constructor.
-     *
-     * @param Closure|null $callback
      */
-    public function __construct(\Closure $callback = null)
+    public function __construct(Closure $callback = null)
     {
         $this->callResolving();
 
@@ -153,36 +152,34 @@ class Content implements Renderable
     }
 
     /**
-     * @param array $breadcrumb
-     *
      * @throws \Exception
      *
      * @return void
      */
     protected function formatBreadcrumb(array &$breadcrumb)
     {
-        if (! $breadcrumb) {
+        if (!$breadcrumb) {
             throw new RuntimeException('Breadcrumb format error!');
         }
 
         $notArray = false;
         foreach ($breadcrumb as &$item) {
             $isArray = is_array($item);
-            if ($isArray && ! isset($item['text'])) {
+            if ($isArray && !isset($item['text'])) {
                 throw new RuntimeException('Breadcrumb format error!');
             }
-            if (! $isArray && $item) {
+            if (!$isArray && $item) {
                 $notArray = true;
             }
         }
-        if (! $breadcrumb) {
+        if (!$breadcrumb) {
             throw new RuntimeException('Breadcrumb format error!');
         }
         if ($notArray) {
             $breadcrumb = [
                 [
                     'text' => $breadcrumb[0] ?? null,
-                    'url'  => $breadcrumb[1] ?? null,
+                    'url' => $breadcrumb[1] ?? null,
                     'icon' => $breadcrumb[2] ?? null,
                 ],
             ];
@@ -246,8 +243,6 @@ class Content implements Renderable
 
     /**
      * Add Row.
-     *
-     * @param Row $row
      */
     protected function addRow(Row $row)
     {
@@ -275,8 +270,6 @@ class Content implements Renderable
     }
 
     /**
-     * @param \Throwable $e
-     *
      * @return mixed|string
      */
     protected function handleException(\Throwable $e)
@@ -355,8 +348,6 @@ class Content implements Renderable
     /**
      * Set content view.
      *
-     * @param null|string $view
-     *
      * @return $this
      */
     public function view(?string $view)
@@ -368,7 +359,7 @@ class Content implements Renderable
 
     /**
      * @param string|array $key
-     * @param mixed $value
+     * @param mixed        $value
      *
      * @return $this
      */
@@ -385,7 +376,7 @@ class Content implements Renderable
 
     /**
      * @param string|array $key
-     * @param mixed $value
+     * @param mixed        $value
      *
      * @return $this
      */
@@ -405,7 +396,7 @@ class Content implements Renderable
      */
     protected function shareDefaultErrors()
     {
-        if (! session()->all()) {
+        if (!session()->all()) {
             view()->share(['errors' => new ViewErrorBag()]);
         }
     }
@@ -416,10 +407,10 @@ class Content implements Renderable
     protected function variables()
     {
         return array_merge([
-            'header'          => $this->title,
-            'description'     => $this->description,
-            'breadcrumb'      => $this->breadcrumb,
-            'configData'      => $this->applyClasses(),
+            'header' => $this->title,
+            'description' => $this->description,
+            'breadcrumb' => $this->breadcrumb,
+            'configData' => $this->applyClasses(),
             'pjaxContainerId' => Admin::getPjaxContainerId(),
         ], $this->variables);
     }
@@ -431,13 +422,13 @@ class Content implements Renderable
     {
         // default data array
         $defaultData = [
-            'theme'             => '',
+            'theme' => '',
             'sidebar_collapsed' => false,
-            'sidebar_style'     => 'sidebar-light-primary',
-            'navbar_color'      => '',
-            'navbar_class'      => 'sticky',
-            'footer_type'       => '',
-            'body_class'        => '',
+            'sidebar_style' => 'sidebar-light-primary',
+            'navbar_color' => '',
+            'navbar_class' => 'sticky',
+            'footer_type' => '',
+            'body_class' => '',
         ];
 
         $data = array_merge(
@@ -446,18 +437,18 @@ class Content implements Renderable
         );
 
         // 1.0 版本兼容 sidebar_dark 参数
-        if (empty($data['sidebar_style']) && ! empty($data['sidebar_dark'])) {
+        if (empty($data['sidebar_style']) && !empty($data['sidebar_dark'])) {
             $data['sidebar_style'] = 'sidebar-dark-white';
         }
 
         $allOptions = [
-            'theme'             => '',
-            'footer_type'       => '',
-            'body_class'        => '',
-            'sidebar_style'     => ['light' => 'sidebar-light-primary', 'primary' => 'sidebar-primary', 'dark' => 'sidebar-dark-white'],
+            'theme' => '',
+            'footer_type' => '',
+            'body_class' => '',
+            'sidebar_style' => ['light' => 'sidebar-light-primary', 'primary' => 'sidebar-primary', 'dark' => 'sidebar-dark-white'],
             'sidebar_collapsed' => [],
-            'navbar_color'      => [],
-            'navbar_class'      => ['floating' => 'floating-nav', 'sticky' => 'fixed-top', 'hidden' => 'd-none'],
+            'navbar_color' => [],
+            'navbar_class' => ['floating' => 'floating-nav', 'sticky' => 'fixed-top', 'hidden' => 'd-none'],
         ];
 
         $maps = [
@@ -465,11 +456,11 @@ class Content implements Renderable
         ];
 
         foreach ($allOptions as $key => $value) {
-            if (! array_key_exists($key, $defaultData)) {
+            if (!array_key_exists($key, $defaultData)) {
                 continue;
             }
 
-            if (! isset($data[$key])) {
+            if (!isset($data[$key])) {
                 $data[$key] = $defaultData[$key];
 
                 continue;
@@ -477,12 +468,12 @@ class Content implements Renderable
 
             if (
                 isset($maps[$key])
-                && ! isset($allOptions[$maps[$key]][$data[$key]])
+                && !isset($allOptions[$maps[$key]][$data[$key]])
             ) {
                 $data[$key] = $defaultData[$key];
             }
 
-            if (! is_array($data[$key]) && isset($value[$data[$key]])) {
+            if (!is_array($data[$key]) && isset($value[$data[$key]])) {
                 $data[$key] = $value[$data[$key]];
             }
         }
@@ -492,13 +483,13 @@ class Content implements Renderable
         }
 
         return [
-            'theme'             => $data['theme'],
+            'theme' => $data['theme'],
             'sidebar_collapsed' => $data['sidebar_collapsed'],
-            'navbar_color'      => $data['navbar_color'],
-            'navbar_class'      => $allOptions['navbar_class'][$data['navbar_class']],
-            'sidebar_class'     => $data['sidebar_collapsed'] ? 'sidebar-collapse' : '',
-            'body_class'        => $data['body_class'],
-            'sidebar_style'     => $data['sidebar_style'],
+            'navbar_color' => $data['navbar_color'],
+            'navbar_class' => $allOptions['navbar_class'][$data['navbar_class']],
+            'sidebar_class' => $data['sidebar_collapsed'] ? 'sidebar-collapse' : '',
+            'body_class' => $data['body_class'],
+            'sidebar_style' => $data['sidebar_style'],
         ];
     }
 
@@ -521,9 +512,6 @@ class Content implements Renderable
 
     /**
      * Register a composed event.
-     *
-     * @param callable $callback
-     * @param bool     $once
      */
     public static function composed(callable $callback, bool $once = false)
     {

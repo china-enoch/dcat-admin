@@ -26,7 +26,7 @@ class Expand extends AbstractDisplayer
         if ($callbackOrButton && $callbackOrButton instanceof \Closure) {
             $callbackOrButton = $callbackOrButton->call($this->row, $this);
 
-            if (! $callbackOrButton instanceof LazyRenderable) {
+            if (!$callbackOrButton instanceof LazyRenderable) {
                 $html = Helper::render($callbackOrButton);
 
                 $callbackOrButton = null;
@@ -50,10 +50,10 @@ class Expand extends AbstractDisplayer
         $button = is_null($this->button) ? $this->value : $this->button;
 
         return Admin::view('admin::grid.displayer.expand', [
-            'key'     => $this->getKey(),
-            'url'     => $remoteUrl,
-            'button'  => $button,
-            'html'    => $html,
+            'key' => $this->getKey(),
+            'url' => $remoteUrl,
+            'button' => $button,
+            'html' => $html,
             'dataKey' => $this->getDataKey(),
         ]);
     }
@@ -62,7 +62,7 @@ class Expand extends AbstractDisplayer
     {
         $key = $this->getKey() ?: Str::random(8);
 
-        static::$counter++;
+        ++static::$counter;
 
         return $this->grid->makeName($key.'-'.static::$counter);
     }

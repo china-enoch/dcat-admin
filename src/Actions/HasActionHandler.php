@@ -78,7 +78,7 @@ trait HasActionHandler
      */
     protected function normalizeConfirmData()
     {
-        if ($this->confirmString !== null) {
+        if (null !== $this->confirmString) {
             return $this->confirmString;
         }
 

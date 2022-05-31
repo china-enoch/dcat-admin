@@ -22,8 +22,6 @@ trait InteractsWithRenderApi
     /**
      * 监听异步渲染完成事件.
      *
-     * @param string $script
-     *
      * @return $this
      */
     public function onLoad(string $script)
@@ -47,7 +45,7 @@ trait InteractsWithRenderApi
 
     protected function getRenderableScript()
     {
-        if (! $this->getRenderable()) {
+        if (!$this->getRenderable()) {
             return;
         }
 

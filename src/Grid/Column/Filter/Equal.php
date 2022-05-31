@@ -75,9 +75,9 @@ class Equal extends Filter
     protected function addDateScript()
     {
         $options = [
-            'locale'           => config('app.locale'),
+            'locale' => config('app.locale'),
             'allowInputToggle' => true,
-            'format'           => $this->dateFormat,
+            'format' => $this->dateFormat,
         ];
 
         $options = admin_javascript_json($options);
@@ -94,7 +94,7 @@ class Equal extends Filter
     public function addBinding($value, Model $model)
     {
         $value = trim($value);
-        if ($value === '') {
+        if ('' === $value) {
             return;
         }
 

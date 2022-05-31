@@ -29,10 +29,10 @@ class Actions extends AbstractDisplayer
      * @var array
      */
     protected $actions = [
-        'view'      => true,
-        'edit'      => true,
+        'view' => true,
+        'edit' => true,
         'quickEdit' => false,
-        'delete'    => true,
+        'delete' => true,
     ];
 
     /**
@@ -89,8 +89,6 @@ class Actions extends AbstractDisplayer
     /**
      * Disable view action.
      *
-     * @param bool $disable
-     *
      * @return $this
      */
     public function disableView(bool $disable = true)
@@ -101,9 +99,7 @@ class Actions extends AbstractDisplayer
     /**
      * Disable delete.
      *
-     * @param bool $disable
-     *
-     * @return $this.
+     * @return $this
      */
     public function disableDelete(bool $disable = true)
     {
@@ -113,9 +109,7 @@ class Actions extends AbstractDisplayer
     /**
      * Disable edit.
      *
-     * @param bool $disable
-     *
-     * @return $this.
+     * @return $this
      */
     public function disableEdit(bool $disable = true)
     {
@@ -125,9 +119,7 @@ class Actions extends AbstractDisplayer
     /**
      * Disable quick edit.
      *
-     * @param bool $disable
-     *
-     * @return $this.
+     * @return $this
      */
     public function disableQuickEdit(bool $disable = true)
     {
@@ -135,14 +127,11 @@ class Actions extends AbstractDisplayer
     }
 
     /**
-     * @param string $key
-     * @param bool $disable
-     *
      * @return $this
      */
     protected function disableDefaultAction(string $key, bool $disable)
     {
-        $this->actions[$key] = ! $disable;
+        $this->actions[$key] = !$disable;
 
         return $this;
     }
@@ -176,15 +165,13 @@ class Actions extends AbstractDisplayer
      */
     protected function resetDefaultActions()
     {
-        $this->disableView(! $this->grid->option('show_view_button'));
-        $this->disableEdit(! $this->grid->option('show_edit_button'));
-        $this->disableQuickEdit(! $this->grid->option('show_quick_edit_button'));
-        $this->disableDelete(! $this->grid->option('show_delete_button'));
+        $this->disableView(!$this->grid->option('show_view_button'));
+        $this->disableEdit(!$this->grid->option('show_edit_button'));
+        $this->disableQuickEdit(!$this->grid->option('show_quick_edit_button'));
+        $this->disableDelete(!$this->grid->option('show_delete_button'));
     }
 
     /**
-     * @param array $callbacks
-     *
      * @return void
      */
     protected function call(array $callbacks = [])
@@ -257,7 +244,7 @@ EOT;
      */
     protected function renderQuickEdit()
     {
-        if (! static::$resolvedDialog) {
+        if (!static::$resolvedDialog) {
             static::$resolvedDialog = true;
 
             [$width, $height] = $this->grid->option('dialog_form_area');

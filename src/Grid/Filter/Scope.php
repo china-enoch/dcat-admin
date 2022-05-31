@@ -35,7 +35,6 @@ class Scope implements Renderable
     /**
      * Scope constructor.
      *
-     * @param Filter $filter
      * @param string $key
      * @param string $label
      */

@@ -67,7 +67,7 @@ class RoleController extends AdminController
             $show->field('created_at');
             $show->field('updated_at');
 
-            if ($show->getKey() == RoleModel::ADMINISTRATOR_ID) {
+            if (RoleModel::ADMINISTRATOR_ID == $show->getKey()) {
                 $show->disableDeleteButton();
             }
         });
@@ -98,7 +98,7 @@ class RoleController extends AdminController
                     return $permissionModel->allNodes();
                 })
                 ->customFormat(function ($v) {
-                    if (! $v) {
+                    if (!$v) {
                         return [];
                     }
 
@@ -108,7 +108,7 @@ class RoleController extends AdminController
             $form->display('created_at', trans('admin.created_at'));
             $form->display('updated_at', trans('admin.updated_at'));
 
-            if ($id == RoleModel::ADMINISTRATOR_ID) {
+            if (RoleModel::ADMINISTRATOR_ID == $id) {
                 $form->disableDeleteButton();
             }
         });

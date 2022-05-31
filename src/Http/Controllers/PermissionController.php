@@ -37,7 +37,7 @@ class PermissionController extends AdminController
 
                 $path = array_filter($branch['http_path']);
 
-                if (! $path) {
+                if (!$path) {
                     return $payload.'</div>&nbsp;';
                 }
 
@@ -55,7 +55,7 @@ class PermissionController extends AdminController
 
                         $method = array_merge($method, explode(',', $me));
                     }
-                    if ($path !== '...' && ! empty(config('admin.route.prefix')) && ! Str::contains($path, '.')) {
+                    if ('...' !== $path && !empty(config('admin.route.prefix')) && !Str::contains($path, '.')) {
                         $path = trim(admin_base_path($path), '/');
                     }
 
@@ -122,14 +122,14 @@ class PermissionController extends AdminController
         $container = collect();
 
         $routes = collect(app('router')->getRoutes())->map(function ($route) use ($prefix, $container) {
-            if (! Str::startsWith($uri = $route->uri(), $prefix) && $prefix) {
+            if (!Str::startsWith($uri = $route->uri(), $prefix) && $prefix) {
                 return;
             }
 
-            if (! Str::contains($uri, '{')) {
+            if (!Str::contains($uri, '{')) {
                 $route = Str::replaceFirst($prefix, '', $uri.'*');
 
-                if ($route !== '*') {
+                if ('*' !== $route) {
                     $container->push($route);
                 }
             }

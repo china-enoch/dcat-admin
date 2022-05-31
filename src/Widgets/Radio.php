@@ -62,8 +62,6 @@ class Radio extends Widget
      *
      * "sm", "lg"
      *
-     * @param string $size
-     *
      * @return $this
      */
     public function size(string $size)
@@ -75,8 +73,6 @@ class Radio extends Widget
 
     /**
      * 是否排成一行.
-     *
-     * @param bool $inine
      *
      * @return $this
      */
@@ -107,8 +103,6 @@ class Radio extends Widget
 
     /**
      * 设置 "margin-right" 样式.
-     *
-     * @param string $value
      *
      * @return $this
      */
@@ -161,8 +155,6 @@ class Radio extends Widget
      *
      * 支持 "info", "primary", "danger", "success".
      *
-     * @param string $style
-     *
      * @return $this
      */
     public function style(string $style)
@@ -178,14 +170,14 @@ class Radio extends Widget
     public function defaultVariables()
     {
         return [
-            'style'      => $this->style,
-            'options'    => $this->options,
+            'style' => $this->style,
+            'options' => $this->options,
             'attributes' => $this->formatHtmlAttributes(),
-            'checked'    => $this->checked,
-            'disabled'   => $this->disabledValues,
-            'right'      => $this->right,
-            'size'       => $this->size,
-            'inline'     => $this->inline,
+            'checked' => $this->checked,
+            'disabled' => $this->disabledValues,
+            'right' => $this->right,
+            'size' => $this->size,
+            'inline' => $this->inline,
         ];
     }
 

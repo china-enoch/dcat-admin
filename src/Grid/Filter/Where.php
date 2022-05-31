@@ -23,9 +23,8 @@ class Where extends AbstractFilter
     /**
      * Where constructor.
      *
-     * @param string   $column
-     * @param \Closure $query
-     * @param string   $label
+     * @param string $column
+     * @param string $label
      */
     public function __construct($column, \Closure $query, $label = '')
     {
@@ -45,7 +44,7 @@ class Where extends AbstractFilter
     {
         $value = Arr::get($inputs, $this->column);
 
-        if ($value === null) {
+        if (null === $value) {
             return;
         }
 

@@ -8,7 +8,6 @@ use Illuminate\Support\Traits\Macroable;
 /**
  * Class Color.
  *
- *
  * @method string primary(int $amt = 0)
  * @method string primaryDarker(int $amt = 0)
  * @method string link(int $amt = 0)
@@ -75,30 +74,30 @@ class Color
     protected static $extensions = [
         'default' => [
             'colors' => [
-                'primary'        => '#586cb1',
+                'primary' => '#586cb1',
                 'primary-darker' => '#4c60a3',
-                'link'           => '#4c60a3',
+                'link' => '#4c60a3',
             ],
         ],
         'blue-light' => [
             'colors' => [
-                'primary'        => '#62a8ea',
+                'primary' => '#62a8ea',
                 'primary-darker' => '#62a8ea',
-                'link'           => '#62a8ea',
+                'link' => '#62a8ea',
             ],
         ],
         'blue' => [
             'colors' => [
-                'primary'        => '#6d8be6',
+                'primary' => '#6d8be6',
                 'primary-darker' => '#6d8be6',
-                'link'           => '#6d8be6',
+                'link' => '#6d8be6',
             ],
         ],
         'green' => [
             'colors' => [
-                'primary'        => '#4e9876',
+                'primary' => '#4e9876',
                 'primary-darker' => '#458769',
-                'link'           => '#458769',
+                'link' => '#458769',
             ],
         ],
     ];
@@ -109,21 +108,21 @@ class Color
      * @var array
      */
     protected static $colors = [
-        'info'    => 'blue',
+        'info' => 'blue',
         'success' => 'green',
-        'danger'  => 'red',
+        'danger' => 'red',
         'warning' => 'orange',
-        'indigo'  => '#5c6bc6',
-        'blue'    => '#3085d6',
-        'red'     => '#ea5455',
-        'orange'  => '#dda451',
-        'green'   => '#21b978',
-        'cyan'    => '#7367f0',
-        'purple'  => '#5b69bc',
-        'custom'  => '#59a9f8',
-        'pink'    => '#ff8acc',
-        'dark'    => '#22292f',
-        'white'   => '#fff',
+        'indigo' => '#5c6bc6',
+        'blue' => '#3085d6',
+        'red' => '#ea5455',
+        'orange' => '#dda451',
+        'green' => '#21b978',
+        'cyan' => '#7367f0',
+        'purple' => '#5b69bc',
+        'custom' => '#59a9f8',
+        'pink' => '#ff8acc',
+        'dark' => '#22292f',
+        'white' => '#fff',
         'white50' => 'hsla(0,0%,100%,.5)',
 
         // 其他蓝色
@@ -138,9 +137,9 @@ class Color
         'yellow' => '#edc30e',
 
         'indigo-darker' => '#495abf',
-        'red-darker'    => '#bd4147',
-        'blue-darker'   => '#236bb0',
-        'cyan-darker'   => '#6355ee',
+        'red-darker' => '#bd4147',
+        'blue-darker' => '#236bb0',
+        'cyan-darker' => '#6355ee',
 
         // 灰色
         'gray' => '#b9c3cd',
@@ -148,7 +147,7 @@ class Color
         'light' => '#f7f7f9',
 
         // 水鸭色
-        'tear'  => '#01847f',
+        'tear' => '#01847f',
         'tear1' => '#00b5b5',
 
         // 深色
@@ -243,7 +242,7 @@ class Color
 
         $result = $this->currentColors[$colorName] ?? $default;
 
-        if ($result && ! empty($this->currentColors[$result])) {
+        if ($result && !empty($this->currentColors[$result])) {
             return $this->get($result, $default);
         }
 
@@ -257,7 +256,7 @@ class Color
      */
     public function all()
     {
-        if ($this->realColors === null) {
+        if (null === $this->realColors) {
             foreach ($this->currentColors as $key => &$color) {
                 $color = $this->get($key);
             }
@@ -272,7 +271,6 @@ class Color
      * 颜色转亮.
      *
      * @param string $color
-     * @param int    $amt
      *
      * @return string
      */
@@ -283,9 +281,6 @@ class Color
 
     /**
      * 颜色转暗.
-     *
-     * @param string $color
-     * @param int    $amt
      *
      * @return string
      */
@@ -310,9 +305,6 @@ class Color
     /**
      * 获取颜色.
      *
-     * @param string $method
-     * @param array $arguments
-     *
      * @return string
      */
     public function __call(string $method, array $arguments = [])
@@ -325,9 +317,6 @@ class Color
 
     /**
      * 扩展颜色.
-     *
-     * @param string $name
-     * @param array  $colors
      *
      * @return void
      */

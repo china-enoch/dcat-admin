@@ -7,9 +7,9 @@ class Number extends Text
     protected $view = 'admin::form.number';
 
     protected $options = [
-        'upClass'   => 'primary shadow-0',
+        'upClass' => 'primary shadow-0',
         'downClass' => 'light shadow-0',
-        'center'    => true,
+        'center' => true,
     ];
 
     /**

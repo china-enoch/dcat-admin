@@ -14,9 +14,9 @@ trait CanImportMenu
 
     protected $menuValidationRules = [
         'parent' => 'nullable',
-        'title'  => 'required',
-        'uri'    => 'nullable',
-        'icon'   => 'nullable',
+        'title' => 'required',
+        'uri' => 'nullable',
+        'icon' => 'nullable',
     ];
 
     /**
@@ -32,15 +32,13 @@ trait CanImportMenu
     /**
      * 添加菜单.
      *
-     * @param array $menu
-     *
      * @throws \Exception
      */
     protected function addMenu(array $menu = [])
     {
         $menu = $menu ?: $this->menu();
 
-        if (! Arr::isAssoc($menu)) {
+        if (!Arr::isAssoc($menu)) {
             foreach ($menu as $v) {
                 $this->addMenu($v);
             }
@@ -48,7 +46,7 @@ trait CanImportMenu
             return;
         }
 
-        if (! $this->validateMenu($menu)) {
+        if (!$this->validateMenu($menu)) {
             return;
         }
 
@@ -57,10 +55,10 @@ trait CanImportMenu
 
             $menuModel::create([
                 'parent_id' => $this->getParentMenuId($menu['parent'] ?? 0),
-                'order'     => $lastOrder + 1,
-                'title'     => $menu['title'],
-                'icon'      => (string) ($menu['icon'] ?? ''),
-                'uri'       => (string) ($menu['uri'] ?? ''),
+                'order' => $lastOrder + 1,
+                'title' => $menu['title'],
+                'icon' => (string) ($menu['icon'] ?? ''),
+                'uri' => (string) ($menu['uri'] ?? ''),
                 'extension' => $this->getName(),
             ]);
         }
@@ -106,7 +104,7 @@ trait CanImportMenu
     {
         $menuModel = $this->getMenuModel();
 
-        if (! $menuModel) {
+        if (!$menuModel) {
             return;
         }
 
@@ -117,8 +115,6 @@ trait CanImportMenu
 
     /**
      * 验证菜单字段格式是否正确.
-     *
-     * @param array $menu
      *
      * @throws \Exception
      *

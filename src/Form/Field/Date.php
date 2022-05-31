@@ -23,7 +23,7 @@ class Date extends Text
 
     protected function prepareInputValue($value)
     {
-        if ($value === '') {
+        if ('' === $value) {
             $value = null;
         }
 

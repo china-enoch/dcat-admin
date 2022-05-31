@@ -33,7 +33,6 @@ class LazyTable extends Widget
      * LazyTable constructor.
      *
      * @param LazyRenderable $renderable
-     * @param bool $load
      */
     public function __construct(LazyRenderable $renderable = null, bool $load = true)
     {
@@ -46,13 +45,11 @@ class LazyTable extends Widget
     /**
      * 设置异步表格实例.
      *
-     * @param LazyRenderable|null $renderable
-     *
      * @return $this
      */
     public function from(?LazyRenderable $renderable)
     {
-        if (! $renderable) {
+        if (!$renderable) {
             return $this;
         }
 
@@ -63,8 +60,6 @@ class LazyTable extends Widget
 
     /**
      * 设置是否自动加载.
-     *
-     * @param bool $value
      *
      * @return $this
      */
@@ -78,8 +73,6 @@ class LazyTable extends Widget
     /**
      * 设置是否启用表格简化模式.
      *
-     * @param bool $value
-     *
      * @return $this
      */
     public function simple(bool $value = true)
@@ -91,8 +84,6 @@ class LazyTable extends Widget
 
     /**
      * 监听异步渲染完成事件.
-     *
-     * @param string $script
      *
      * @return $this
      */
@@ -127,7 +118,7 @@ JS;
 
     public function render()
     {
-        if ($this->simple !== null) {
+        if (null !== $this->simple) {
             $this->renderable->simple($this->simple);
         }
 

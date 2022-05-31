@@ -22,29 +22,26 @@ class Helper
      * @var array
      */
     public static $fileTypes = [
-        'image'      => 'png|jpg|jpeg|tmp|gif',
-        'word'       => 'doc|docx',
-        'excel'      => 'xls|xlsx|csv',
+        'image' => 'png|jpg|jpeg|tmp|gif',
+        'word' => 'doc|docx',
+        'excel' => 'xls|xlsx|csv',
         'powerpoint' => 'ppt|pptx',
-        'pdf'        => 'pdf',
-        'code'       => 'php|js|java|python|ruby|go|c|cpp|sql|m|h|json|html|aspx',
-        'archive'    => 'zip|tar\.gz|rar|rpm',
-        'txt'        => 'txt|pac|log|md',
-        'audio'      => 'mp3|wav|flac|3pg|aa|aac|ape|au|m4a|mpc|ogg',
-        'video'      => 'mkv|rmvb|flv|mp4|avi|wmv|rm|asf|mpeg',
+        'pdf' => 'pdf',
+        'code' => 'php|js|java|python|ruby|go|c|cpp|sql|m|h|json|html|aspx',
+        'archive' => 'zip|tar\.gz|rar|rpm',
+        'txt' => 'txt|pac|log|md',
+        'audio' => 'mp3|wav|flac|3pg|aa|aac|ape|au|m4a|mpc|ogg',
+        'video' => 'mkv|rmvb|flv|mp4|avi|wmv|rm|asf|mpeg',
     ];
 
     /**
      * 把给定的值转化为数组.
      *
      * @param $value
-     * @param bool $filter
-     *
-     * @return array
      */
     public static function array($value, bool $filter = true): array
     {
-        if (! $value) {
+        if (!$value) {
             return [];
         }
 
@@ -71,18 +68,16 @@ class Helper
         }
 
         return $filter ? array_filter($value, function ($v) {
-            return $v !== '' && $v !== null;
+            return '' !== $v && null !== $v;
         }) : $value;
     }
 
     /**
      * 把给定的值转化为字符串.
      *
-     * @param string|Grid|\Closure|Renderable|Htmlable  $value
-     * @param array                                     $params
-     * @param object                                    $newThis
-     *
-     * @return string
+     * @param string|Grid|\Closure|Renderable|Htmlable $value
+     * @param array                                    $params
+     * @param object                                   $newThis
      */
     public static function render($value, $params = [], $newThis = null): string
     {
@@ -131,7 +126,7 @@ class Helper
 
             $element = '';
 
-            if ($value !== null) {
+            if (null !== $value) {
                 $element = $key.'="'.htmlentities($value, ENT_QUOTES, 'UTF-8').'"';
             }
 
@@ -143,13 +138,12 @@ class Helper
 
     /**
      * @param string $url
-     * @param array  $query
      *
      * @return string
      */
     public static function urlWithQuery(?string $url, array $query = [])
     {
-        if (! $url || ! $query) {
+        if (!$url || !$query) {
             return $url;
         }
 
@@ -170,7 +164,7 @@ class Helper
      */
     public static function urlWithoutQuery($url, $keys)
     {
-        if (! Str::contains($url, '?') || ! $keys) {
+        if (!Str::contains($url, '?') || !$keys) {
             return $url;
         }
 
@@ -204,7 +198,6 @@ class Helper
     }
 
     /**
-     * @param string       $url
      * @param string|array $keys
      *
      * @return bool
@@ -237,8 +230,7 @@ class Helper
      *      Helper::matchRequestPath(admin_base_path('auth/user/* /edit'))
      *      Helper::matchRequestPath('GET,POST:auth/user')
      *
-     * @param string      $path
-     * @param null|string $current
+     * @param string $path
      *
      * @return bool
      */
@@ -252,7 +244,7 @@ class Helper
 
             $methods = array_map('strtoupper', explode(',', $methods));
 
-            if (! empty($methods) && ! in_array($request->method(), $methods)) {
+            if (!empty($methods) && !in_array($request->method(), $methods)) {
                 return false;
             }
         }
@@ -262,7 +254,7 @@ class Helper
             return true;
         }
 
-        if (! Str::contains($path, '*')) {
+        if (!Str::contains($path, '*')) {
             return $path === $current;
         }
 
@@ -274,11 +266,8 @@ class Helper
     /**
      * 生成层级数据.
      *
-     * @param array       $nodes
-     * @param int         $parentId
-     * @param string|null $primaryKeyName
-     * @param string|null $parentKeyName
-     * @param string|null $childrenKeyName
+     * @param array $nodes
+     * @param int   $parentId
      *
      * @return array
      */
@@ -320,9 +309,6 @@ class Helper
     }
 
     /**
-     * @param string $name
-     * @param string $symbol
-     *
      * @return mixed
      */
     public static function slug(string $name, string $symbol = '-')
@@ -335,8 +321,7 @@ class Helper
     }
 
     /**
-     * @param array $array
-     * @param int   $level
+     * @param int $level
      *
      * @return string
      */
@@ -357,11 +342,11 @@ class Helper
             }
             $t = $v;
 
-            if ($v === true) {
+            if (true === $v) {
                 $t = 'true';
-            } elseif ($v === false) {
+            } elseif (false === $v) {
                 $t = 'false';
-            } elseif ($v === null) {
+            } elseif (null === $v) {
                 $t = 'null';
             } elseif (is_string($v)) {
                 $v = str_replace("'", "\\'", $v);
@@ -377,8 +362,6 @@ class Helper
     }
 
     /**
-     * @param array $array
-     *
      * @return string
      */
     public static function exportArrayPhp(array $array)
@@ -406,20 +389,17 @@ class Helper
     /**
      * 颜色转亮.
      *
-     * @param string $color
-     * @param int    $amt
-     *
      * @return string
      */
     public static function colorLighten(string $color, int $amt)
     {
-        if (! $amt) {
+        if (!$amt) {
             return $color;
         }
 
         $hasPrefix = false;
 
-        if (mb_strpos($color, '#') === 0) {
+        if (0 === mb_strpos($color, '#')) {
             $color = mb_substr($color, 1);
 
             $hasPrefix = true;
@@ -433,9 +413,6 @@ class Helper
     /**
      * 颜色转暗.
      *
-     * @param string $color
-     * @param int    $amt
-     *
      * @return string
      */
     public static function colorDarken(string $color, int $amt)
@@ -446,7 +423,6 @@ class Helper
     /**
      * 颜色透明度.
      *
-     * @param string       $color
      * @param float|string $alpha
      *
      * @return string
@@ -457,7 +433,7 @@ class Helper
             return $color;
         }
 
-        if (mb_strpos($color, '#') === 0) {
+        if (0 === mb_strpos($color, '#')) {
             $color = mb_substr($color, 1);
         }
 
@@ -467,9 +443,6 @@ class Helper
     }
 
     /**
-     * @param string $color
-     * @param int    $amt
-     *
      * @return array
      */
     public static function colorToRBG(string $color, int $amt = 0)
@@ -518,7 +491,7 @@ class Helper
         $extension = File::extension($file);
 
         foreach (static::$fileTypes as $type => $regex) {
-            if (preg_match("/^($regex)$/i", $extension) !== 0) {
+            if (0 !== preg_match("/^($regex)$/i", $extension)) {
                 return "fa fa-file-{$type}-o";
             }
         }
@@ -538,7 +511,7 @@ class Helper
         /* @var Request $request */
         $request = $request ?: request();
 
-        return $request->ajax() && ! $request->pjax();
+        return $request->ajax() && !$request->pjax();
     }
 
     /**
@@ -558,7 +531,7 @@ class Helper
      */
     public static function isQQBrowser()
     {
-        return mb_strpos(mb_strtolower($_SERVER['HTTP_USER_AGENT'] ?? ''), 'qqbrowser') !== false;
+        return false !== mb_strpos(mb_strtolower($_SERVER['HTTP_USER_AGENT'] ?? ''), 'qqbrowser');
     }
 
     /**
@@ -612,11 +585,11 @@ class Helper
      */
     public static function equal($value1, $value2)
     {
-        if ($value1 === null || $value2 === null) {
+        if (null === $value1 || null === $value2) {
             return false;
         }
 
-        if (! is_scalar($value1) || ! is_scalar($value2)) {
+        if (!is_scalar($value1) || !is_scalar($value2)) {
             return $value1 === $value2;
         }
 
@@ -627,14 +600,13 @@ class Helper
      * 判断给定的数组是是否包含给定元素.
      *
      * @param mixed $value
-     * @param array $array
      *
      * @return bool
      */
     public static function inArray($value, array $array)
     {
         $array = array_map(function ($v) {
-            if (is_scalar($v) || $v === null) {
+            if (is_scalar($v) || null === $v) {
                 $v = (string) $v;
             }
 
@@ -648,8 +620,9 @@ class Helper
      * Limit the number of characters in a string.
      *
      * @param string $value
-     * @param int $limit
+     * @param int    $limit
      * @param string $end
+     *
      * @return string
      */
     public static function strLimit($value, $limit = 100, $end = '...')
@@ -715,9 +688,6 @@ class Helper
 
     /**
      * Is input data is has-one relation.
-     *
-     * @param Collection $fields
-     * @param array      $input
      */
     public static function prepareHasOneRelation(Collection $fields, array &$input)
     {
@@ -758,23 +728,22 @@ class Helper
     /**
      * 设置查询条件.
      *
-     * @param mixed $model
+     * @param mixed  $model
      * @param string $column
-     * @param string $query
      * @param mixed array $params
      *
      * @return void
      */
     public static function withQueryCondition($model, ?string $column, string $query, array $params)
     {
-        if (! Str::contains($column, '.')) {
+        if (!Str::contains($column, '.')) {
             $model->$query($column, ...$params);
 
             return;
         }
 
-        $method = $query === 'orWhere' ? 'orWhere' : 'where';
-        $subQuery = $query === 'orWhere' ? 'where' : $query;
+        $method = 'orWhere' === $query ? 'orWhere' : 'where';
+        $subQuery = 'orWhere' === $query ? 'where' : $query;
 
         $model->$method(function ($q) use ($column, $subQuery, $params) {
             static::withRelationQuery($q, $column, $subQuery, $params);
@@ -784,10 +753,9 @@ class Helper
     /**
      * 设置关联关系查询条件.
      *
-     * @param mixed $model
+     * @param mixed  $model
      * @param string $column
-     * @param string $query
-     * @param mixed ...$params
+     * @param mixed  ...$params
      *
      * @return void
      */
@@ -834,7 +802,7 @@ class Helper
      */
     public static function formatElementName($name)
     {
-        if (! $name) {
+        if (!$name) {
             return $name;
         }
 
@@ -848,7 +816,7 @@ class Helper
 
         $name = explode('.', $name);
 
-        if (count($name) == 1) {
+        if (1 == count($name)) {
             return $name[0];
         }
 

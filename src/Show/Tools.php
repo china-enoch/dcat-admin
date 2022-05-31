@@ -71,8 +71,6 @@ class Tools implements Renderable
 
     /**
      * Tools constructor.
-     *
-     * @param Panel $panel
      */
     public function __construct(Panel $panel)
     {
@@ -147,7 +145,7 @@ class Tools implements Renderable
      */
     public function disableList(bool $disable = true)
     {
-        $this->showList = ! $disable;
+        $this->showList = !$disable;
 
         return $this;
     }
@@ -159,7 +157,7 @@ class Tools implements Renderable
      */
     public function disableDelete(bool $disable = true)
     {
-        $this->showDelete = ! $disable;
+        $this->showDelete = !$disable;
 
         return $this;
     }
@@ -171,19 +169,17 @@ class Tools implements Renderable
      */
     public function disableEdit(bool $disable = true)
     {
-        $this->showEdit = ! $disable;
+        $this->showEdit = !$disable;
 
         return $this;
     }
 
     /**
-     * @param bool $disable
-     *
      * @return $this
      */
     public function disableQuickEdit(bool $disable = true)
     {
-        $this->showQuickEdit = ! $disable;
+        $this->showQuickEdit = !$disable;
 
         return $this;
     }
@@ -248,7 +244,7 @@ class Tools implements Renderable
      */
     protected function renderList()
     {
-        if (! $this->showList) {
+        if (!$this->showList) {
             return;
         }
 
@@ -270,7 +266,7 @@ HTML;
      */
     protected function renderEdit()
     {
-        if (! $this->showQuickEdit && ! $this->showEdit) {
+        if (!$this->showQuickEdit && !$this->showEdit) {
             return;
         }
 
@@ -313,7 +309,7 @@ HTML;
      */
     protected function renderDelete()
     {
-        if (! $this->showDelete) {
+        if (!$this->showDelete) {
             return;
         }
 

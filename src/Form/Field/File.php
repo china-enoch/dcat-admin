@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Validator;
 
 class File extends Field implements UploadFieldInterface
 {
-    use WebUploader,
-        UploadField;
+    use WebUploader;
+    use UploadField;
 
     public function __construct($column, $arguments = [])
     {
@@ -49,7 +49,7 @@ class File extends Field implements UploadFieldInterface
             return $this->validator->call($this, $input);
         }
 
-        if (! Arr::has($input, $this->column)) {
+        if (!Arr::has($input, $this->column)) {
             return false;
         }
 
@@ -69,7 +69,7 @@ class File extends Field implements UploadFieldInterface
         $rules = $attributes = [];
         $requiredIf = null;
 
-        if (! $this->hasRule('required') && ! $requiredIf = $this->getRule('required_if*')) {
+        if (!$this->hasRule('required') && !$requiredIf = $this->getRule('required_if*')) {
             return false;
         }
 
@@ -127,9 +127,9 @@ class File extends Field implements UploadFieldInterface
 
         foreach (Helper::array($this->value()) as $value) {
             $previews[] = [
-                'id'   => $value,
+                'id' => $value,
                 'path' => basename($value),
-                'url'  => $this->objectUrl($value),
+                'url' => $this->objectUrl($value),
             ];
         }
 
@@ -148,7 +148,7 @@ class File extends Field implements UploadFieldInterface
     {
         $this->setDefaultServer();
 
-        if (! empty($this->value())) {
+        if (!empty($this->value())) {
             $this->setupPreviewOptions();
         }
 
@@ -156,9 +156,9 @@ class File extends Field implements UploadFieldInterface
         $this->formatValue();
 
         $this->addVariables([
-            'fileType'      => $this->options['isImage'] ? '' : 'file',
+            'fileType' => $this->options['isImage'] ? '' : 'file',
             'showUploadBtn' => ($this->options['autoUpload'] ?? false) ? false : true,
-            'options'       => JavaScript::format($this->options),
+            'options' => JavaScript::format($this->options),
         ]);
 
         return parent::render();
@@ -169,7 +169,7 @@ class File extends Field implements UploadFieldInterface
      */
     protected function formatValue()
     {
-        if ($this->value !== null) {
+        if (null !== $this->value) {
             $this->value = implode(',', Helper::array($this->value));
         } elseif (is_array($this->default)) {
             $this->default = implode(',', $this->default);

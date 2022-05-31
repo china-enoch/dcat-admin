@@ -2,7 +2,7 @@
 
 namespace Dcat\Admin\Support;
 
-/**
+/*
  * Zip helper.
  *
  * @author Alexey Bobkov, Samuel Georges
@@ -57,9 +57,11 @@ class Zip extends ZipArchive
 
     /**
      * Extract an existing zip file.
-     * @param  string $source Path for the existing zip
-     * @param  string $destination Path to extract the zip files
-     * @param  array  $options
+     *
+     * @param string $source      Path for the existing zip
+     * @param string $destination Path to extract the zip files
+     * @param array  $options
+     *
      * @return bool
      */
     public static function extract($source, $destination, $options = [])
@@ -69,8 +71,8 @@ class Zip extends ZipArchive
         ], $options));
 
         if (file_exists($destination) || mkdir($destination, $mask, true)) {
-            $zip = new ZipArchive;
-            if ($zip->open($source) === true) {
+            $zip = new ZipArchive();
+            if (true === $zip->open($source)) {
                 $zip->extractTo($destination);
                 $zip->close();
 
@@ -83,14 +85,16 @@ class Zip extends ZipArchive
 
     /**
      * Creates a new empty zip file.
-     * @param  string $destination Path for the new zip
-     * @param  mixed  $source
-     * @param  array  $options
+     *
+     * @param string $destination Path for the new zip
+     * @param mixed  $source
+     * @param array  $options
+     *
      * @return self
      */
     public static function make($destination, $source, $options = [])
     {
-        $zip = new self;
+        $zip = new self();
         $zip->open($destination, ZIPARCHIVE::CREATE | ZipArchive::OVERWRITE);
 
         if (is_string($source)) {
@@ -110,8 +114,10 @@ class Zip extends ZipArchive
 
     /**
      * Includes a source to the Zip.
+     *
      * @param mixed $source
      * @param array $options
+     *
      * @return self
      */
     public function add($source, $options = [])
@@ -146,7 +152,7 @@ class Zip extends ZipArchive
         }
 
         foreach ($files as $file) {
-            if (! is_file($file)) {
+            if (!is_file($file)) {
                 continue;
             }
 
@@ -155,12 +161,12 @@ class Zip extends ZipArchive
             $this->addFile($file, $localfile);
         }
 
-        if (! $recursive) {
+        if (!$recursive) {
             return $this;
         }
 
         foreach ($folders as $folder) {
-            if (! is_dir($folder)) {
+            if (!is_dir($folder)) {
                 continue;
             }
 
@@ -174,15 +180,17 @@ class Zip extends ZipArchive
 
     /**
      * Creates a new folder inside the Zip and adds source files (optional).
-     * @param  string $name Folder name
-     * @param  mixed  $source
+     *
+     * @param string $name   Folder name
+     * @param mixed  $source
+     *
      * @return self
      */
     public function folder($name, $source = null)
     {
         $prefix = $this->folderPrefix;
         $this->addEmptyDir($prefix.$name);
-        if ($source === null) {
+        if (null === $source) {
             return $this;
         }
 
@@ -206,7 +214,9 @@ class Zip extends ZipArchive
     /**
      * Removes a file or folder from the zip collection.
      * Does not support wildcards.
-     * @param  string $source
+     *
+     * @param string $source
+     *
      * @return self
      */
     public function remove($source)
@@ -217,15 +227,15 @@ class Zip extends ZipArchive
             }
         }
 
-        if (! is_string($source)) {
+        if (!is_string($source)) {
             return $this;
         }
 
-        if (substr($source, 0, 1) == '/') {
+        if ('/' == substr($source, 0, 1)) {
             $source = substr($source, 1);
         }
 
-        for ($i = 0; $i < $this->numFiles; $i++) {
+        for ($i = 0; $i < $this->numFiles; ++$i) {
             $stats = $this->statIndex($i);
             if (substr($stats['name'], 0, strlen($source)) == $source) {
                 $this->deleteIndex($i);
@@ -237,13 +247,15 @@ class Zip extends ZipArchive
 
     /**
      * Removes a prefix from a path.
-     * @param  string $prefix /var/sites/
-     * @param  string $path /var/sites/moo/cow/
+     *
+     * @param string $prefix /var/sites/
+     * @param string $path   /var/sites/moo/cow/
+     *
      * @return string moo/cow/
      */
     protected function removePathPrefix($prefix, $path)
     {
-        return (strpos($path, $prefix) === 0)
+        return (0 === strpos($path, $prefix))
             ? substr($path, strlen($prefix))
             : $path;
     }

@@ -33,9 +33,9 @@ class MinifyCommand extends Command
      */
     protected $themes = [
         self::DEFAULT => '',
-        'blue'        => '#6d8be6',
-        'blue-light'  => '#62a8ea',
-        'green'       => '#4e9876',
+        'blue' => '#6d8be6',
+        'blue-light' => '#62a8ea',
+        'green' => '#4e9876',
     ];
 
     /**
@@ -135,14 +135,14 @@ class MinifyCommand extends Command
      */
     protected function backupFiles()
     {
-        if (! is_file($this->getMixBakFile())) {
+        if (!is_file($this->getMixBakFile())) {
             $this->files->copy($this->getMixFile(), $this->getMixBakFile());
         } else {
             $this->files->delete($this->getMixFile());
             $this->files->copy($this->getMixBakFile(), $this->getMixFile());
         }
 
-        if (! is_file($this->getColorBakFile())) {
+        if (!is_file($this->getColorBakFile())) {
             $this->files->copy($this->getColorFile(), $this->getColorBakFile());
         }
     }
@@ -234,15 +234,15 @@ class MinifyCommand extends Command
 
         $color = $this->option('color');
 
-        if (! $color && isset($this->themes[$name])) {
+        if (!$color && isset($this->themes[$name])) {
             return $this->themes[$name];
         }
 
-        if (! $color) {
+        if (!$color) {
             $color = $this->formatColor($this->ask('Please enter a color code(hex)'));
         }
 
-        if (! $color) {
+        if (!$color) {
             goto INPUT_COLOR;
         }
 
@@ -256,7 +256,7 @@ class MinifyCommand extends Command
      */
     protected function formatColor($color)
     {
-        if ($color && ! Str::startsWith($color, '#')) {
+        if ($color && !Str::startsWith($color, '#')) {
             $color = "#$color";
         }
 
@@ -274,7 +274,7 @@ class MinifyCommand extends Command
         $process = Helper::process($command, $timeout);
 
         $process->run(function ($type, $data) {
-            if ($type === Process::ERR) {
+            if (Process::ERR === $type) {
                 $this->warn($data);
             } else {
                 $this->info($data);

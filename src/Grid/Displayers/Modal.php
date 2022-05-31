@@ -23,7 +23,7 @@ class Modal extends AbstractDisplayer
     public function display($callback = null)
     {
         $title = $this->value ?: $this->trans('title');
-        if (func_num_args() == 2) {
+        if (2 == func_num_args()) {
             [$title, $callback] = func_get_args();
         }
 
@@ -32,7 +32,7 @@ class Modal extends AbstractDisplayer
         if ($callback instanceof \Closure) {
             $callback = $callback->call($this->row, $this);
 
-            if (! $callback instanceof LazyRenderable) {
+            if (!$callback instanceof LazyRenderable) {
                 $html = Helper::render($callback);
 
                 $callback = null;

@@ -15,8 +15,6 @@ class ExportButton implements Renderable
 
     /**
      * Create a new Export button instance.
-     *
-     * @param Grid $grid
      */
     public function __construct(Grid $grid)
     {
@@ -50,7 +48,7 @@ JS;
      */
     protected function renderExportAll()
     {
-        if (! $this->grid->exporter()->option('show_export_all')) {
+        if (!$this->grid->exporter()->option('show_export_all')) {
             return;
         }
         $all = trans('admin.all');
@@ -63,7 +61,7 @@ JS;
      */
     protected function renderExportCurrentPage()
     {
-        if (! $this->grid->exporter()->option('show_export_current_page')) {
+        if (!$this->grid->exporter()->option('show_export_current_page')) {
             return;
         }
 
@@ -79,8 +77,8 @@ JS;
     protected function renderExportSelectedRows()
     {
         if (
-            ! $this->grid->option('show_row_selector')
-            || ! $this->grid->exporter()->option('show_export_selected_rows')
+            !$this->grid->option('show_row_selector')
+            || !$this->grid->exporter()->option('show_export_selected_rows')
         ) {
             return;
         }

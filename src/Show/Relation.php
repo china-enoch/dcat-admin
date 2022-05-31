@@ -60,7 +60,7 @@ class Relation extends Field
      */
     public function model($model = null)
     {
-        if ($model === null) {
+        if (null === $model) {
             return $this->model;
         }
 
@@ -84,7 +84,7 @@ class Relation extends Field
             return $view->render();
         }
 
-        if (! $view instanceof Grid) {
+        if (!$view instanceof Grid) {
             return $view;
         }
 

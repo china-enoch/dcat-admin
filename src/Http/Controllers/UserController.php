@@ -33,7 +33,7 @@ class UserController extends AdminController
                 $nodes = (new $permissionModel())->allNodes();
                 $grid->column('permissions')
                     ->if(function () {
-                        return ! empty($this->roles);
+                        return !empty($this->roles);
                     })
                     ->showTreeInDialog(function (Grid\Displayers\DialogTree $tree) use (&$nodes, $roleModel) {
                         $tree->nodes($nodes);
@@ -58,7 +58,7 @@ class UserController extends AdminController
             $grid->showColumnSelector();
 
             $grid->actions(function (Grid\Displayers\Actions $actions) {
-                if ($actions->getKey() == AdministratorModel::DEFAULT_ID) {
+                if (AdministratorModel::DEFAULT_ID == $actions->getKey()) {
                     $actions->disableDelete();
                 }
             });
@@ -76,7 +76,7 @@ class UserController extends AdminController
 
             if (config('admin.permission.enable')) {
                 $show->field('roles')->as(function ($roles) {
-                    if (! $roles) {
+                    if (!$roles) {
                         return;
                     }
 
@@ -101,7 +101,7 @@ class UserController extends AdminController
                         }
                     }
 
-                    if (! $isAdministrator) {
+                    if (!$isAdministrator) {
                         $keyName = $permissionModel->getKeyName();
                         $tree->check(
                             $roleModel::getPermissionId(array_column($roles, $keyName))->flatten()
@@ -168,7 +168,7 @@ class UserController extends AdminController
             $form->display('created_at', trans('admin.created_at'));
             $form->display('updated_at', trans('admin.updated_at'));
 
-            if ($id == AdministratorModel::DEFAULT_ID) {
+            if (AdministratorModel::DEFAULT_ID == $id) {
                 $form->disableDeleteButton();
             }
         })->saving(function (Form $form) {
@@ -176,7 +176,7 @@ class UserController extends AdminController
                 $form->password = bcrypt($form->password);
             }
 
-            if (! $form->password) {
+            if (!$form->password) {
                 $form->deleteInput('password');
             }
         });

@@ -8,9 +8,9 @@ use Illuminate\Support\Fluent;
 /**
  * Class Context.
  *
- * @property string $favicon
- * @property string $metaTitle
- * @property string $pjaxContainerId
+ * @property string     $favicon
+ * @property string     $metaTitle
+ * @property string     $pjaxContainerId
  * @property array|null $html
  * @property array|null $ignoreQueries
  * @property array|null $jsVariables
@@ -42,7 +42,7 @@ class Context extends Fluent
     {
         $results = $this->getArray($key);
 
-        if ($k !== null) {
+        if (null !== $k) {
             $results[] = $value;
         } else {
             $results[$k] = $value;

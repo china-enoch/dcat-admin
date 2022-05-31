@@ -23,7 +23,7 @@ trait HasSelector
      */
     public function selector(\Closure $closure = null)
     {
-        if ($closure === null) {
+        if (null === $closure) {
             return $this->_selector;
         }
 
@@ -54,14 +54,14 @@ trait HasSelector
         $this->_selector->all()->each(function ($selector, $column) use ($active) {
             $key = $this->_selector->formatKey($column);
 
-            if (! array_key_exists($key, $active)) {
+            if (!array_key_exists($key, $active)) {
                 return;
             }
 
             $this->fireOnce(new Grid\Events\ApplySelector([$active]));
 
             $values = $active[$key];
-            if ($selector['type'] == 'one') {
+            if ('one' == $selector['type']) {
                 $values = current($values);
             }
 

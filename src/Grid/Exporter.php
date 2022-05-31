@@ -7,6 +7,7 @@ use Dcat\Admin\Grid\Exporters\ExporterInterface;
 
 /**
  * @mixin Grid\Exporters\AbstractExporter
+ *
  * @method mixed export
  */
 class Exporter
@@ -46,16 +47,14 @@ class Exporter
      * @var array
      */
     protected $options = [
-        'show_export_all'           => true,
-        'show_export_current_page'  => true,
+        'show_export_all' => true,
+        'show_export_current_page' => true,
         'show_export_selected_rows' => true,
-        'chunk_size'                => 5000,
+        'chunk_size' => 5000,
     ];
 
     /**
      * Create a new Exporter instance.
-     *
-     * @param Grid $grid
      */
     public function __construct(Grid $grid)
     {
@@ -72,7 +71,7 @@ class Exporter
      */
     public function option($key, $value = null)
     {
-        if ($value === null) {
+        if (null === $value) {
             return $this->options[$key] ?? null;
         }
 
@@ -84,42 +83,34 @@ class Exporter
     /**
      * Disable export all.
      *
-     * @param bool $value
-     *
      * @return $this
      */
     public function disableExportAll(bool $value = true)
     {
-        return $this->option('show_export_all', ! $value);
+        return $this->option('show_export_all', !$value);
     }
 
     /**
      * Disable export current page.
      *
-     * @param bool $value
-     *
      * @return $this
      */
     public function disableExportCurrentPage(bool $value = true)
     {
-        return $this->option('show_export_current_page', ! $value);
+        return $this->option('show_export_current_page', !$value);
     }
 
     /**
      * Disable export selected rows.
      *
-     * @param bool $value
-     *
      * @return $this
      */
     public function disableExportSelectedRow(bool $value = true)
     {
-        return $this->option('show_export_selected_rows', ! $value);
+        return $this->option('show_export_selected_rows', !$value);
     }
 
     /**
-     * @param int $value
-     *
      * @return $this
      */
     public function chunkSize(int $value)
@@ -129,8 +120,6 @@ class Exporter
 
     /**
      * Get export query name.
-     *
-     * @return string
      */
     public function getQueryName(): string
     {
@@ -189,7 +178,7 @@ class Exporter
      */
     protected function newDriver($driver): ExporterInterface
     {
-        if (! $driver || ! array_key_exists($driver, static::$drivers)) {
+        if (!$driver || !array_key_exists($driver, static::$drivers)) {
             return $this->makeDefaultDriver();
         }
 

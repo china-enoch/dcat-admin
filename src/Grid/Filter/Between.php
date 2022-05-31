@@ -60,7 +60,7 @@ class Between extends AbstractFilter
     {
         $columns = explode('.', $column);
 
-        if (count($columns) == 1) {
+        if (1 == count($columns)) {
             $name = $this->parent->grid()->makeName($columns[0]);
         } else {
             $name = $this->parent->grid()->makeName(array_shift($columns));
@@ -82,14 +82,14 @@ class Between extends AbstractFilter
      */
     public function condition($inputs)
     {
-        if (! Arr::has($inputs, $this->column)) {
+        if (!Arr::has($inputs, $this->column)) {
             return;
         }
 
         $this->value = Arr::get($inputs, $this->column);
 
         $value = array_filter($this->value, function ($val) {
-            return $val !== '';
+            return '' !== $val;
         });
 
         if ($this->timestamp) {
@@ -104,11 +104,11 @@ class Between extends AbstractFilter
             return;
         }
 
-        if (! isset($value['start']) && isset($value['end'])) {
+        if (!isset($value['start']) && isset($value['end'])) {
             return $this->buildCondition($this->column, '<=', $value['end']);
         }
 
-        if (! isset($value['end']) && isset($value['start'])) {
+        if (!isset($value['end']) && isset($value['start'])) {
             return $this->buildCondition($this->column, '>=', $value['start']);
         }
 

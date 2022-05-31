@@ -41,35 +41,35 @@ class ExportSeedCommand extends Command
             'DummyNamespace' => ucwords($namespace),
             'DummyClass' => $name,
 
-            'ClassMenu'             => $this->getTableName('admin.database.menu_model'),
-            'ClassPermission'       => $this->getTableName('admin.database.permissions_model'),
-            'ClassRole'             => $this->getTableName('admin.database.roles_model'),
-            'ClassSetting'          => 'Models\Setting',
-            'ClassExtension'        => 'Models\Extension',
+            'ClassMenu' => $this->getTableName('admin.database.menu_model'),
+            'ClassPermission' => $this->getTableName('admin.database.permissions_model'),
+            'ClassRole' => $this->getTableName('admin.database.roles_model'),
+            'ClassSetting' => 'Models\Setting',
+            'ClassExtension' => 'Models\Extension',
             'ClassExtensionHistory' => 'Models\ExtensionHistory',
 
-            'TablePermissionMenu'  => $this->getTableName('admin.database.permission_menu_table'),
-            'TableRoleMenu'        => $this->getTableName('admin.database.role_menu_table'),
+            'TablePermissionMenu' => $this->getTableName('admin.database.permission_menu_table'),
+            'TableRoleMenu' => $this->getTableName('admin.database.role_menu_table'),
             'TableRolePermissions' => $this->getTableName('admin.database.role_permissions_table'),
 
-            'ArrayMenu'       => $this->getTableDataArrayAsString(config('admin.database.menu_table'), $exceptFields),
+            'ArrayMenu' => $this->getTableDataArrayAsString(config('admin.database.menu_table'), $exceptFields),
             'ArrayPermission' => $this->getTableDataArrayAsString(config('admin.database.permissions_table'), $exceptFields),
-            'ArrayRole'       => $this->getTableDataArrayAsString(config('admin.database.roles_table'), $exceptFields),
-            'ArraySetting'    => $this->getTableDataArrayAsString(config('admin.database.settings_table') ?: 'admin_settings', $exceptFields),
-            'ArrayExtension'  => $this->getTableDataArrayAsString(config('admin.database.extensions_table') ?: 'admin_extensions', $exceptFields),
+            'ArrayRole' => $this->getTableDataArrayAsString(config('admin.database.roles_table'), $exceptFields),
+            'ArraySetting' => $this->getTableDataArrayAsString(config('admin.database.settings_table') ?: 'admin_settings', $exceptFields),
+            'ArrayExtension' => $this->getTableDataArrayAsString(config('admin.database.extensions_table') ?: 'admin_extensions', $exceptFields),
             'ArrayExtHistory' => $this->getTableDataArrayAsString(config('admin.database.extension_histories_table') ?: 'admin_extension_histories', $exceptFields),
 
-            'ArrayPivotPermissionMenu'  => $this->getTableDataArrayAsString(config('admin.database.permission_menu_table'), $exceptFields),
-            'ArrayPivotRoleMenu'        => $this->getTableDataArrayAsString(config('admin.database.role_menu_table'), $exceptFields),
+            'ArrayPivotPermissionMenu' => $this->getTableDataArrayAsString(config('admin.database.permission_menu_table'), $exceptFields),
+            'ArrayPivotRoleMenu' => $this->getTableDataArrayAsString(config('admin.database.role_menu_table'), $exceptFields),
             'ArrayPivotRolePermissions' => $this->getTableDataArrayAsString(config('admin.database.role_permissions_table'), $exceptFields),
         ];
 
         if ($exportUsers) {
             $replaces = array_merge($replaces, [
-                'ClassUsers'            => $this->getTableName('admin.database.users_model'),
-                'TableRoleUsers'        => config('admin.database.role_users_table'),
-                'ArrayUsers'            => $this->getTableDataArrayAsString(config('admin.database.users_table'), $exceptFields),
-                'ArrayPivotRoleUsers'   => $this->getTableDataArrayAsString(config('admin.database.role_users_table'), $exceptFields),
+                'ClassUsers' => $this->getTableName('admin.database.users_model'),
+                'TableRoleUsers' => config('admin.database.role_users_table'),
+                'ArrayUsers' => $this->getTableDataArrayAsString(config('admin.database.users_table'), $exceptFields),
+                'ArrayPivotRoleUsers' => $this->getTableDataArrayAsString(config('admin.database.role_users_table'), $exceptFields),
             ]);
         } else {
             $contents = preg_replace('/\/\/ users tables[\s\S]*?(?=\/\/ finish)/mu', '', $contents);
@@ -131,7 +131,6 @@ class ExportSeedCommand extends Command
     protected function varExport($var, $indent = '')
     {
         switch (gettype($var)) {
-
             case 'string':
                 return '"'.addcslashes($var, "\\\$\"\r\n\t\v\f").'"';
 

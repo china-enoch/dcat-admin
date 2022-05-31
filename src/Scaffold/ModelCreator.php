@@ -61,7 +61,7 @@ class ModelCreator
         $path = $this->getpath($this->name);
         $dir = dirname($path);
 
-        if (! is_dir($dir)) {
+        if (!is_dir($dir)) {
             $this->files->makeDirectory($dir, 0755, true);
         }
 
@@ -200,7 +200,7 @@ class ModelCreator
      */
     protected function replacePrimaryKey(&$stub, $keyName)
     {
-        $modelKey = $keyName == 'id' ? '' : "protected \$primaryKey = '$keyName';\n";
+        $modelKey = 'id' == $keyName ? '' : "protected \$primaryKey = '$keyName';\n";
 
         $stub = str_replace('DummyModelKey', $modelKey, $stub);
 

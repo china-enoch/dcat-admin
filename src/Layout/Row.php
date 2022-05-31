@@ -18,7 +18,7 @@ class Row implements Renderable
      */
     public function __construct($content = '')
     {
-        if (! empty($content)) {
+        if (!empty($content)) {
             if ($content instanceof Column) {
                 $this->addColumn($content);
             } else {
@@ -40,9 +40,6 @@ class Row implements Renderable
         $this->addColumn($column);
     }
 
-    /**
-     * @param Column $column
-     */
     protected function addColumn(Column $column)
     {
         $this->columns[] = $column;

@@ -30,61 +30,61 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Class Form.
  *
- * @method Field\Text                   text($column, $label = '')
- * @method Field\Checkbox               checkbox($column, $label = '')
- * @method Field\Radio                  radio($column, $label = '')
- * @method Field\Select                 select($column, $label = '')
- * @method Field\MultipleSelect         multipleSelect($column, $label = '')
- * @method Field\Textarea               textarea($column, $label = '')
- * @method Field\Hidden                 hidden($column, $label = '')
- * @method Field\Id                     id($column, $label = '')
- * @method Field\Ip                     ip($column, $label = '')
- * @method Field\Url                    url($column, $label = '')
- * @method Field\Email                  email($column, $label = '')
- * @method Field\Mobile                 mobile($column, $label = '')
- * @method Field\Slider                 slider($column, $label = '')
- * @method Field\Map                    map($latitude, $longitude, $label = '')
- * @method Field\Editor                 editor($column, $label = '')
- * @method Field\Date                   date($column, $label = '')
- * @method Field\Datetime               datetime($column, $label = '')
- * @method Field\Time                   time($column, $label = '')
- * @method Field\Year                   year($column, $label = '')
- * @method Field\Month                  month($column, $label = '')
- * @method Field\DateRange              dateRange($start, $end, $label = '')
- * @method Field\DateTimeRange          datetimeRange($start, $end, $label = '')
- * @method Field\TimeRange              timeRange($start, $end, $label = '')
- * @method Field\Number                 number($column, $label = '')
- * @method Field\Currency               currency($column, $label = '')
- * @method Field\SwitchField            switch($column, $label = '')
- * @method Field\Display                display($column, $label = '')
- * @method Field\Rate                   rate($column, $label = '')
- * @method Field\Divide                 divider()
- * @method Field\Password               password($column, $label = '')
- * @method Field\Decimal                decimal($column, $label = '')
- * @method Field\Html                   html($html, $label = '')
- * @method Field\Tags                   tags($column, $label = '')
- * @method Field\Icon                   icon($column, $label = '')
- * @method Field\Embeds                 embeds($column, $label = '', Closure $callback = null)
- * @method Field\Captcha                captcha()
- * @method Field\Listbox                listbox($column, $label = '')
- * @method Field\File                   file($column, $label = '')
- * @method Field\Image                  image($column, $label = '')
- * @method Field\MultipleFile           multipleFile($column, $label = '')
- * @method Field\MultipleImage          multipleImage($column, $label = '')
- * @method Field\HasMany                hasMany($column, $labelOrCallback, $callback = null)
- * @method Field\Tree                   tree($column, $label = '')
- * @method Field\Table                  table($column, $labelOrCallback, $callback = null)
- * @method Field\ListField              list($column, $label = '')
- * @method Field\Timezone               timezone($column, $label = '')
- * @method Field\KeyValue               keyValue($column, $label = '')
- * @method Field\Tel                    tel($column, $label = '')
- * @method Field\Markdown               markdown($column, $label = '')
- * @method Field\Range                  range($start, $end, $label = '')
- * @method Field\Color                  color($column, $label = '')
- * @method Field\ArrayField             array($column, $labelOrCallback, $callback = null)
- * @method Field\SelectTable            selectTable($column, $label = '')
- * @method Field\MultipleSelectTable    multipleSelectTable($column, $label = '')
- * @method Field\Button                 button(string $html = null)
+ * @method Field\Text                text($column, $label = '')
+ * @method Field\Checkbox            checkbox($column, $label = '')
+ * @method Field\Radio               radio($column, $label = '')
+ * @method Field\Select              select($column, $label = '')
+ * @method Field\MultipleSelect      multipleSelect($column, $label = '')
+ * @method Field\Textarea            textarea($column, $label = '')
+ * @method Field\Hidden              hidden($column, $label = '')
+ * @method Field\Id                  id($column, $label = '')
+ * @method Field\Ip                  ip($column, $label = '')
+ * @method Field\Url                 url($column, $label = '')
+ * @method Field\Email               email($column, $label = '')
+ * @method Field\Mobile              mobile($column, $label = '')
+ * @method Field\Slider              slider($column, $label = '')
+ * @method Field\Map                 map($latitude, $longitude, $label = '')
+ * @method Field\Editor              editor($column, $label = '')
+ * @method Field\Date                date($column, $label = '')
+ * @method Field\Datetime            datetime($column, $label = '')
+ * @method Field\Time                time($column, $label = '')
+ * @method Field\Year                year($column, $label = '')
+ * @method Field\Month               month($column, $label = '')
+ * @method Field\DateRange           dateRange($start, $end, $label = '')
+ * @method Field\DateTimeRange       datetimeRange($start, $end, $label = '')
+ * @method Field\TimeRange           timeRange($start, $end, $label = '')
+ * @method Field\Number              number($column, $label = '')
+ * @method Field\Currency            currency($column, $label = '')
+ * @method Field\SwitchField         switch($column, $label = '')
+ * @method Field\Display             display($column, $label = '')
+ * @method Field\Rate                rate($column, $label = '')
+ * @method Field\Divide              divider()
+ * @method Field\Password            password($column, $label = '')
+ * @method Field\Decimal             decimal($column, $label = '')
+ * @method Field\Html                html($html, $label = '')
+ * @method Field\Tags                tags($column, $label = '')
+ * @method Field\Icon                icon($column, $label = '')
+ * @method Field\Embeds              embeds($column, $label = '', Closure $callback = null)
+ * @method Field\Captcha             captcha()
+ * @method Field\Listbox             listbox($column, $label = '')
+ * @method Field\File                file($column, $label = '')
+ * @method Field\Image               image($column, $label = '')
+ * @method Field\MultipleFile        multipleFile($column, $label = '')
+ * @method Field\MultipleImage       multipleImage($column, $label = '')
+ * @method Field\HasMany             hasMany($column, $labelOrCallback, $callback = null)
+ * @method Field\Tree                tree($column, $label = '')
+ * @method Field\Table               table($column, $labelOrCallback, $callback = null)
+ * @method Field\ListField           list($column, $label = '')
+ * @method Field\Timezone            timezone($column, $label = '')
+ * @method Field\KeyValue            keyValue($column, $label = '')
+ * @method Field\Tel                 tel($column, $label = '')
+ * @method Field\Markdown            markdown($column, $label = '')
+ * @method Field\Range               range($start, $end, $label = '')
+ * @method Field\Color               color($column, $label = '')
+ * @method Field\ArrayField          array($column, $labelOrCallback, $callback = null)
+ * @method Field\SelectTable         selectTable($column, $label = '')
+ * @method Field\MultipleSelectTable multipleSelectTable($column, $label = '')
+ * @method Field\Button              button(string $html = null)
  */
 class Form implements Renderable
 {
@@ -112,60 +112,60 @@ class Form implements Renderable
      * @var array
      */
     protected static $availableFields = [
-        'button'              => Field\Button::class,
-        'checkbox'            => Field\Checkbox::class,
-        'currency'            => Field\Currency::class,
-        'date'                => Field\Date::class,
-        'dateRange'           => Field\DateRange::class,
-        'datetime'            => Field\Datetime::class,
-        'datetimeRange'       => Field\DatetimeRange::class,
-        'decimal'             => Field\Decimal::class,
-        'display'             => Field\Display::class,
-        'divider'             => Field\Divide::class,
-        'embeds'              => Field\Embeds::class,
-        'editor'              => Field\Editor::class,
-        'email'               => Field\Email::class,
-        'hidden'              => Field\Hidden::class,
-        'id'                  => Field\Id::class,
-        'ip'                  => Field\Ip::class,
-        'map'                 => Field\Map::class,
-        'mobile'              => Field\Mobile::class,
-        'month'               => Field\Month::class,
-        'multipleSelect'      => Field\MultipleSelect::class,
-        'number'              => Field\Number::class,
-        'password'            => Field\Password::class,
-        'radio'               => Field\Radio::class,
-        'rate'                => Field\Rate::class,
-        'select'              => Field\Select::class,
-        'slider'              => Field\Slider::class,
-        'switch'              => Field\SwitchField::class,
-        'text'                => Field\Text::class,
-        'textarea'            => Field\Textarea::class,
-        'time'                => Field\Time::class,
-        'timeRange'           => Field\TimeRange::class,
-        'url'                 => Field\Url::class,
-        'year'                => Field\Year::class,
-        'html'                => Field\Html::class,
-        'tags'                => Field\Tags::class,
-        'icon'                => Field\Icon::class,
-        'captcha'             => Field\Captcha::class,
-        'listbox'             => Field\Listbox::class,
-        'file'                => Field\File::class,
-        'image'               => Field\Image::class,
-        'multipleFile'        => Field\MultipleFile::class,
-        'multipleImage'       => Field\MultipleImage::class,
-        'hasMany'             => Field\HasMany::class,
-        'tree'                => Field\Tree::class,
-        'table'               => Field\Table::class,
-        'list'                => Field\ListField::class,
-        'timezone'            => Field\Timezone::class,
-        'keyValue'            => Field\KeyValue::class,
-        'tel'                 => Field\Tel::class,
-        'markdown'            => Field\Markdown::class,
-        'range'               => Field\Range::class,
-        'color'               => Field\Color::class,
-        'array'               => Field\ArrayField::class,
-        'selectTable'         => Field\SelectTable::class,
+        'button' => Field\Button::class,
+        'checkbox' => Field\Checkbox::class,
+        'currency' => Field\Currency::class,
+        'date' => Field\Date::class,
+        'dateRange' => Field\DateRange::class,
+        'datetime' => Field\Datetime::class,
+        'datetimeRange' => Field\DatetimeRange::class,
+        'decimal' => Field\Decimal::class,
+        'display' => Field\Display::class,
+        'divider' => Field\Divide::class,
+        'embeds' => Field\Embeds::class,
+        'editor' => Field\Editor::class,
+        'email' => Field\Email::class,
+        'hidden' => Field\Hidden::class,
+        'id' => Field\Id::class,
+        'ip' => Field\Ip::class,
+        'map' => Field\Map::class,
+        'mobile' => Field\Mobile::class,
+        'month' => Field\Month::class,
+        'multipleSelect' => Field\MultipleSelect::class,
+        'number' => Field\Number::class,
+        'password' => Field\Password::class,
+        'radio' => Field\Radio::class,
+        'rate' => Field\Rate::class,
+        'select' => Field\Select::class,
+        'slider' => Field\Slider::class,
+        'switch' => Field\SwitchField::class,
+        'text' => Field\Text::class,
+        'textarea' => Field\Textarea::class,
+        'time' => Field\Time::class,
+        'timeRange' => Field\TimeRange::class,
+        'url' => Field\Url::class,
+        'year' => Field\Year::class,
+        'html' => Field\Html::class,
+        'tags' => Field\Tags::class,
+        'icon' => Field\Icon::class,
+        'captcha' => Field\Captcha::class,
+        'listbox' => Field\Listbox::class,
+        'file' => Field\File::class,
+        'image' => Field\Image::class,
+        'multipleFile' => Field\MultipleFile::class,
+        'multipleImage' => Field\MultipleImage::class,
+        'hasMany' => Field\HasMany::class,
+        'tree' => Field\Tree::class,
+        'table' => Field\Table::class,
+        'list' => Field\ListField::class,
+        'timezone' => Field\Timezone::class,
+        'keyValue' => Field\KeyValue::class,
+        'tel' => Field\Tel::class,
+        'markdown' => Field\Markdown::class,
+        'range' => Field\Range::class,
+        'color' => Field\Color::class,
+        'array' => Field\ArrayField::class,
+        'selectTable' => Field\SelectTable::class,
         'multipleSelectTable' => Field\MultipleSelectTable::class,
     ];
 
@@ -306,8 +306,6 @@ class Form implements Renderable
     }
 
     /**
-     * @param Field $field
-     *
      * @return $this
      */
     public function pushField(Field $field)
@@ -402,7 +400,7 @@ class Form implements Renderable
      */
     public function model($model = null)
     {
-        if ($model === null) {
+        if (null === $model) {
             return $this->model;
         }
 
@@ -426,8 +424,6 @@ class Form implements Renderable
     /**
      * 启用或禁用ajax表单提交.
      *
-     * @param bool $value
-     *
      * @return $this
      */
     public function ajax(bool $value = true)
@@ -442,13 +438,11 @@ class Form implements Renderable
      */
     public function allowAjaxSubmit()
     {
-        return $this->ajax === true;
+        return true === $this->ajax;
     }
 
     /**
      * 设置使用 Toastr 展示字段验证信息.
-     *
-     * @param bool $value
      *
      * @return $this
      */
@@ -460,11 +454,9 @@ class Form implements Renderable
     }
 
     /**
-     * @param \Closure $closure
-     *
      * @return $this;
      */
-    public function wrap(\Closure $closure)
+    public function wrap(Closure $closure)
     {
         $this->builder->wrap($closure);
 
@@ -522,9 +514,6 @@ class Form implements Renderable
 
     /**
      * Add a fieldset to form.
-     *
-     * @param string  $title
-     * @param Closure $setCallback
      *
      * @return Field\Fieldset
      */
@@ -595,8 +584,6 @@ class Form implements Renderable
     }
 
     /**
-     * @param \Throwable $e
-     *
      * @return mixed
      */
     protected function handleException(\Throwable $e)
@@ -607,7 +594,6 @@ class Form implements Renderable
     /**
      * Store a new record.
      *
-     * @param array|null    $data
      * @param string|string $redirectTo
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\Http\JsonResponse|Response
@@ -635,7 +621,7 @@ class Form implements Renderable
                 return $this->sendResponse($response);
             }
 
-            if (! $id) {
+            if (!$id) {
                 return $this->sendResponse(
                     $this->response()
                         ->error(trans('admin.save_failed'))
@@ -646,7 +632,7 @@ class Form implements Renderable
 
             return $this->sendResponse(
                 $this->response()
-                    ->redirectIf($url !== false, $url)
+                    ->redirectIf(false !== $url, $url)
                     ->success(trans('admin.save_succeeded'))
             );
         } catch (\Throwable $e) {
@@ -666,8 +652,6 @@ class Form implements Renderable
 
     /**
      * Before store.
-     *
-     * @param array $data
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|Response|void
      */
@@ -740,7 +724,7 @@ class Form implements Renderable
      */
     public function updates(array $updates = null)
     {
-        if ($updates === null) {
+        if (null === $updates) {
             return $this->updates;
         }
 
@@ -752,15 +736,14 @@ class Form implements Renderable
     /**
      * Handle orderable update.
      *
-     * @param int   $id
-     * @param array $input
+     * @param int $id
      *
      * @return Response
      */
     protected function handleOrderable(array $input = [])
     {
         if (array_key_exists('_orderable', $input)) {
-            $updated = $input['_orderable'] == 1
+            $updated = 1 == $input['_orderable']
                 ? $this->repository->moveOrderUp()
                 : $this->repository->moveOrderDown();
 
@@ -780,7 +763,6 @@ class Form implements Renderable
      * Handle update.
      *
      * @param $id
-     * @param array|null  $data
      * @param string|null $redirectTo
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse||Response
@@ -809,7 +791,7 @@ class Form implements Renderable
                 return $this->sendResponse($response);
             }
 
-            if (! $updated) {
+            if (!$updated) {
                 return $this->sendResponse(
                     $this->response()
                         ->error(trans('admin.update_failed'))
@@ -821,7 +803,7 @@ class Form implements Renderable
             return $this->sendResponse(
                 $this->response()
                     ->success(trans('admin.update_succeeded'))
-                    ->redirectIf($url !== false, $url)
+                    ->redirectIf(false !== $url, $url)
             );
         } catch (\Throwable $e) {
             $response = $this->handleException($e);
@@ -840,8 +822,6 @@ class Form implements Renderable
 
     /**
      * Before update.
-     *
-     * @param array $data
      *
      * @return Response|void
      */
@@ -891,8 +871,6 @@ class Form implements Renderable
     }
 
     /**
-     * @param array $inputs
-     *
      * @return array
      */
     protected function handleHasManyValues(array $inputs)
@@ -904,7 +882,7 @@ class Form implements Renderable
                 $keyName = $field->getKeyName();
 
                 foreach ($input as $k => &$v) {
-                    if (! array_key_exists($keyName, $v)) {
+                    if (!array_key_exists($keyName, $v)) {
                         $v[$keyName] = $k;
                     }
 
@@ -932,7 +910,7 @@ class Form implements Renderable
 
         $resourcesPath = $this->resource(-1);
 
-        if ($this->request->get('after-save') == 1) {
+        if (1 == $this->request->get('after-save')) {
             // continue editing
             if ($this->builder->isEditing()) {
                 return false;
@@ -941,12 +919,12 @@ class Form implements Renderable
             return rtrim($resourcesPath, '/')."/{$key}/edit";
         }
 
-        if ($this->request->get('after-save') == 2) {
+        if (2 == $this->request->get('after-save')) {
             // continue creating
             return rtrim($resourcesPath, '/').'/create';
         }
 
-        if ($this->request->get('after-save') == 3) {
+        if (3 == $this->request->get('after-save')) {
             // view resource
             return rtrim($resourcesPath, '/')."/{$key}";
         }
@@ -957,8 +935,6 @@ class Form implements Renderable
     /**
      * Check if request is from editable.
      *
-     * @param array $input
-     *
      * @return bool
      */
     protected function isEditable(array $input = [])
@@ -968,8 +944,6 @@ class Form implements Renderable
 
     /**
      * Handle editable update.
-     *
-     * @param array $input
      *
      * @return array
      */
@@ -989,8 +963,6 @@ class Form implements Renderable
     /**
      * Prepare input data for update.
      *
-     * @param array $updates
-     *
      * @return array
      */
     public function prepareUpdate(array $updates)
@@ -1002,7 +974,7 @@ class Form implements Renderable
             $columns = $field->column();
 
             // If column not in input array data, then continue.
-            if (! Arr::has($updates, $columns)) {
+            if (!Arr::has($updates, $columns)) {
                 continue;
             }
 
@@ -1086,7 +1058,7 @@ class Form implements Renderable
      */
     public function keyName()
     {
-        if (! $this->repository) {
+        if (!$this->repository) {
             return 'id';
         }
 
@@ -1098,7 +1070,7 @@ class Form implements Renderable
      */
     public function createdAtColumn()
     {
-        if (! $this->repository) {
+        if (!$this->repository) {
             return;
         }
 
@@ -1110,7 +1082,7 @@ class Form implements Renderable
      */
     public function updatedAtColumn()
     {
-        if (! $this->repository) {
+        if (!$this->repository) {
             return;
         }
 
@@ -1132,7 +1104,7 @@ class Form implements Renderable
         if (is_array($columns)) {
             $value = [];
             foreach ($columns as $name => $column) {
-                if (! Arr::has($data, $column)) {
+                if (!Arr::has($data, $column)) {
                     continue;
                 }
                 $value[$name] = Arr::get($data, $column);
@@ -1203,14 +1175,12 @@ class Form implements Renderable
     }
 
     /**
-     * @param array $data
-     *
      * @return void
      */
     public function fillFields(array $data)
     {
         $this->builder->fields()->each(function (Field $field) use ($data) {
-            if (! in_array($field->column(), $this->ignored, true)) {
+            if (!in_array($field->column(), $this->ignored, true)) {
                 $field->fill($data);
             }
         });
@@ -1243,11 +1213,11 @@ class Form implements Renderable
 
         /** @var Field $field */
         foreach ($this->builder->fields() as $field) {
-            if (! $validator = $field->getValidator($input)) {
+            if (!$validator = $field->getValidator($input)) {
                 continue;
             }
 
-            if (($validator instanceof Validator) && ! $validator->passes()) {
+            if (($validator instanceof Validator) && !$validator->passes()) {
                 $failedValidators[] = [$field, $validator];
             }
         }
@@ -1273,11 +1243,11 @@ class Form implements Renderable
             return $this->responseValidationMessages($column->getMessageBag()->getMessages());
         }
 
-        if (! $this->validationMessages) {
+        if (!$this->validationMessages) {
             $this->validationMessages = new MessageBag();
         }
 
-        if (! $column) {
+        if (!$column) {
             return $this;
         }
 
@@ -1328,7 +1298,7 @@ class Form implements Renderable
     {
         $value = $this->builder->action($action);
 
-        if ($action === null) {
+        if (null === $action) {
             return $value;
         }
 
@@ -1346,7 +1316,7 @@ class Form implements Renderable
     public function width($fieldWidth = 8, $labelWidth = 2)
     {
         $this->builder->fields()->each(function ($field) use ($fieldWidth, $labelWidth) {
-            /* @var Field $field  */
+            /* @var Field $field */
             $field->width($fieldWidth, $labelWidth);
         });
 
@@ -1398,7 +1368,7 @@ class Form implements Renderable
             return $this;
         }
 
-        if (! is_array($callback)) {
+        if (!is_array($callback)) {
             $callback = [$callback];
         }
 
@@ -1410,8 +1380,6 @@ class Form implements Renderable
     }
 
     /**
-     * @param bool $disable
-     *
      * @return $this
      */
     public function disableHeader(bool $disable = true)
@@ -1422,8 +1390,6 @@ class Form implements Renderable
     }
 
     /**
-     * @param bool $disable
-     *
      * @return $this
      */
     public function disableFooter(bool $disable = true)
@@ -1532,8 +1498,6 @@ class Form implements Renderable
     /**
      * Footer setting for form.
      *
-     * @param Closure $callback
-     *
      * @return $this
      */
     public function footer(Closure $callback)
@@ -1556,7 +1520,7 @@ class Form implements Renderable
 
         $segments = explode('/', trim($path, '/'));
 
-        if ($slice != 0) {
+        if (0 != $slice) {
             $segments = array_slice($segments, 0, $slice);
         }
 
@@ -1565,8 +1529,6 @@ class Form implements Renderable
 
     /**
      * Set resource path.
-     *
-     * @param string $resource
      *
      * @return $this
      */
@@ -1625,12 +1587,9 @@ class Form implements Renderable
     }
 
     /**
-     * @param int     $width
-     * @param Closure $callback
-     *
      * @return $this
      */
-    public function block(int $width, \Closure $callback)
+    public function block(int $width, Closure $callback)
     {
         $this
             ->builder
@@ -1642,11 +1601,10 @@ class Form implements Renderable
 
     /**
      * @param int|float $width
-     * @param Closure   $callback
      *
      * @return $this
      */
-    public function column($width, \Closure $callback)
+    public function column($width, Closure $callback)
     {
         $this->builder->layout()->onlyColumn($width, function () use ($callback) {
             $callback($this);
@@ -1670,9 +1628,9 @@ class Form implements Renderable
      *
      * @return bool|void
      */
-    public function inDialog(\Closure $callback = null)
+    public function inDialog(Closure $callback = null)
     {
-        if (! $callback) {
+        if (!$callback) {
             return DialogForm::is();
         }
 
@@ -1683,8 +1641,6 @@ class Form implements Renderable
 
     /**
      * Create a dialog form.
-     *
-     * @param string|null $title
      *
      * @return DialogForm
      */

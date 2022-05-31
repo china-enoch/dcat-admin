@@ -22,7 +22,7 @@ class Setting extends Fluent
     {
         $value = $this->get($key, $default);
 
-        if (! $value) {
+        if (!$value) {
             return [];
         }
 
@@ -73,7 +73,7 @@ class Setting extends Fluent
     {
         $results = $this->getArray($key);
 
-        if ($k !== null) {
+        if (null !== $k) {
             $results[] = $value;
         } else {
             $results[$k] = $value;
@@ -86,7 +86,6 @@ class Setting extends Fluent
      * 批量追加数据.
      *
      * @param string $key
-     * @param array  $value
      *
      * @return $this
      */
@@ -99,8 +98,6 @@ class Setting extends Fluent
 
     /**
      * 保存配置到数据库.
-     *
-     * @param array $data
      *
      * @return $this
      */
@@ -120,7 +117,7 @@ class Setting extends Fluent
                 ->first() ?: new Model();
 
             $model->fill([
-                'slug'  => $key,
+                'slug' => $key,
                 'value' => (string) $value,
             ])->save();
         }

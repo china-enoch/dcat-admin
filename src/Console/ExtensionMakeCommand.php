@@ -94,7 +94,7 @@ class ExtensionMakeCommand extends Command
 
         $this->extensionDir = admin_extension_path();
 
-        if (! file_exists($this->extensionDir)) {
+        if (!file_exists($this->extensionDir)) {
             $this->makeDir();
         }
 
@@ -108,7 +108,7 @@ class ExtensionMakeCommand extends Command
         }
 
         InputExtensionName :
-        if (! Helper::validateExtensionName($this->package)) {
+        if (!Helper::validateExtensionName($this->package)) {
             $this->package = $this->ask("[$this->package] is not a valid package name, please input a name like (<vendor>/<name>)");
             goto InputExtensionName;
         }
@@ -219,7 +219,7 @@ TREE;
         );
         $this->putFile("src/{$this->className}ServiceProvider.php", $classContents);
 
-        if (! $this->option('theme')) {
+        if (!$this->option('theme')) {
             // make controller
             $controllerContent = str_replace(
                 ['{namespace}', '{className}', '{name}'],
@@ -247,7 +247,7 @@ TREE;
 
     protected function makeProviderContent()
     {
-        if (! $this->option('theme')) {
+        if (!$this->option('theme')) {
             return <<<'TEXT'
 protected $js = [
         'js/index.js',
@@ -263,7 +263,7 @@ TEXT;
 
     protected function makeRegisterThemeContent()
     {
-        if (! $this->option('theme')) {
+        if (!$this->option('theme')) {
             return;
         }
 
@@ -276,11 +276,11 @@ TEXT;
     {
         $files = [
             $view = __DIR__.'/stubs/extension/view.stub' => 'resources/views/index.blade.php',
-            $js = __DIR__.'/stubs/extension/js.stub'     => 'resources/assets/js/index.js',
-            __DIR__.'/stubs/extension/css.stub'          => 'resources/assets/css/index.css',
-            __DIR__.'/stubs/extension/.gitignore.stub'   => '.gitignore',
-            __DIR__.'/stubs/extension/README.md.stub'    => 'README.md',
-            __DIR__.'/stubs/extension/version.stub'      => 'version.php',
+            $js = __DIR__.'/stubs/extension/js.stub' => 'resources/assets/js/index.js',
+            __DIR__.'/stubs/extension/css.stub' => 'resources/assets/css/index.css',
+            __DIR__.'/stubs/extension/.gitignore.stub' => '.gitignore',
+            __DIR__.'/stubs/extension/README.md.stub' => 'README.md',
+            __DIR__.'/stubs/extension/version.stub' => 'version.php',
         ];
 
         if ($this->option('theme')) {
@@ -293,7 +293,7 @@ TEXT;
     /**
      * Get root namespace for this package.
      *
-     * @return array|null|string
+     * @return array|string|null
      */
     protected function getRootNameSpace()
     {
@@ -301,11 +301,11 @@ TEXT;
 
         $default = str_replace(['-'], '', Str::title($vendor).'\\'.Str::title($name));
 
-        if (! $namespace = $this->option('namespace')) {
+        if (!$namespace = $this->option('namespace')) {
             $namespace = $this->ask('Root namespace', $default);
         }
 
-        return $namespace === 'default' ? $default : $namespace;
+        return 'default' === $namespace ? $default : $namespace;
     }
 
     /**
@@ -373,7 +373,7 @@ TEXT;
             return;
         }
 
-        if (! file_exists($from)) {
+        if (!file_exists($from)) {
             return;
         }
 

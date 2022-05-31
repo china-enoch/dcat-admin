@@ -96,7 +96,7 @@ abstract class Widget implements Renderable
      */
     public function option($key, $value = null)
     {
-        if ($value === null) {
+        if (null === $value) {
             return Arr::get($this->options, $key);
         }
 
@@ -124,9 +124,9 @@ abstract class Widget implements Renderable
     {
         return [
             'attributes' => $this->formatHtmlAttributes(),
-            'options'    => $this->options,
-            'class'      => $this->getElementClass(),
-            'selector'   => $this->getElementSelector(),
+            'options' => $this->options,
+            'class' => $this->getElementClass(),
+            'selector' => $this->getElementSelector(),
         ];
     }
 
@@ -198,7 +198,7 @@ abstract class Widget implements Renderable
      */
     public function html()
     {
-        if (! $this->view) {
+        if (!$this->view) {
             return;
         }
 
@@ -235,8 +235,6 @@ abstract class Widget implements Renderable
 
     /**
      * 设置是否执行JS代码.
-     *
-     * @param bool $run
      *
      * @return $this
      */
@@ -281,14 +279,14 @@ abstract class Widget implements Renderable
      */
     public function __call($method, $parameters)
     {
-        if ($method === 'style' || $method === 'class') {
+        if ('style' === $method || 'class' === $method) {
             $value = $parameters[0] ?? null;
-            $append = $parameters[1] ?? ($method === 'class' ? false : true);
+            $append = $parameters[1] ?? ('class' === $method ? false : true);
 
             if ($append) {
                 $original = $this->htmlAttributes[$method] ?? '';
 
-                $de = $method === 'style' ? ';' : ' ';
+                $de = 'style' === $method ? ';' : ' ';
 
                 $value = $original.$de.$value;
             }
@@ -297,7 +295,7 @@ abstract class Widget implements Renderable
         }
 
         // 获取属性
-        if (count($parameters) === 0 || $parameters[0] === null) {
+        if (0 === count($parameters) || null === $parameters[0]) {
             return $this->getHtmlAttribute($method);
         }
 

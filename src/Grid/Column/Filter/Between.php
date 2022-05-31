@@ -19,7 +19,7 @@ class Between extends Filter
     {
         $this->class = [
             'start' => uniqid('column-filter-start-'),
-            'end'   => uniqid('column-filter-end-'),
+            'end' => uniqid('column-filter-end-'),
         ];
     }
 
@@ -83,7 +83,6 @@ class Between extends Filter
      * Add a binding to the query.
      *
      * @param mixed $value
-     * @param Model $model
      */
     public function addBinding($value, Model $model)
     {
@@ -101,13 +100,13 @@ class Between extends Filter
             }, $value);
         }
 
-        if (! isset($value['start'])) {
+        if (!isset($value['start'])) {
             $this->withQuery($model, 'where', ['<=', $value['end']]);
 
             return;
         }
 
-        if (! isset($value['end'])) {
+        if (!isset($value['end'])) {
             $this->withQuery($model, 'where', ['>=', $value['start']]);
 
             return;
@@ -118,14 +117,14 @@ class Between extends Filter
 
     protected function addScript()
     {
-        if (! $this->dateFormat) {
+        if (!$this->dateFormat) {
             return;
         }
 
         $options = [
-            'locale'           => config('app.locale'),
+            'locale' => config('app.locale'),
             'allowInputToggle' => true,
-            'format'           => $this->dateFormat,
+            'format' => $this->dateFormat,
         ];
 
         $options = json_encode($options);
@@ -150,7 +149,7 @@ JS
      */
     public function render()
     {
-        if (! $this->shouldDisplay()) {
+        if (!$this->shouldDisplay()) {
             return;
         }
 

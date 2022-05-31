@@ -10,7 +10,7 @@ class QuickEdit extends RowAction
     protected static $resolvedWindow;
 
     /**
-     * @return array|null|string
+     * @return array|string|null
      */
     public function title()
     {
@@ -19,7 +19,7 @@ class QuickEdit extends RowAction
 
     public function render()
     {
-        if (! static::$resolvedWindow) {
+        if (!static::$resolvedWindow) {
             static::$resolvedWindow = true;
 
             [$width, $height] = $this->parent->option('dialog_form_area');

@@ -37,8 +37,6 @@ abstract class Presenter
 
     /**
      * Set parent filter.
-     *
-     * @param AbstractFilter $filter
      */
     public function setParent(AbstractFilter $filter)
     {
@@ -73,9 +71,6 @@ abstract class Presenter
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function view(): string
     {
         return $this->view ?: 'admin::filter.'.strtolower(class_basename(static::class));
@@ -104,7 +99,7 @@ abstract class Presenter
     {
         $value = $this->filter->getValue();
 
-        if ($value === null || $value === '') {
+        if (null === $value || '' === $value) {
             return $this->filter->getDefault();
         }
 

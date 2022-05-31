@@ -24,7 +24,7 @@ class DatabaseUpdater
     {
         $object = $this->resolve($file);
 
-        if ($object === null) {
+        if (null === $object) {
             return false;
         }
 
@@ -54,7 +54,7 @@ class DatabaseUpdater
     {
         $object = $this->resolve($file);
 
-        if ($object === null) {
+        if (null === $object) {
             return false;
         }
 
@@ -77,7 +77,9 @@ class DatabaseUpdater
 
     /**
      * Resolve a migration instance from a file.
-     * @param  string  $file
+     *
+     * @param string $file
+     *
      * @return object
      */
     public function resolve($file)
@@ -86,14 +88,14 @@ class DatabaseUpdater
             return $file;
         }
 
-        if (! is_file($file)) {
+        if (!is_file($file)) {
             return;
         }
 
         require_once $file;
 
         if ($class = $this->getClassFromFile($file)) {
-            return new $class;
+            return new $class();
         }
     }
 
@@ -108,17 +110,14 @@ class DatabaseUpdater
             return true;
         }
 
-        throw new AdminException(sprintf(
-            'Database script [%s] must inherit %s or %s classes',
-            get_class($object),
-            Migration::class,
-            Seeder::class
-        ));
+        throw new AdminException(sprintf('Database script [%s] must inherit %s or %s classes', get_class($object), Migration::class, Seeder::class));
     }
 
     /**
      * Extracts the namespace and class name from a file.
+     *
      * @param string $file
+     *
      * @return string
      */
     public function getClassFromFile($file)
@@ -127,7 +126,7 @@ class DatabaseUpdater
         $class = $namespace = $buffer = '';
         $i = 0;
 
-        while (! $class) {
+        while (!$class) {
             if (feof($fileParser)) {
                 break;
             }
@@ -137,17 +136,17 @@ class DatabaseUpdater
             // Prefix and suffix string to prevent unterminated comment warning
             $tokens = token_get_all('/**/'.$buffer.'/**/');
 
-            if (strpos($buffer, '{') === false) {
+            if (false === strpos($buffer, '{')) {
                 continue;
             }
 
-            for (; $i < count($tokens); $i++) {
+            for (; $i < count($tokens); ++$i) {
                 /*
                  * Namespace opening
                  */
-                if ($tokens[$i][0] === T_NAMESPACE) {
-                    for ($j = $i + 1; $j < count($tokens); $j++) {
-                        if ($tokens[$j] === ';') {
+                if (T_NAMESPACE === $tokens[$i][0]) {
+                    for ($j = $i + 1; $j < count($tokens); ++$j) {
+                        if (';' === $tokens[$j]) {
                             break;
                         }
 
@@ -158,14 +157,14 @@ class DatabaseUpdater
                 /*
                  * Class opening
                  */
-                if ($tokens[$i][0] === T_CLASS && $tokens[$i - 1][1] !== '::') {
+                if (T_CLASS === $tokens[$i][0] && '::' !== $tokens[$i - 1][1]) {
                     $class = $tokens[$i + 2][1];
                     break;
                 }
             }
         }
 
-        if (! strlen(trim($namespace)) && ! strlen(trim($class))) {
+        if (!strlen(trim($namespace)) && !strlen(trim($class))) {
             return false;
         }
 
