@@ -56,9 +56,9 @@ class WebUploader
         $file = $this->file;
 
         if (
-            ! $file
-            || ! $this->upload_column
-            || ! $file instanceof UploadedFile
+            !$file
+            || !$this->upload_column
+            || !$file instanceof UploadedFile
         ) {
             return false;
         }
@@ -75,15 +75,15 @@ class WebUploader
     {
         $file = $this->file;
 
-        if (! $file || ! $file instanceof UploadedFile) {
+        if (!$file || !$file instanceof UploadedFile) {
             return;
         }
 
-        if (! $this->hasChunkFile()) {
+        if (!$this->hasChunkFile()) {
             return $file;
         }
 
-        if ($this->completeFile !== null) {
+        if (null !== $this->completeFile) {
             return $this->completeFile;
         }
 
@@ -95,13 +95,13 @@ class WebUploader
      */
     public function deleteTemporaryFile()
     {
-        if (! $this->temporaryFilePath) {
+        if (!$this->temporaryFilePath) {
             return;
         }
         @unlink($this->temporaryFilePath);
 
         if (
-            ! Finder::create()
+            !Finder::create()
                 ->in($dir = dirname($this->temporaryFilePath))
                 ->files()
                 ->count()
@@ -112,8 +112,6 @@ class WebUploader
 
     /**
      * 合并分块文件.
-     *
-     * @param UploadedFile $file
      *
      * @return UploadedFile|false
      */
@@ -126,7 +124,7 @@ class WebUploader
         $this->moveChunk($file, $tmpDir, $newFilename);
 
         // 判断所有分块是否上传完毕.
-        if (! $this->isComplete($tmpDir, $newFilename)) {
+        if (!$this->isComplete($tmpDir, $newFilename)) {
             return false;
         }
 
@@ -153,8 +151,8 @@ class WebUploader
      */
     protected function isComplete($tmpDir, $newFilename)
     {
-        for ($index = 0; $index < $this->chunks; $index++) {
-            if (! is_file("{$tmpDir}/{$newFilename}.{$index}.part")) {
+        for ($index = 0; $index < $this->chunks; ++$index) {
+            if (!is_file("{$tmpDir}/{$newFilename}.{$index}.part")) {
                 return false;
             }
         }
@@ -165,7 +163,6 @@ class WebUploader
     /**
      * 移动分块文件到临时目录.
      *
-     * @param UploadedFile $file
      * @param string $tmpDir
      * @param string $newFilename
      */
@@ -184,9 +181,9 @@ class WebUploader
         $out = fopen($path, 'wb');
 
         if (flock($out, LOCK_EX)) {
-            for ($index = 0; $index < $this->chunks; $index++) {
+            for ($index = 0; $index < $this->chunks; ++$index) {
                 $partPath = "{$tmpDir}/{$newFileame}.{$index}.part";
-                if (! $in = @fopen($partPath, 'rb')) {
+                if (!$in = @fopen($partPath, 'rb')) {
                     break;
                 }
 
@@ -206,8 +203,6 @@ class WebUploader
 
     /**
      * 生成分块文件名称.
-     *
-     * @param UploadedFile $file
      *
      * @return string
      */
@@ -237,7 +232,7 @@ class WebUploader
     {
         $dir = storage_path($this->temporaryDirectory);
 
-        if (! is_dir($dir)) {
+        if (!is_dir($dir)) {
             app('files')->makeDirectory($dir, 0755, true);
         }
 

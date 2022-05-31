@@ -36,8 +36,6 @@ class SelectTable extends Presenter
     /**
      * 设置选中的选项.
      *
-     * @param \Closure $options
-     *
      * @return $this
      */
     public function options(\Closure $options)
@@ -50,16 +48,12 @@ class SelectTable extends Presenter
     /**
      * 设置选中数据显示.
      *
-     * @param string $model
-     * @param string $id
-     * @param string $text
-     *
      * @return $this
      */
     public function model(string $model, string $id = 'id', string $text = 'title')
     {
         return $this->options(function ($v) use ($model, $id, $text) {
-            if (! $v) {
+            if (!$v) {
                 return [];
             }
 
@@ -73,8 +67,6 @@ class SelectTable extends Presenter
      * @example
      *    $this->width('500px');
      *    $this->width('50%');
-     *
-     * @param string $width
      *
      * @return $this
      */
@@ -106,7 +98,7 @@ class SelectTable extends Presenter
      */
     public function placeholder(string $placeholder = null)
     {
-        if ($placeholder === null) {
+        if (null === $placeholder) {
             return $this->placeholder ?: __('admin.choose');
         }
 
@@ -134,7 +126,7 @@ class SelectTable extends Presenter
 
         foreach (Helper::array($this->options) as $id => $label) {
             foreach ($value as $v) {
-                if ($v == $id && $v !== null) {
+                if ($v == $id && null !== $v) {
                     $values[] = ['id' => $v, 'label' => $label];
                 }
             }
@@ -163,9 +155,6 @@ JS
         );
     }
 
-    /**
-     * @return array
-     */
     public function defaultVariables(): array
     {
         $this->formatOptions();
@@ -176,8 +165,8 @@ JS
         $this->addScript();
 
         return [
-            'id'          => $this->id,
-            'dialog'      => $dialog,
+            'id' => $this->id,
+            'dialog' => $dialog,
             'placeholder' => $this->placeholder(),
         ];
     }

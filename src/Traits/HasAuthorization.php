@@ -10,8 +10,6 @@ trait HasAuthorization
 {
     /**
      * 验证权限.
-     *
-     * @return bool
      */
     public function passesAuthorization(): bool
     {
@@ -22,8 +20,6 @@ trait HasAuthorization
      * 是否有权限判断.
      *
      * @param Model|Authenticatable|HasPermissions|null $user
-     *
-     * @return bool
      */
     protected function authorize($user): bool
     {

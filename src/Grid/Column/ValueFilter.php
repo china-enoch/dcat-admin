@@ -47,7 +47,7 @@ class ValueFilter
 
     protected function originalValue()
     {
-        if (! $this->valueKey) {
+        if (!$this->valueKey) {
             return $this->column()->getOriginal();
         }
 
@@ -69,7 +69,7 @@ class ValueFilter
 
     protected function wrap($value)
     {
-        if (! preg_match('/<[^>]+>(.*)<\/[^>]+>/', $value)) {
+        if (!preg_match('/<[^>]+>(.*)<\/[^>]+>/', $value)) {
             return "<span>{$value}</span>";
         }
 
@@ -82,7 +82,7 @@ class ValueFilter
 
         $url = request()->fullUrlWithQuery([
             $this->getQueryName() => $this->originalValue(),
-            $pageName          => null,
+            $pageName => null,
         ]);
 
         return "<a class='value-filter' href='{$url}'>{$this->wrap($value)}</a> &nbsp;<a href='#' style='opacity:0;' class='feather icon-search'></a>";

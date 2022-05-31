@@ -28,7 +28,6 @@ class Tree extends Component
     /**
      * 浏览器包含组件的断言
      *
-     * @param Browser $browser
      * @return void
      */
     public function assert(Browser $browser)
@@ -47,16 +46,15 @@ class Tree extends Component
     {
         return [
             '@container' => (new Field($this->name))->getElementClassSelector(),
-            '@tree'      => '.da-tree',
-            '@input'     => sprintf('input[name="%s"][type="hidden"]', $this->name),
+            '@tree' => '.da-tree',
+            '@input' => sprintf('input[name="%s"][type="hidden"]', $this->name),
         ];
     }
 
     /**
      * 选中下拉选框.
      *
-     * @param Browser $browser
-     * @param mixed   $values
+     * @param mixed $values
      *
      * @return Browser
      */
@@ -77,8 +75,6 @@ JS
 
     /**
      * 展开所有选项.
-     *
-     * @param Browser $browser
      */
     public function expand(Browser $browser)
     {
@@ -90,8 +86,6 @@ JS
 
     /**
      * 选中所有.
-     *
-     * @param Browser $browser
      *
      * @return Browser
      */
@@ -108,8 +102,6 @@ JS
     /**
      * 取消选中所有.
      *
-     * @param Browser $browser
-     *
      * @return Browser
      */
     public function unCheckAll(Browser $browser)
@@ -123,8 +115,6 @@ JS
     }
 
     /**
-     * @param \Laravel\Dusk\Browser $browser
-     *
      * @return string
      */
     protected function getTreeSelector(Browser $browser)

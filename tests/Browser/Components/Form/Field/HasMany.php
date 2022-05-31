@@ -29,7 +29,6 @@ class HasMany extends Component
     /**
      * 浏览器包含组件的断言
      *
-     * @param  Browser  $browser
      * @return void
      */
     public function assert(Browser $browser)
@@ -58,8 +57,6 @@ class HasMany extends Component
     /**
      * 点击添加按钮.
      *
-     * @param Browser $browser
-     *
      * @return int
      */
     public function add(Browser $browser)
@@ -84,8 +81,6 @@ JS
     /**
      * 获取最后一组新增的表单索引.
      *
-     * @param Browser $browser
-     *
      * @return int|null
      */
     public function getLastFormGroupIndex(Browser $browser)
@@ -101,7 +96,6 @@ JS
     }
 
     /**
-     * @param Browser $browser
      * @param \Closure $callback
      *
      * @return Browser
@@ -114,7 +108,6 @@ JS
     /**
      * 检测表单组.
      *
-     * @param Browser $browser
      * @param \Closure $callback
      *
      * @return Browser
@@ -131,7 +124,6 @@ JS
     }
 
     /**
-     * @param Browser $browser
      * @param int $index
      *
      * @return string
@@ -144,7 +136,6 @@ JS
     /**
      * 移除表单.
      *
-     * @param Browser $browser
      * @param int $index
      *
      * @return Browser
@@ -165,8 +156,6 @@ JS
     /**
      * 移除最后一个表单.
      *
-     * @param Browser $browser
-     *
      * @return Browser
      */
     public function removeLast(Browser $browser)
@@ -177,7 +166,6 @@ JS
     /**
      * 获取hasMany内表单字段值.
      *
-     * @param Browser $browser
      * @param string $field
      * @param string $value
      *
@@ -197,7 +185,6 @@ JS
     /**
      * 填充字段数据.
      *
-     * @param \Laravel\Dusk\Browser $browser
      * @param $field
      * @param $value
      * @param null $id

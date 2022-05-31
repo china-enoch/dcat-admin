@@ -79,8 +79,6 @@ class Admin
     /**
      * 菜单管理.
      *
-     * @param Closure|null $builder
-     *
      * @return Menu
      */
     public static function menu(Closure $builder = null)
@@ -99,7 +97,7 @@ class Admin
      */
     public static function title($title = null)
     {
-        if ($title === null) {
+        if (null === $title) {
             return static::context()->metaTitle ?: config('admin.title');
         }
 
@@ -107,13 +105,13 @@ class Admin
     }
 
     /**
-     * @param null|string $favicon
+     * @param string|null $favicon
      *
      * @return string|void
      */
     public static function favicon($favicon = null)
     {
-        if ($favicon === null) {
+        if (null === $favicon) {
             return static::context()->favicon;
         }
 
@@ -139,8 +137,6 @@ class Admin
     }
 
     /**
-     * @param Closure|null $builder
-     *
      * @return Navbar
      */
     public static function navbar(Closure $builder = null)
@@ -167,7 +163,7 @@ class Admin
     {
         $id = static::context()->pjaxContainerId;
 
-        if ($id === false) {
+        if (false === $id) {
             return;
         }
 
@@ -176,8 +172,6 @@ class Admin
 
     /**
      * section.
-     *
-     * @param Closure|null $builder
      *
      * @return SectionManager
      */
@@ -204,7 +198,6 @@ class Admin
      * 创建数据仓库实例.
      *
      * @param string|Repository|Model|Builder $value
-     * @param array                   $args
      *
      * @return Repository
      */
@@ -218,7 +211,7 @@ class Admin
             $repository = EloquentRepository::make($repository);
         }
 
-        if (! $repository instanceof Repository) {
+        if (!$repository instanceof Repository) {
             $class = is_object($repository) ? get_class($repository) : $repository;
 
             throw new InvalidArgumentException("The class [{$class}] must be a type of [".Repository::class.'].');
@@ -240,8 +233,6 @@ class Admin
     /**
      * 处理异常.
      *
-     * @param \Throwable $e
-     *
      * @return mixed
      */
     public static function handleException(\Throwable $e)
@@ -252,8 +243,6 @@ class Admin
     /**
      * 上报异常.
      *
-     * @param \Throwable $e
-     *
      * @return mixed
      */
     public static function reportException(\Throwable $e)
@@ -263,8 +252,6 @@ class Admin
 
     /**
      * 显示异常信息.
-     *
-     * @param \Throwable $e
      *
      * @return mixed
      */
@@ -363,8 +350,6 @@ class Admin
 
     /**
      * 往分组插入中间件.
-     *
-     * @param array $mix
      */
     public static function mixMiddlewareGroup(array $mix = [])
     {
@@ -380,7 +365,7 @@ class Admin
 
                 $finalGroup[] = $mid;
 
-                if (! isset($group[$next]) || $group[$next] !== 'admin.permission') {
+                if (!isset($group[$next]) || 'admin.permission' !== $group[$next]) {
                     continue;
                 }
 
@@ -402,15 +387,13 @@ class Admin
     /**
      * 获取js配置.
      *
-     * @param array|null $variables
-     *
      * @return string
      */
     public static function jsVariables(array $variables = null)
     {
         $jsVariables = static::context()->jsVariables ?: [];
 
-        if ($variables !== null) {
+        if (null !== $variables) {
             static::context()->jsVariables = array_merge(
                 $jsVariables,
                 $variables
@@ -426,7 +409,7 @@ class Admin
         $jsVariables['lang'] = __('admin.client') ?: [];
         $jsVariables['colors'] = static::color()->all();
         $jsVariables['dark_mode'] = Str::contains(config('admin.layout.body_class'), 'dark-mode');
-        $jsVariables['sidebar_dark'] = config('admin.layout.sidebar_dark') || ($sidebarStyle === 'dark');
+        $jsVariables['sidebar_dark'] = config('admin.layout.sidebar_dark') || ('dark' === $sidebarStyle);
         $jsVariables['sidebar_light_style'] = in_array($sidebarStyle, ['dark', 'light'], true) ? 'sidebar-light-primary' : 'sidebar-primary';
 
         return admin_javascript_json($jsVariables);
@@ -440,9 +423,9 @@ class Admin
     public static function routes()
     {
         $attributes = [
-            'prefix'     => config('admin.route.prefix'),
+            'prefix' => config('admin.route.prefix'),
             'middleware' => config('admin.route.middleware'),
-            'as'         => static::app()->getName().'.',
+            'as' => static::app()->getName().'.',
         ];
 
         if (config('admin.auth.enable', true)) {
@@ -484,10 +467,10 @@ class Admin
     public static function registerApiRoutes(string $as = null)
     {
         $attributes = [
-            'prefix'     => admin_base_path('dcat-api'),
+            'prefix' => admin_base_path('dcat-api'),
             'middleware' => config('admin.route.middleware'),
-            'as'         => $as ?: static::app()->getApiRoutePrefix(Application::DEFAULT),
-            'namespace'  => 'Dcat\Admin\Http\Controllers',
+            'as' => $as ?: static::app()->getApiRoutePrefix(Application::DEFAULT),
+            'namespace' => 'Dcat\Admin\Http\Controllers',
         ];
 
         app('router')->group($attributes, function ($router) {
@@ -510,14 +493,14 @@ class Admin
      */
     public static function registerHelperRoutes()
     {
-        if (! config('admin.helpers.enable', true) || ! config('app.debug')) {
+        if (!config('admin.helpers.enable', true) || !config('app.debug')) {
             return;
         }
 
         $attributes = [
-            'prefix'     => config('admin.route.prefix'),
+            'prefix' => config('admin.route.prefix'),
             'middleware' => config('admin.route.middleware'),
-            'as'         => static::app()->getName().'.',
+            'as' => static::app()->getName().'.',
         ];
 
         app('router')->group($attributes, function ($router) {

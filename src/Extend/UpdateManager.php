@@ -43,7 +43,7 @@ class UpdateManager
     public function rollback($name, ?string $stopOnVersion = null)
     {
         if (
-            ! ($extension = $this->manager->get($name))
+            !($extension = $this->manager->get($name))
             && $this->versionManager->purge($name)
         ) {
             $this->note('<info>Purged from database:</info> '.$name);
@@ -51,11 +51,11 @@ class UpdateManager
             return $this;
         }
 
-        if ($stopOnVersion === null) {
+        if (null === $stopOnVersion) {
             $extension->uninstall();
         }
 
-        if ($stopOnVersion && ! $this->versionManager->hasDatabaseVersion($extension, $stopOnVersion)) {
+        if ($stopOnVersion && !$this->versionManager->hasDatabaseVersion($extension, $stopOnVersion)) {
             throw new AdminException('Extension version not found');
         }
 
@@ -78,7 +78,7 @@ class UpdateManager
     {
         $name = $this->manager->getName($name);
 
-        if (! ($extension = $this->manager->get($name))) {
+        if (!($extension = $this->manager->get($name))) {
             $this->note('<error>Unable to find:</error> '.$name);
 
             return;
@@ -112,7 +112,7 @@ class UpdateManager
         $this->versionManager->notes = [];
         $this->versionManager->output = $this->output;
 
-        if ($this->versionManager->update($extension, $stopOnVersion) !== false) {
+        if (false !== $this->versionManager->update($extension, $stopOnVersion)) {
             foreach ($this->versionManager->notes as $note) {
                 $this->note($note);
             }

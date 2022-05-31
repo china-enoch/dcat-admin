@@ -23,7 +23,7 @@ class Composer
      */
     public static function loader()
     {
-        if (! static::$loader) {
+        if (!static::$loader) {
             static::$loader = include base_path().'/vendor/autoload.php';
         }
 
@@ -41,14 +41,11 @@ class Composer
     }
 
     /**
-     * @param null|string $packageName
-     * @param null|string $lockFile
-     *
      * @return null
      */
     public static function getVersion(?string $packageName, ?string $lockFile = null)
     {
-        if (! $packageName) {
+        if (!$packageName) {
             return null;
         }
 
@@ -63,8 +60,6 @@ class Composer
     }
 
     /**
-     * @param null|string $path
-     *
      * @return array
      */
     public static function fromJson(?string $path)
@@ -73,7 +68,7 @@ class Composer
             return static::$files[$path];
         }
 
-        if (! $path || ! is_file($path)) {
+        if (!$path || !is_file($path)) {
             return static::$files[$path] = [];
         }
 

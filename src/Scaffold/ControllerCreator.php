@@ -7,7 +7,9 @@ use Dcat\Admin\Support\Helper;
 
 class ControllerCreator
 {
-    use GridCreator, FormCreator, ShowCreator;
+    use GridCreator;
+    use FormCreator;
+    use ShowCreator;
 
     /**
      * Controller full name.
@@ -50,7 +52,7 @@ class ControllerCreator
         $path = $this->getPath($this->name);
         $dir = dirname($path);
 
-        if (! is_dir($dir)) {
+        if (!is_dir($dir)) {
             $this->files->makeDirectory($dir, 0755, true);
         }
 

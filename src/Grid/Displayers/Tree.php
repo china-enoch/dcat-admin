@@ -57,7 +57,7 @@ EOT;
         $model = $this->grid->model();
 
         $showNextPage = $this->grid->allowPagination();
-        if (! $model->showAllChildrenNodes() && $showNextPage) {
+        if (!$model->showAllChildrenNodes() && $showNextPage) {
             $showNextPage =
                 $model->getCurrentChildrenPage() < $model->paginator()->lastPage()
                 && $model->buildData()->count() == $model->getPerPage();

@@ -228,8 +228,6 @@ class Card extends Widget
     /**
      * 设置主题色.
      *
-     * @param string $style
-     *
      * @return $this
      */
     public function style(string $style)
@@ -241,8 +239,6 @@ class Card extends Widget
 
     /**
      * 设置卡片的下拉菜单选项.
-     *
-     * @param array $items
      *
      * @return $this
      */
@@ -271,7 +267,7 @@ class Card extends Widget
      * 设置图表配置.
      *
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return $this
      */
@@ -287,8 +283,6 @@ class Card extends Widget
     /**
      * 设置图表高度.
      *
-     * @param int $number
-     *
      * @return $this
      */
     public function chartHeight(int $number)
@@ -303,8 +297,6 @@ class Card extends Widget
     /**
      * 设置图表上间距.
      *
-     * @param int $number
-     *
      * @return $this
      */
     public function chartMarginTop(int $number)
@@ -318,8 +310,6 @@ class Card extends Widget
 
     /**
      * 设置图表下间距.
-     *
-     * @param int $number
      *
      * @return $this
      */
@@ -392,7 +382,7 @@ class Card extends Widget
      */
     protected function setUpChart()
     {
-        if (! $chart = $this->chart) {
+        if (!$chart = $this->chart) {
             return;
         }
 
@@ -421,11 +411,11 @@ class Card extends Widget
      */
     protected function setUpChartMargin()
     {
-        if ($this->chartMarginTop !== null) {
+        if (null !== $this->chartMarginTop) {
             $this->chart->style("margin-top: {$this->chartMarginTop}px;");
         }
 
-        if ($this->chartMarginBottom !== null) {
+        if (null !== $this->chartMarginBottom) {
             $this->chart->style("margin-bottom: {$this->chartMarginBottom}px;");
         }
     }
@@ -435,7 +425,7 @@ class Card extends Widget
      */
     public function addScript()
     {
-        if (! $this->allowBuildRequest()) {
+        if (!$this->allowBuildRequest()) {
             return;
         }
 
@@ -514,7 +504,7 @@ JS;
      */
     protected function setUpCardHeight()
     {
-        if (! $height = $this->height) {
+        if (!$height = $this->height) {
             return;
         }
 
@@ -557,8 +547,8 @@ JS;
 
         return array_merge(
             [
-                'status'  => 1,
-                'header'  => $this->renderHeader(),
+                'status' => 1,
+                'header' => $this->renderHeader(),
                 'content' => $this->renderContent(),
             ],
             (array) optional($this->chart)->valueResult()

@@ -11,10 +11,10 @@ class ArrayField extends HasMany
     {
         $this->column = $column;
 
-        if (count($arguments) == 1) {
+        if (1 == count($arguments)) {
             $this->label = $this->formatLabel();
             $this->builder = $arguments[0];
-        } elseif (count($arguments) == 2) {
+        } elseif (2 == count($arguments)) {
             [$this->label, $this->builder] = $arguments;
         }
 

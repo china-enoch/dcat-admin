@@ -12,9 +12,9 @@ use Illuminate\Support\Str;
 
 /**
  * @property Collection $columns
- * @property Tools $tools
+ * @property Tools      $tools
  *
- * @method  Model model()
+ * @method Model model()
  */
 trait HasQuickSearch
 {
@@ -65,7 +65,7 @@ trait HasQuickSearch
      */
     public function renderQuickSearch()
     {
-        if (! $this->quickSearch) {
+        if (!$this->quickSearch) {
             return '';
         }
 
@@ -79,13 +79,13 @@ trait HasQuickSearch
      */
     public function applyQuickSearch()
     {
-        if (! $this->quickSearch) {
+        if (!$this->quickSearch) {
             return;
         }
 
         $query = request($this->quickSearch->getQueryName());
 
-        if ($query === '' || $query === null) {
+        if ('' === $query || null === $query) {
             return;
         }
 
@@ -129,7 +129,7 @@ trait HasQuickSearch
     protected function addWhereBindings($query)
     {
         $queries = preg_split('/\s(?=([^"]*"[^"]*")*[^"]*$)/', trim($query));
-        if (! $queries = $this->parseQueryBindings($queries)) {
+        if (!$queries = $this->parseQueryBindings($queries)) {
             $this->addWhereBasicBinding($this->model(), $this->getKeyName(), false, '=', '___');
 
             return;
@@ -137,37 +137,37 @@ trait HasQuickSearch
 
         $this->model()->where(function ($q) use ($queries) {
             foreach ($queries as [$column, $condition, $or]) {
-                if (preg_match('/(?<not>!?)\((?<values>.+)\)/', $condition, $match) !== 0) {
+                if (0 !== preg_match('/(?<not>!?)\((?<values>.+)\)/', $condition, $match)) {
                     $this->addWhereInBinding($q, $column, $or, (bool) $match['not'], $match['values']);
                     continue;
                 }
 
-                if (preg_match('/\[(?<start>.*?),(?<end>.*?)]/', $condition, $match) !== 0) {
+                if (0 !== preg_match('/\[(?<start>.*?),(?<end>.*?)]/', $condition, $match)) {
                     $this->addWhereBetweenBinding($q, $column, $or, $match['start'], $match['end']);
                     continue;
                 }
 
-                if (preg_match('/(?<function>date|time|day|month|year),(?<value>.*)/', $condition, $match) !== 0) {
+                if (0 !== preg_match('/(?<function>date|time|day|month|year),(?<value>.*)/', $condition, $match)) {
                     $this->addWhereDatetimeBinding($q, $column, $or, $match['function'], $match['value']);
                     continue;
                 }
 
-                if (preg_match('/(?<pattern>%[^%]+%)/', $condition, $match) !== 0) {
+                if (0 !== preg_match('/(?<pattern>%[^%]+%)/', $condition, $match)) {
                     $this->addWhereLikeBinding($q, $column, $or, $match['pattern']);
                     continue;
                 }
 
-                if (preg_match('/(?<pattern>[^%]+%)/', $condition, $match) !== 0) {
+                if (0 !== preg_match('/(?<pattern>[^%]+%)/', $condition, $match)) {
                     $this->addWhereLikeBinding($q, $column, $or, $match['pattern']);
                     continue;
                 }
 
-                if (preg_match('/\/(?<value>.*)\//', $condition, $match) !== 0) {
+                if (0 !== preg_match('/\/(?<value>.*)\//', $condition, $match)) {
                     $this->addWhereBasicBinding($q, $column, $or, 'REGEXP', $match['value']);
                     continue;
                 }
 
-                if (preg_match('/(?<operator>>=?|<=?|!=|%){0,1}(?<value>.*)/', $condition, $match) !== 0) {
+                if (0 !== preg_match('/(?<operator>>=?|<=?|!=|%){0,1}(?<value>.*)/', $condition, $match)) {
                     $this->addWhereBasicBinding($q, $column, $or, $match['operator'], $match['value']);
                     continue;
                 }
@@ -177,8 +177,6 @@ trait HasQuickSearch
 
     /**
      * Parse quick query bindings.
-     *
-     * @param array $queries
      *
      * @return array
      */
@@ -193,7 +191,7 @@ trait HasQuickSearch
 
         return collect($queries)->map(function ($query) use ($columnMap) {
             $segments = explode(':', $query, 2);
-            if (count($segments) != 2) {
+            if (2 != count($segments)) {
                 return;
             }
 
@@ -207,7 +205,7 @@ trait HasQuickSearch
 
             $column = $columnMap[$column] ?? null;
 
-            if (! $column) {
+            if (!$column) {
                 return;
             }
 
@@ -261,7 +259,7 @@ trait HasQuickSearch
         $values = explode(',', $values);
 
         foreach ($values as $key => $value) {
-            if ($value === 'NULL') {
+            if ('NULL' === $value) {
                 $values[$key] = null;
             }
         }
@@ -301,12 +299,12 @@ trait HasQuickSearch
     {
         $method = $or ? 'orWhere' : 'where';
         $operator = $operator ?: '=';
-        if ($operator == '%') {
+        if ('%' == $operator) {
             $operator = 'like';
             $value = "%{$value}%";
         }
 
-        if ($value === 'NULL') {
+        if ('NULL' === $value) {
             $value = null;
         }
 

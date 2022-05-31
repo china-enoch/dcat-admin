@@ -10,8 +10,6 @@ use Illuminate\Http\Request;
 class RenderableController
 {
     /**
-     * @param Request $request
-     *
      * @return mixed|string
      */
     public function handle(Request $request)

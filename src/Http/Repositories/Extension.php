@@ -19,14 +19,12 @@ class Extension extends Repository
         }
 
         return $data;
-        //return collect($data)->sort(function ($row) {
+        // return collect($data)->sort(function ($row) {
         //    return ! empty($row['version']) && empty($row['new_version']);
-        //})->toArray();
+        // })->toArray();
     }
 
     /**
-     * @param AbstractExtension $extension
-     *
      * @return array
      */
     protected function each(AbstractExtension $extension)
@@ -38,17 +36,17 @@ class Extension extends Repository
         $latest = $extension->getLocalLatestVersion();
 
         return [
-            'id'           => $name,
-            'alias'        => $name,
-            'name'         => $name,
-            'version'      => $current,
-            'type'         => $extension->getType(),
-            'description'  => $property->description,
-            'authors'      => $property->authors,
-            'homepage'     => $property->homepage,
-            'enabled'      => $extension->enabled(),
-            'new_version'  => $latest === $current || ! $current ? '' : $latest,
-            'extension'    => $extension,
+            'id' => $name,
+            'alias' => $name,
+            'name' => $name,
+            'version' => $current,
+            'type' => $extension->getType(),
+            'description' => $property->description,
+            'authors' => $property->authors,
+            'homepage' => $property->homepage,
+            'enabled' => $extension->enabled(),
+            'new_version' => $latest === $current || !$current ? '' : $latest,
+            'extension' => $extension,
         ];
     }
 
@@ -66,10 +64,6 @@ class Extension extends Repository
 
     /**
      * Get data before update.
-     *
-     * @param Form $form
-     *
-     * @return array
      */
     public function updating(Form $form): array
     {

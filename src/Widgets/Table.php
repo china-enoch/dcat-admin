@@ -36,7 +36,7 @@ class Table extends Widget
      */
     public function __construct($headers = [], $rows = false, $style = [])
     {
-        if ($rows === false) {
+        if (false === $rows) {
             $rows = $headers;
             $headers = [];
         }
@@ -63,8 +63,6 @@ class Table extends Widget
     }
 
     /**
-     * @param int $depth
-     *
      * @return $this
      */
     public function depth(int $depth)
@@ -83,7 +81,7 @@ class Table extends Widget
      */
     public function setRows($rows = [])
     {
-        if ($rows && ! Arr::isAssoc(Helper::array($rows))) {
+        if ($rows && !Arr::isAssoc(Helper::array($rows))) {
             $this->rows = $rows;
 
             return $this;
@@ -101,7 +99,7 @@ class Table extends Widget
                         ->class('table-no-top-border '.$borderLeft, true)
                         ->render();
 
-                    if (! $noTrPadding) {
+                    if (!$noTrPadding) {
                         $this->class('table-no-tr-padding', true);
                     }
                     $noTrPadding = true;
@@ -140,8 +138,8 @@ class Table extends Widget
     public function render()
     {
         $vars = [
-            'headers'    => $this->headers,
-            'rows'       => $this->rows,
+            'headers' => $this->headers,
+            'rows' => $this->rows,
             'attributes' => $this->formatHtmlAttributes(),
         ];
 

@@ -141,7 +141,7 @@ class Tree implements Renderable
      *
      * @param Model|TreeRepository|string|null $model
      */
-    public function __construct($repository = null, ?\Closure $callback = null)
+    public function __construct($repository = null, ?Closure $callback = null)
     {
         $this->repository = $this->makeRepository($repository);
         $this->path = $this->path ?: request()->getPathInfo();
@@ -181,7 +181,7 @@ class Tree implements Renderable
             $repository = EloquentRepository::make($repository);
         }
 
-        if (! $repository instanceof TreeRepository) {
+        if (!$repository instanceof TreeRepository) {
             $class = get_class($repository);
 
             throw new InvalidArgumentException("The class [{$class}] must be a type of [".TreeRepository::class.'].');
@@ -210,11 +210,9 @@ class Tree implements Renderable
     /**
      * Set branch callback.
      *
-     * @param \Closure $branchCallback
-     *
      * @return $this
      */
-    public function branch(\Closure $branchCallback)
+    public function branch(Closure $branchCallback)
     {
         $this->branchCallback = $branchCallback;
 
@@ -226,7 +224,7 @@ class Tree implements Renderable
      *
      * @return $this
      */
-    public function query(\Closure $callback)
+    public function query(Closure $callback)
     {
         $this->queryCallback = $callback;
 
@@ -237,8 +235,6 @@ class Tree implements Renderable
      * number of levels an item can be nested (default 5).
      *
      * @see https://github.com/dbushell/Nestable
-     *
-     * @param int $max
      *
      * @return $this
      */
@@ -264,24 +260,19 @@ class Tree implements Renderable
     /**
      * Disable create.
      *
-     * @param bool $value
-     *
      * @return void
      */
     public function disableCreateButton(bool $value = true)
     {
-        $this->useCreate = ! $value;
+        $this->useCreate = !$value;
     }
 
     public function disableQuickCreateButton(bool $value = true)
     {
-        $this->useQuickCreate = ! $value;
+        $this->useQuickCreate = !$value;
     }
 
     /**
-     * @param string $width
-     * @param string $height
-     *
      * @return $this
      */
     public function setDialogFormDimensions(string $width, string $height)
@@ -294,25 +285,21 @@ class Tree implements Renderable
     /**
      * Disable save.
      *
-     * @param bool $value
-     *
      * @return void
      */
     public function disableSaveButton(bool $value = true)
     {
-        $this->useSave = ! $value;
+        $this->useSave = !$value;
     }
 
     /**
      * Disable refresh.
      *
-     * @param bool $value
-     *
      * @return void
      */
     public function disableRefreshButton(bool $value = true)
     {
-        $this->useRefresh = ! $value;
+        $this->useRefresh = !$value;
     }
 
     public function disableQuickEditButton(bool $value = true)
@@ -337,11 +324,9 @@ class Tree implements Renderable
     }
 
     /**
-     * @param Closure $closure
-     *
      * @return $this;
      */
-    public function wrap(\Closure $closure)
+    public function wrap(Closure $closure)
     {
         $this->wrapper = $closure;
 
@@ -367,7 +352,7 @@ class Tree implements Renderable
     {
         $tree = json_decode($serialize, true);
 
-        if (json_last_error() != JSON_ERROR_NONE) {
+        if (JSON_ERROR_NONE != json_last_error()) {
             throw new InvalidArgumentException(json_last_error_msg());
         }
 
@@ -431,8 +416,6 @@ class Tree implements Renderable
     /**
      * 自定义行操作类.
      *
-     * @param string $actionClass
-     *
      * @return $this
      */
     public function setActionClass(string $actionClass)
@@ -455,7 +438,7 @@ class Tree implements Renderable
             $this->actionCallbacks[] = $callback;
         } else {
             $this->actionCallbacks[] = function (Actions $actions) use ($callback) {
-                if (! is_array($callback)) {
+                if (!is_array($callback)) {
                     $callback = [$callback];
                 }
 
@@ -486,17 +469,17 @@ class Tree implements Renderable
     public function defaultVariables()
     {
         return [
-            'id'              => $this->elementId,
-            'tools'           => $this->tools->render(),
-            'items'           => $this->getItems(),
-            'useCreate'       => $this->useCreate,
-            'useQuickCreate'  => $this->useQuickCreate,
-            'useSave'         => $this->useSave,
-            'useRefresh'      => $this->useRefresh,
-            'createButton'    => $this->renderCreateButton(),
+            'id' => $this->elementId,
+            'tools' => $this->tools->render(),
+            'items' => $this->getItems(),
+            'useCreate' => $this->useCreate,
+            'useQuickCreate' => $this->useQuickCreate,
+            'useSave' => $this->useSave,
+            'useRefresh' => $this->useRefresh,
+            'createButton' => $this->renderCreateButton(),
             'nestableOptions' => $this->nestableOptions,
-            'url'             => $this->url,
-            'resolveAction'   => $this->resolveAction(),
+            'url' => $this->url,
+            'resolveAction' => $this->resolveAction(),
         ];
     }
 
@@ -539,7 +522,7 @@ class Tree implements Renderable
      */
     public function tools($callback = null)
     {
-        if ($callback === null) {
+        if (null === $callback) {
             return $this->tools;
         }
 
@@ -549,7 +532,7 @@ class Tree implements Renderable
             return $this;
         }
 
-        if (! is_array($callback)) {
+        if (!is_array($callback)) {
             $callback = [$callback];
         }
 
@@ -565,7 +548,7 @@ class Tree implements Renderable
      */
     protected function renderCreateButton()
     {
-        if (! $this->useQuickCreate && ! $this->useCreate) {
+        if (!$this->useQuickCreate && !$this->useCreate) {
             return '';
         }
 
@@ -614,9 +597,9 @@ class Tree implements Renderable
         $this->renderQuickCreateButton();
 
         view()->share([
-            'currentUrl'     => $this->url,
-            'keyName'        => $this->getKeyName(),
-            'branchView'     => $this->branchView,
+            'currentUrl' => $this->url,
+            'keyName' => $this->getKeyName(),
+            'branchView' => $this->branchView,
             'branchCallback' => $this->branchCallback,
         ]);
 
@@ -630,7 +613,7 @@ class Tree implements Renderable
     {
         $view = view($this->view, $this->variables());
 
-        if (! $wrapper = $this->wrapper) {
+        if (!$wrapper = $this->wrapper) {
             $html = Admin::resolveHtml($view->render())['html'];
 
             return "<div class='card'>{$html}</div>";

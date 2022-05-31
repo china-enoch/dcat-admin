@@ -154,21 +154,21 @@ class Grid
      * @var array
      */
     protected $options = [
-        'show_pagination'        => true,
-        'show_filter'            => true,
-        'show_actions'           => true,
+        'show_pagination' => true,
+        'show_filter' => true,
+        'show_actions' => true,
         'show_quick_edit_button' => false,
-        'show_edit_button'       => true,
-        'show_view_button'       => true,
-        'show_delete_button'     => true,
-        'show_row_selector'      => true,
-        'show_create_button'     => true,
-        'show_bordered'          => false,
-        'table_collapse'         => true,
-        'show_toolbar'           => true,
-        'create_mode'            => self::CREATE_MODE_DEFAULT,
-        'dialog_form_area'       => ['700px', '670px'],
-        'table_class'            => ['table', 'custom-data-table', 'data-table'],
+        'show_edit_button' => true,
+        'show_view_button' => true,
+        'show_delete_button' => true,
+        'show_row_selector' => true,
+        'show_create_button' => true,
+        'show_bordered' => false,
+        'table_collapse' => true,
+        'show_toolbar' => true,
+        'create_mode' => self::CREATE_MODE_DEFAULT,
+        'dialog_form_area' => ['700px', '670px'],
+        'table_class' => ['table', 'custom-data-table', 'data-table'],
     ];
 
     /**
@@ -182,9 +182,8 @@ class Grid
      * Grid constructor.
      *
      * @param Repository|\Illuminate\Database\Eloquent\Model|Builder|null $repository
-     * @param null|\Closure                                       $builder
      */
-    public function __construct($repository = null, ?\Closure $builder = null, $request = null)
+    public function __construct($repository = null, ?Closure $builder = null, $request = null)
     {
         $this->model = new Model(request(), $repository);
         $this->columns = new Collection();
@@ -218,8 +217,6 @@ class Grid
 
     /**
      * Set primary key name.
-     *
-     * @param string $name
      *
      * @return $this
      */
@@ -256,8 +253,6 @@ class Grid
     /**
      * Add number column.
      *
-     * @param null|string $label
-     *
      * @return Column
      */
     public function number(?string $label = null)
@@ -278,11 +273,11 @@ class Grid
      */
     public function columns($columns = null)
     {
-        if ($columns === null) {
+        if (null === $columns) {
             return $this->columns;
         }
 
-        if (func_num_args() == 1 && is_array($columns)) {
+        if (1 == func_num_args() && is_array($columns)) {
             foreach ($columns as $column => $label) {
                 $this->column($column, $label);
             }
@@ -434,7 +429,7 @@ class Grid
      */
     public function callBuilder()
     {
-        if ($this->builder && ! $this->built) {
+        if ($this->builder && !$this->built) {
             call_user_func($this->builder, $this);
         }
 
@@ -443,8 +438,6 @@ class Grid
 
     /**
      * Build the grid rows.
-     *
-     * @param array $data
      *
      * @return void
      */
@@ -464,7 +457,7 @@ class Grid
      *
      * @return Collection|$this
      */
-    public function rows(\Closure $callback = null)
+    public function rows(Closure $callback = null)
     {
         if ($callback) {
             $this->rowsCallbacks[] = $callback;
@@ -512,7 +505,7 @@ class Grid
      */
     protected function prependRowSelectorColumn()
     {
-        if (! $this->options['show_row_selector']) {
+        if (!$this->options['show_row_selector']) {
             return;
         }
 
@@ -527,9 +520,6 @@ class Grid
     }
 
     /**
-     * @param string $width
-     * @param string $height
-     *
      * @return $this
      */
     public function setDialogFormDimensions(string $width, string $height)
@@ -546,7 +536,7 @@ class Grid
      */
     public function renderCreateButton()
     {
-        if (! $this->options['show_create_button']) {
+        if (!$this->options['show_create_button']) {
             return '';
         }
 
@@ -554,8 +544,6 @@ class Grid
     }
 
     /**
-     * @param bool $value
-     *
      * @return $this
      */
     public function withBorder(bool $value = true)
@@ -566,8 +554,6 @@ class Grid
     }
 
     /**
-     * @param bool $value
-     *
      * @return $this
      */
     public function tableCollapse(bool $value = true)
@@ -586,7 +572,7 @@ class Grid
      */
     public function header($content = null)
     {
-        if (! $content) {
+        if (!$content) {
             return $this->header;
         }
 
@@ -602,7 +588,7 @@ class Grid
      */
     public function renderHeader()
     {
-        if (! $this->header) {
+        if (!$this->header) {
             return '';
         }
 
@@ -626,7 +612,7 @@ HTML;
      */
     public function footer($content = null)
     {
-        if (! $content) {
+        if (!$content) {
             return $this->footer;
         }
 
@@ -642,7 +628,7 @@ HTML;
      */
     public function renderFooter()
     {
-        if (! $this->footer) {
+        if (!$this->footer) {
             return '';
         }
 
@@ -696,7 +682,7 @@ HTML;
     {
         $this->tools->disableBatchActions($disable);
 
-        return $this->option('show_row_selector', ! $disable);
+        return $this->option('show_row_selector', !$disable);
     }
 
     /**
@@ -706,7 +692,7 @@ HTML;
      */
     public function showRowSelector(bool $val = true)
     {
-        return $this->disableRowSelector(! $val);
+        return $this->disableRowSelector(!$val);
     }
 
     /**
@@ -716,7 +702,7 @@ HTML;
      */
     public function disableCreateButton(bool $disable = true)
     {
-        return $this->option('show_create_button', ! $disable);
+        return $this->option('show_create_button', !$disable);
     }
 
     /**
@@ -726,7 +712,7 @@ HTML;
      */
     public function showCreateButton(bool $val = true)
     {
-        return $this->disableCreateButton(! $val);
+        return $this->disableCreateButton(!$val);
     }
 
     /**
@@ -740,8 +726,6 @@ HTML;
     }
 
     /**
-     * @param string $mode
-     *
      * @return $this
      */
     public function createMode(string $mode)
@@ -780,11 +764,9 @@ HTML;
     }
 
     /**
-     * @param Closure $closure
-     *
      * @return $this;
      */
-    public function wrap(\Closure $closure)
+    public function wrap(Closure $closure)
     {
         $this->wrapper = $closure;
 
@@ -801,8 +783,6 @@ HTML;
 
     /**
      * Add variables to grid view.
-     *
-     * @param array $variables
      *
      * @return $this
      */
@@ -821,7 +801,7 @@ HTML;
     protected function defaultVariables()
     {
         return [
-            'grid'    => $this,
+            'grid' => $this,
             'tableId' => $this->getTableId(),
         ];
     }
@@ -907,7 +887,7 @@ HTML;
     {
         $view = view($this->view, $this->variables());
 
-        if (! $wrapper = $this->wrapper) {
+        if (!$wrapper = $this->wrapper) {
             return $view->render();
         }
 

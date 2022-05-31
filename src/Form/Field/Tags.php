@@ -59,7 +59,7 @@ class Tags extends Field
      */
     public function pluck($visibleColumn, $key)
     {
-        if (! empty($visibleColumn) && ! empty($key)) {
+        if (!empty($visibleColumn) && !empty($key)) {
             $this->keyAsValue = true;
         }
 
@@ -82,7 +82,7 @@ class Tags extends Field
         $input = parent::sanitizeInput($input, $column);
 
         $value = array_filter((array) Arr::get($input, $this->column), function ($value) {
-            return $value !== null;
+            return null !== $value;
         });
 
         Arr::set($input, $this->column, $value);
@@ -105,7 +105,7 @@ class Tags extends Field
             return $this;
         }
 
-        if (! $this->keyAsValue) {
+        if (!$this->keyAsValue) {
             return parent::options($options);
         }
 
@@ -127,7 +127,7 @@ class Tags extends Field
      */
     protected function prepareInputValue($value)
     {
-        if (! is_array($value)) {
+        if (!is_array($value)) {
             return $value;
         }
 
@@ -155,7 +155,6 @@ class Tags extends Field
     /**
      * Load options from ajax results.
      *
-     * @param string $url
      * @param $idField
      * @param $textField
      *
@@ -188,7 +187,7 @@ class Tags extends Field
         }
 
         $this->addVariables([
-            'options'    => $options,
+            'options' => $options,
             'keyAsValue' => $this->keyAsValue,
         ]);
 

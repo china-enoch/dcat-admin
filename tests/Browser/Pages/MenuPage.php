@@ -20,7 +20,6 @@ class MenuPage extends Page
     /**
      * Assert that the browser is on the page.
      *
-     * @param  \Laravel\Dusk\Browser  $browser
      * @return void
      */
     public function assert(Browser $browser)
@@ -58,9 +57,6 @@ class MenuPage extends Page
 
     /**
      * 创建.
-     *
-     * @param Browser $browser
-     * @param array $input
      *
      * @return Browser
      */

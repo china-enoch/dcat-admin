@@ -28,15 +28,15 @@ class Asset
             ],
         ],
         '@nunito' => [
-            //'css' => 'https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,800,800i,900,900i',
+            // 'css' => 'https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,800,800i,900,900i',
             'css' => '@admin/dcat/css/nunito.css',
         ],
         '@dcat' => [
-            'js'  => '@admin/dcat/js/dcat-app.js',
+            'js' => '@admin/dcat/js/dcat-app.js',
             'css' => '@admin/dcat/css/dcat-app.css',
         ],
         '@vendors' => [
-            'js'  => '@admin/dcat/plugins/vendors.min.js',
+            'js' => '@admin/dcat/plugins/vendors.min.js',
             'css' => '@admin/dcat/plugins/vendors.min.css',
         ],
         '@jquery.initialize' => [
@@ -64,22 +64,22 @@ class Asset
             'js' => '@admin/dcat/plugins/jquery-pjax/jquery.pjax.min.js',
         ],
         '@toastr' => [
-            'js'  => '@admin/dcat/plugins/extensions/toastr.min.js',
+            'js' => '@admin/dcat/plugins/extensions/toastr.min.js',
             'css' => '@admin/dcat/plugins/extensions/toastr.css',
         ],
         '@jquery.nestable' => [
-            'js'  => '@admin/dcat/plugins/nestable/jquery.nestable.min.js',
+            'js' => '@admin/dcat/plugins/nestable/jquery.nestable.min.js',
             'css' => '@admin/dcat/plugins/nestable/nestable.css',
         ],
         '@validator' => [
             'js' => '@admin/dcat/plugins/bootstrap-validator/validator.min.js',
         ],
         '@select2' => [
-            'js'  => '@admin/dcat/plugins/select/select2.full.min.js',
+            'js' => '@admin/dcat/plugins/select/select2.full.min.js',
             'css' => '@admin/dcat/plugins/select/select2.min.css',
         ],
         '@bootstrap-datetimepicker' => [
-            'js'  => '@admin/dcat/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js',
+            'js' => '@admin/dcat/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js',
             'css' => '@admin/dcat/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css',
         ],
         '@moment' => [
@@ -93,11 +93,11 @@ class Asset
             ],
         ],
         '@jstree' => [
-            'js'  => '@admin/dcat/plugins/jstree-theme/jstree.min.js',
+            'js' => '@admin/dcat/plugins/jstree-theme/jstree.min.js',
             'css' => '@admin/dcat/plugins/jstree-theme/themes/proton/style.min.css',
         ],
         '@switchery' => [
-            'js'  => '@admin/dcat/plugins/switchery/switchery.min.js',
+            'js' => '@admin/dcat/plugins/switchery/switchery.min.js',
             'css' => '@admin/dcat/plugins/switchery/switchery.min.css',
         ],
         '@webuploader' => [
@@ -114,7 +114,7 @@ class Asset
             'js' => '@admin/dcat/plugins/jquery.sparkline/jquery.sparkline.min.js',
         ],
         '@jquery.bootstrap-duallistbox' => [
-            'js'  => '@admin/dcat/plugins/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js',
+            'js' => '@admin/dcat/plugins/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js',
             'css' => '@admin/dcat/plugins/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css',
         ],
         '@number-input' => [
@@ -216,7 +216,7 @@ class Asset
      */
     public $headerJs = [
         'vendors' => '@vendors',
-        'dcat'    => '@dcat',
+        'dcat' => '@dcat',
     ];
 
     /**
@@ -225,11 +225,11 @@ class Asset
      * @var array
      */
     public $baseCss = [
-        'adminlte'    => '@adminlte',
-        'vendors'     => '@vendors',
-        'toastr'      => '@toastr',
-        'datatables'  => '@datatables',
-        'dcat'        => '@dcat',
+        'adminlte' => '@adminlte',
+        'vendors' => '@vendors',
+        'toastr' => '@toastr',
+        'datatables' => '@datatables',
+        'dcat' => '@dcat',
     ];
 
     /**
@@ -238,12 +238,12 @@ class Asset
      * @var array
      */
     public $baseJs = [
-        'adminlte'  => '@adminlte',
-        'toastr'    => '@toastr',
-        'pjax'      => '@pjax',
+        'adminlte' => '@adminlte',
+        'toastr' => '@toastr',
+        'pjax' => '@pjax',
         'validator' => '@validator',
-        'layer'     => '@layer',
-        'init'      => '@jquery.initialize',
+        'layer' => '@layer',
+        'init' => '@jquery.initialize',
     ];
 
     /**
@@ -275,7 +275,7 @@ class Asset
     {
         $color = Admin::color()->getName();
 
-        if ($color === Color::DEFAULT_COLOR) {
+        if (Color::DEFAULT_COLOR === $color) {
             return;
         }
 
@@ -313,11 +313,11 @@ class Asset
             return;
         }
 
-        if ($value === null) {
+        if (null === $value) {
             return $this->alias[$name] ?? [];
         }
 
-        if (mb_strpos($name, '@') !== 0) {
+        if (0 !== mb_strpos($name, '@')) {
             $name = '@'.$name;
         }
 
@@ -339,7 +339,7 @@ class Asset
             return;
         }
 
-        if (mb_strpos($alias, '@') !== 0) {
+        if (0 !== mb_strpos($alias, '@')) {
             $alias = '@'.$alias;
         }
 
@@ -354,7 +354,7 @@ class Asset
      */
     public function css($css)
     {
-        if (! $css) {
+        if (!$css) {
             return;
         }
         $this->css = array_merge(
@@ -365,8 +365,6 @@ class Asset
 
     /**
      * 设置需要载入的基础css脚本.
-     *
-     * @param array $css
      */
     public function baseCss(array $css, bool $merge = false)
     {
@@ -384,7 +382,7 @@ class Asset
      */
     public function js($js)
     {
-        if (! $js) {
+        if (!$js) {
             return;
         }
         $this->js = array_merge(
@@ -397,7 +395,6 @@ class Asset
      * 根据别名获取资源路径.
      *
      * @param string $path
-     * @param string $type
      *
      * @return string|array|null
      */
@@ -409,7 +406,7 @@ class Asset
 
         $paths = isset($this->alias[$path][$type]) ? (array) $this->alias[$path][$type] : null;
 
-        if (! $paths) {
+        if (!$paths) {
             return $paths;
         }
 
@@ -429,13 +426,13 @@ class Asset
      */
     public function url($path)
     {
-        if (! $path) {
+        if (!$path) {
             return $path;
         }
 
         $path = $this->getRealPath($path);
 
-        if (mb_strpos($path, '//') === false) {
+        if (false === mb_strpos($path, '//')) {
             $path = config('admin.assets_server').'/'.trim($path, '/');
         }
 
@@ -445,13 +442,11 @@ class Asset
     /**
      * 获取真实路径.
      *
-     * @param string|null $path
-     *
      * @return string|null
      */
     public function getRealPath(?string $path)
     {
-        if (! $this->containsAlias($path)) {
+        if (!$this->containsAlias($path)) {
             return $path;
         }
 
@@ -459,7 +454,7 @@ class Asset
             '/',
             array_map(
                 function ($v) {
-                    if (! $this->isPathAlias($v)) {
+                    if (!$this->isPathAlias($v)) {
                         return $v;
                     }
 
@@ -503,7 +498,7 @@ class Asset
      */
     protected function containsAlias($value)
     {
-        return $value && mb_strpos($value, '@') === 0;
+        return $value && 0 === mb_strpos($value, '@');
     }
 
     /**
@@ -513,7 +508,7 @@ class Asset
      */
     public function headerJs($js)
     {
-        if (! $js) {
+        if (!$js) {
             return;
         }
 
@@ -522,9 +517,6 @@ class Asset
 
     /**
      * 设置基础js脚本.
-     *
-     * @param array $js
-     * @param bool $merge
      */
     public function baseJs(array $js, bool $merge = true)
     {
@@ -539,11 +531,10 @@ class Asset
      * 设置js代码.
      *
      * @param string|array $script
-     * @param bool         $direct
      */
     public function script($script, bool $direct = false)
     {
-        if (! $script) {
+        if (!$script) {
             return;
         }
         if ($direct) {
@@ -560,7 +551,7 @@ class Asset
      */
     public function style($style)
     {
-        if (! $style) {
+        if (!$style) {
             return;
         }
         $this->style = array_merge($this->style, (array) $style);
@@ -601,7 +592,7 @@ class Asset
         $html = '';
 
         foreach (array_unique($this->css) as &$v) {
-            if (! $paths = $this->get($v, 'css')) {
+            if (!$paths = $this->get($v, 'css')) {
                 continue;
             }
 
@@ -620,7 +611,7 @@ class Asset
      */
     public function withVersionQuery($url)
     {
-        if (! Str::contains($url, '?')) {
+        if (!Str::contains($url, '?')) {
             $url .= '?';
         }
 
@@ -651,7 +642,7 @@ class Asset
         $html = '';
 
         foreach (array_unique($this->js) as &$v) {
-            if (! $paths = $this->get($v, 'js')) {
+            if (!$paths = $this->get($v, 'js')) {
                 continue;
             }
 
@@ -671,7 +662,7 @@ class Asset
         $html = '';
 
         foreach (array_unique($this->headerJs) as &$v) {
-            if (! $paths = $this->get($v, 'js')) {
+            if (!$paths = $this->get($v, 'js')) {
                 continue;
             }
 

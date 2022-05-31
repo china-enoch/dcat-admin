@@ -81,7 +81,7 @@ class MenuController extends AdminController
             $tree->branch(function ($branch) {
                 $payload = "<i class='fa {$branch['icon']}'></i>&nbsp;<strong>{$branch['title']}</strong>";
 
-                if (! isset($branch['children'])) {
+                if (!isset($branch['children'])) {
                     if (url()->isValidUrl($branch['uri'])) {
                         $uri = $branch['uri'];
                     } else {
@@ -143,7 +143,7 @@ class MenuController extends AdminController
                         return (new $permissionModel())->allNodes();
                     })
                     ->customFormat(function ($v) {
-                        if (! $v) {
+                        if (!$v) {
                             return [];
                         }
 

@@ -86,9 +86,6 @@ class Layout
 
     /**
      * block布局.
-     *
-     * @param int $width
-     * @param \Closure $callback
      */
     public function block(int $width, \Closure $callback)
     {
@@ -110,7 +107,6 @@ class Layout
     }
 
     /**
-     * @param int   $width
      * @param mixed $content
      */
     public function prepend(int $width, $content)
@@ -121,8 +117,6 @@ class Layout
     }
 
     /**
-     * @param \Closure|null $callback
-     *
      * @return BlockForm
      */
     public function form(\Closure $callback = null)

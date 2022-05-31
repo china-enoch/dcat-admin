@@ -42,8 +42,6 @@ class JsonResponse
     /**
      * 设置请求结果是否成功.
      *
-     * @param bool $status
-     *
      * @return $this
      */
     public function status(bool $status)
@@ -55,8 +53,6 @@ class JsonResponse
 
     /**
      * 设置 HTTP 状态码.
-     *
-     * @param int $statusCode
      *
      * @return $this
      */
@@ -143,8 +139,6 @@ class JsonResponse
     /**
      * 显示确认弹窗.
      *
-     * @param bool $alert
-     *
      * @return $this
      */
     public function alert(bool $alert = true)
@@ -194,8 +188,6 @@ class JsonResponse
     }
 
     /**
-     * @param string|null $url
-     *
      * @return $this
      */
     public function redirectToIntended(?string $url)
@@ -218,8 +210,6 @@ class JsonResponse
     }
 
     /**
-     * @param string|null $url
-     *
      * @return $this
      */
     public function locationToIntended(?string $url)
@@ -264,8 +254,6 @@ class JsonResponse
     }
 
     /**
-     * @param array $value
-     *
      * @return $this
      */
     protected function then(array $value)
@@ -277,8 +265,6 @@ class JsonResponse
 
     /**
      * 设置返回数据.
-     *
-     * @param array $value
      *
      * @return $this
      */
@@ -305,8 +291,6 @@ class JsonResponse
 
     /**
      * 设置其他字段.
-     *
-     * @param array $options
      *
      * @return $this
      */
@@ -342,8 +326,6 @@ class JsonResponse
 
     /**
      * 响应异常.
-     *
-     * @param \Throwable $exception
      *
      * @return $this
      */

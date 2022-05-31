@@ -22,7 +22,7 @@ class Navbar implements Renderable
     public function __construct()
     {
         $this->elements = [
-            'left'  => collect(),
+            'left' => collect(),
             'right' => collect(),
         ];
 
@@ -62,7 +62,7 @@ class Navbar implements Renderable
     {
         $this->callComposing($part);
 
-        if (! isset($this->elements[$part]) || $this->elements[$part]->isEmpty()) {
+        if (!isset($this->elements[$part]) || $this->elements[$part]->isEmpty()) {
             return '';
         }
 

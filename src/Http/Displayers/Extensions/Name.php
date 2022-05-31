@@ -14,12 +14,12 @@ class Name extends AbstractDisplayer
     public function display()
     {
         return Admin::view('admin::grid.displayer.extensions.name', [
-            'value'           => $this->value,
-            'row'             => $this->row,
-            'enableAction'    => $this->resolveAction(Enable::class),
-            'disableAction'   => $this->resolveAction(Disable::class),
+            'value' => $this->value,
+            'row' => $this->row,
+            'enableAction' => $this->resolveAction(Enable::class),
+            'disableAction' => $this->resolveAction(Disable::class),
             'uninstallAction' => $this->resolveAction(Uninstall::class),
-            'linkIcon'        => Str::contains($this->row->homepage, 'github.com') ? 'icon-github' : 'icon-link',
+            'linkIcon' => Str::contains($this->row->homepage, 'github.com') ? 'icon-github' : 'icon-link',
         ]);
     }
 

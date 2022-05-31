@@ -56,8 +56,6 @@ class Application
 
     /**
      * 设置应用名称.
-     *
-     * @param string $app
      */
     public function withName(string $app)
     {
@@ -128,8 +126,6 @@ class Application
     }
 
     /**
-     * @param string|null $app
-     *
      * @return string
      */
     public function getApiRoutePrefix(?string $app)
@@ -139,8 +135,6 @@ class Application
 
     /**
      * 注册应用路由.
-     *
-     * @param string|null $app
      */
     protected function registerRoute(?string $app)
     {
@@ -157,12 +151,10 @@ class Application
 
     /**
      * 设置应用配置.
-     *
-     * @param string $app
      */
     protected function withConfig(string $app)
     {
-        if (! isset($this->configs[$app])) {
+        if (!isset($this->configs[$app])) {
             $this->configs[$app] = config($app);
         }
 
@@ -172,14 +164,14 @@ class Application
     /**
      * 加载路由文件.
      *
-     * @param  string  $path
-     * @param  string  $app
+     * @param string $path
+     * @param string $app
      *
      * @return void
      */
     protected function loadRoutesFrom($path, ?string $app)
     {
-        if (! $this->container->routesAreCached()) {
+        if (!$this->container->routesAreCached()) {
             Route::middleware('admin.app:'.$app)->group($path);
         }
     }

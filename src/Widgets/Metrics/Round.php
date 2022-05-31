@@ -16,11 +16,11 @@ class Round extends RadialBar
      * @var array
      */
     protected $options = [
-        'icon'     => null,
-        'title'    => null,
-        'header'   => null,
-        'content'  => null,
-        'footer'   => null,
+        'icon' => null,
+        'title' => null,
+        'header' => null,
+        'content' => null,
+        'footer' => null,
         'dropdown' => [],
     ];
 
@@ -109,8 +109,6 @@ class Round extends RadialBar
     /**
      * 设置圆圈宽度.
      *
-     * @param int $size
-     *
      * @return $this
      */
     public function chartRadialBarSize(int $size)
@@ -120,8 +118,6 @@ class Round extends RadialBar
 
     /**
      * 设置圆圈间距.
-     *
-     * @param int $margin
      *
      * @return $this
      */
@@ -133,16 +129,13 @@ class Round extends RadialBar
     /**
      * 设置图表统计总数信息.
      *
-     * @param string $label
-     * @param int $number
-     *
      * @return $this
      */
     public function chartTotal(string $label, int $number)
     {
         return $this->chartOption('plotOptions.radialBar.dataLabels.total', [
-            'show'      => true,
-            'label'     => $label,
+            'show' => true,
+            'label' => $label,
             'formatter' => JavaScript::make("function () { return {$number}; }"),
         ]);
     }

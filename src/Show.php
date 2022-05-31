@@ -96,11 +96,11 @@ class Show implements Renderable
     /**
      * Show constructor.
      *
-     * @param mixed $id                                $id
+     * @param mixed                                    $id      $id
      * @param Model|Builder|Repository|array|Arrayable $model
      * @param \Closure                                 $builder
      */
-    public function __construct($id = null, $model = null, ?\Closure $builder = null)
+    public function __construct($id = null, $model = null, ?Closure $builder = null)
     {
         switch (func_num_args()) {
             case 1:
@@ -146,7 +146,7 @@ class Show implements Renderable
             $this->model(new Fluent());
         }
 
-        if (! $this->model && $this->repository) {
+        if (!$this->model && $this->repository) {
             $this->model($this->repository->detail($this));
         }
     }
@@ -164,8 +164,6 @@ class Show implements Renderable
     }
 
     /**
-     * @param string $value
-     *
      * @return $this
      */
     public function setKeyName(string $value)
@@ -182,7 +180,7 @@ class Show implements Renderable
      */
     public function getKeyName()
     {
-        if (! $this->repository) {
+        if (!$this->repository) {
             return $this->keyName;
         }
 
@@ -216,7 +214,7 @@ class Show implements Renderable
      */
     public function model($model = null)
     {
-        if ($model === null) {
+        if (null === $model) {
             return $this->model;
         }
 
@@ -260,7 +258,7 @@ class Show implements Renderable
     /**
      * @return $this
      */
-    public function wrap(\Closure $wrapper)
+    public function wrap(Closure $wrapper)
     {
         $this->panel->wrap($wrapper);
 
@@ -301,7 +299,7 @@ class Show implements Renderable
      */
     public function tools($callback = null)
     {
-        if ($callback === null) {
+        if (null === $callback) {
             return $this->panel->tools();
         }
 
@@ -311,7 +309,7 @@ class Show implements Renderable
             return $this;
         }
 
-        if (! is_array($callback)) {
+        if (!is_array($callback)) {
             $callback = [$callback];
         }
 
@@ -344,11 +342,11 @@ class Show implements Renderable
      */
     public function fields(array $fields = null)
     {
-        if ($fields === null) {
+        if (null === $fields) {
             return $this->fields;
         }
 
-        if (! Arr::isAssoc($fields)) {
+        if (!Arr::isAssoc($fields)) {
             $fields = array_combine($fields, $fields);
         }
 
@@ -384,7 +382,7 @@ class Show implements Renderable
      *
      * @param string          $name
      * @param string|\Closure $label
-     * @param null|\Closure   $builder
+     * @param \Closure|null   $builder
      *
      * @return Relation
      */
@@ -550,9 +548,6 @@ class Show implements Renderable
     /**
      * Show quick edit tool.
      *
-     * @param null|string $width
-     * @param null|string $height
-     *
      * @return $this
      */
     public function showQuickEdit(?string $width = null, ?string $height = null)
@@ -651,9 +646,9 @@ class Show implements Renderable
      */
     protected function handleRelationField($method, $arguments)
     {
-        if (count($arguments) == 1 && $arguments[0] instanceof \Closure) {
+        if (1 == count($arguments) && $arguments[0] instanceof \Closure) {
             return $this->addRelation($method, $arguments[0]);
-        } elseif (count($arguments) == 2 && $arguments[1] instanceof \Closure) {
+        } elseif (2 == count($arguments) && $arguments[1] instanceof \Closure) {
             return $this->addRelation($method, $arguments[1], $arguments[0]);
         }
 
@@ -687,7 +682,7 @@ class Show implements Renderable
         $this->callComposing();
 
         $data = [
-            'panel'     => $this->panel->fill($this->fields),
+            'panel' => $this->panel->fill($this->fields),
             'relations' => $this->relations,
         ];
 
@@ -696,8 +691,6 @@ class Show implements Renderable
 
     /**
      * Add a row in Show.
-     *
-     * @param Closure $callback
      *
      * @return $this
      */

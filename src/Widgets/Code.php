@@ -11,8 +11,6 @@ class Code extends Markdown
 
     /**
      * @param string $content
-     * @param int    $start
-     * @param int    $end
      */
     public function __construct($content = '', int $start = 1, int $end = 1000)
     {
@@ -28,8 +26,6 @@ class Code extends Markdown
 
     /**
      * 设置语言.
-     *
-     * @param string $lang
      *
      * @return $this
      */
@@ -85,7 +81,7 @@ class Code extends Markdown
      */
     public function fromFile($file, $start = 1, $end = 10)
     {
-        if (! $file or ! is_readable($file) || $end < $start) {
+        if (!$file or !is_readable($file) || $end < $start) {
             return $this;
         }
 

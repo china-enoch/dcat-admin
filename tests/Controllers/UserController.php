@@ -57,8 +57,7 @@ class UserController extends AdminController
     /**
      * Show interface.
      *
-     * @param mixed   $id
-     * @param Content $content
+     * @param mixed $id
      *
      * @return Content
      */
@@ -127,7 +126,7 @@ class UserController extends AdminController
         });
 
         $grid->actions(function (Grid\Displayers\Actions $actions) {
-            if ($actions->getKey() % 2 == 0) {
+            if (0 == $actions->getKey() % 2) {
                 $actions->append('<a href="/" class="btn btn-xs btn-danger">detail</a>');
             }
         });
@@ -187,13 +186,13 @@ class UserController extends AdminController
         $form->text('profile.last_name');
         $form->text('profile.postcode')->help('Please input your postcode');
         $form->textarea('profile.address')->rows(15);
-        //$form->map('profile.latitude', 'profile.longitude', 'Position');
+        // $form->map('profile.latitude', 'profile.longitude', 'Position');
         $form->text('profile.color');
         $form->datetime('profile.start_at');
         $form->datetime('profile.end_at');
 
         $form->multipleSelect('tags', 'Tags')->options(Tag::all()->pluck('name', 'id'))->customFormat(function ($value) {
-            if (! $value) {
+            if (!$value) {
                 return [];
             }
 

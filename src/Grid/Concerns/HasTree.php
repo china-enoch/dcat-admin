@@ -38,9 +38,6 @@ trait HasTree
     /**
      * 开启树形表格功能.
      *
-     * @param bool $showAll
-     * @param bool $sortable
-     *
      * @return void
      */
     public function enableTree(bool $showAll, bool $sortable)
@@ -61,7 +58,7 @@ trait HasTree
         });
 
         $this->grid()->listen(Fetched::class, function ($grid, Collection $collection) {
-            if (! $this->getParentIdFromRequest()) {
+            if (!$this->getParentIdFromRequest()) {
                 return;
             }
 
@@ -96,7 +93,7 @@ trait HasTree
 
         return $this->filterQueryBy(function ($query) {
             if (
-                $query['method'] === 'where'
+                'where' === $query['method']
                 && $query['arguments']
                 && $query['arguments'][0] === optional($this->repository)->getParentColumn()
             ) {
@@ -150,8 +147,8 @@ HTML
     {
         if (
             $sortable
-            && ! $this->findQueryByMethod('orderBy')
-            && ! $this->findQueryByMethod('orderByDesc')
+            && !$this->findQueryByMethod('orderBy')
+            && !$this->findQueryByMethod('orderByDesc')
             && ($orderColumn = $this->repository->getOrderColumn())
         ) {
             $this->orderBy($orderColumn)
@@ -161,7 +158,7 @@ HTML
 
     protected function bindChildrenNodesQuery()
     {
-        if (! $this->allowedTreeQuery) {
+        if (!$this->allowedTreeQuery) {
             return;
         }
 

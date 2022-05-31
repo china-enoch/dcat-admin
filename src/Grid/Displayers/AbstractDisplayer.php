@@ -44,8 +44,6 @@ abstract class AbstractDisplayer
      * Create a new displayer instance.
      *
      * @param mixed     $value
-     * @param Grid      $grid
-     * @param Column    $column
      * @param \stdClass $row
      */
     public function __construct($value, Grid $grid, Column $column, $row)
@@ -85,7 +83,7 @@ abstract class AbstractDisplayer
     {
         $name = explode('.', $this->column->getName());
 
-        if (count($name) == 1) {
+        if (1 == count($name)) {
             return $name[0];
         }
 

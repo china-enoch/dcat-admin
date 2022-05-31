@@ -42,8 +42,7 @@ trait HasDisplayers
     /**
      * Display column using array value map.
      *
-     * @param array $values
-     * @param null  $default
+     * @param null $default
      *
      * @return $this
      */
@@ -68,7 +67,7 @@ trait HasDisplayers
         $color = $color ?: Admin::color()->dark80();
 
         return $this->display(function ($value) use ($color) {
-            if (! $value) {
+            if (!$value) {
                 return $value;
             }
 
@@ -86,7 +85,7 @@ trait HasDisplayers
     public function long2ip($default = null)
     {
         return $this->display(function ($value) use ($default) {
-            if (! $value) {
+            if (!$value) {
                 return $default;
             }
 
@@ -163,8 +162,6 @@ trait HasDisplayers
     /**
      * Split a string by string.
      *
-     * @param string $d
-     *
      * @return $this
      */
     public function explode(string $d = ',')
@@ -211,7 +208,7 @@ trait HasDisplayers
         return $this->prepend(function ($_, $original) use ($options, $default) {
             $style = is_null($original) ? $default : Arr::get((array) $options, $original, $default);
 
-            $style = $style === 'default' ? 'dark70' : $style;
+            $style = 'default' === $style ? 'dark70' : $style;
 
             $background = Admin::color()->get($style, $style);
 
@@ -221,9 +218,6 @@ trait HasDisplayers
 
     /**
      * Show children of current node.
-     *
-     * @param bool $showAll
-     * @param bool $sortable
      *
      * @return $this
      */
@@ -254,7 +248,7 @@ trait HasDisplayers
      */
     public function action($action)
     {
-        if (! is_subclass_of($action, RowAction::class)) {
+        if (!is_subclass_of($action, RowAction::class)) {
             throw new InvalidArgumentException("Action class [$action] must be sub-class of [Dcat\Admin\Grid\RowAction]");
         }
 
@@ -274,8 +268,7 @@ trait HasDisplayers
     /**
      * Display column as boolean , `✓` for true, and `✗` for false.
      *
-     * @param array $map
-     * @param bool  $default
+     * @param bool $default
      *
      * @return $this
      */

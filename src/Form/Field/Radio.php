@@ -44,8 +44,6 @@ class Radio extends Field
     /**
      * "info", "primary", "inverse", "danger", "success", "purple".
      *
-     * @param string $style
-     *
      * @return $this
      */
     public function style(string $style)

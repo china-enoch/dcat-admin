@@ -37,7 +37,7 @@ trait HasExporter
 
         $titles = [];
 
-        if (is_array($exporterDriver) || $exporterDriver === false) {
+        if (is_array($exporterDriver) || false === $exporterDriver) {
             $titles = $exporterDriver;
             $exporterDriver = null;
         }
@@ -63,9 +63,9 @@ trait HasExporter
         if (
             $this->exported
             || (
-                (! $this->allowExporter()
-                    || ! $scope = request($this->exporter()->getQueryName()))
-                && ! $forceExport
+                (!$this->allowExporter()
+                    || !$scope = request($this->exporter()->getQueryName()))
+                && !$forceExport
             )
         ) {
             return;
@@ -131,7 +131,7 @@ trait HasExporter
      */
     public function renderExportButton()
     {
-        if (! $this->allowExporter()) {
+        if (!$this->allowExporter()) {
             return '';
         }
 

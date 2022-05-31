@@ -17,8 +17,6 @@ class MigrationCreator extends BaseMigrationCreator
     /**
      * Create a new migration creator instance.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
-     *
      * @return void
      */
     public function __construct(Filesystem $files)
@@ -85,7 +83,7 @@ class MigrationCreator extends BaseMigrationCreator
     public function buildBluePrint($fields = [], $keyName = 'id', $useTimestamps = true, $softDeletes = false)
     {
         $fields = array_filter($fields, function ($field) {
-            return isset($field['name']) && ! empty($field['name']);
+            return isset($field['name']) && !empty($field['name']);
         });
 
         if (empty($fields)) {
@@ -102,15 +100,15 @@ class MigrationCreator extends BaseMigrationCreator
             }
 
             $hasDefault = isset($field['default'])
-                && ! is_null($field['default'])
-                && $field['default'] !== '';
+                && !is_null($field['default'])
+                && '' !== $field['default'];
             if ($hasDefault) {
                 $column .= "->default('{$field['default']}')";
             }
 
-            if (Arr::get($field, 'nullable') == 'on') {
+            if ('on' == Arr::get($field, 'nullable')) {
                 $column .= '->nullable()';
-            } elseif (! $hasDefault && $field['type'] === 'string') {
+            } elseif (!$hasDefault && 'string' === $field['type']) {
                 $column .= "->default('')";
             }
 

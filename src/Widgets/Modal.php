@@ -75,8 +75,6 @@ class Modal extends Widget
     /**
      * 设置弹窗尺寸.
      *
-     * @param string $size
-     *
      * @return $this
      */
     public function size(string $size)
@@ -118,8 +116,6 @@ class Modal extends Widget
 
     /**
      * 设置loading效果延迟时间.
-     *
-     * @param int $delay
      *
      * @return $this
      */
@@ -199,8 +195,6 @@ class Modal extends Widget
     /**
      * 设置是否返回弹窗HTML.
      *
-     * @param bool $value
-     *
      * @return $this
      */
     public function join(bool $value = true)
@@ -227,9 +221,6 @@ class Modal extends Widget
     /**
      * 监听弹窗事件.
      *
-     * @param string $event
-     * @param string $script
-     *
      * @return $this
      */
     public function on(string $event, string $script)
@@ -242,8 +233,6 @@ class Modal extends Widget
     /**
      * 监听弹窗显示事件.
      *
-     * @param string $script
-     *
      * @return $this
      */
     public function onShow(string $script)
@@ -253,8 +242,6 @@ class Modal extends Widget
 
     /**
      * 监听弹窗已显示事件.
-     *
-     * @param string $script
      *
      * @return $this
      */
@@ -266,8 +253,6 @@ class Modal extends Widget
     /**
      * 监听弹窗隐藏事件.
      *
-     * @param string $script
-     *
      * @return $this
      */
     public function onHide(string $script)
@@ -278,8 +263,6 @@ class Modal extends Widget
     /**
      * 监听弹窗已隐藏事件.
      *
-     * @param string $script
-     *
      * @return $this
      */
     public function onHidden(string $script)
@@ -289,7 +272,7 @@ class Modal extends Widget
 
     protected function addScript()
     {
-        if (! $this->events) {
+        if (!$this->events) {
             return;
         }
 
@@ -312,7 +295,7 @@ JS;
 
     protected function addLoadRenderableScript()
     {
-        if (! $this->getRenderable()) {
+        if (!$this->getRenderable()) {
             return;
         }
 
@@ -375,7 +358,7 @@ HTML;
     {
         $footer = Helper::render($this->footer);
 
-        if (! $footer) {
+        if (!$footer) {
             return;
         }
 
@@ -386,14 +369,14 @@ HTML;
 
     protected function renderButton()
     {
-        if (! $this->button) {
+        if (!$this->button) {
             return;
         }
 
         $button = Helper::render($this->button);
 
         // 如果没有HTML标签则添加一个 a 标签
-        if (! preg_match('/(\<\/[\d\w]+\s*\>+)/i', $button)) {
+        if (!preg_match('/(\<\/[\d\w]+\s*\>+)/i', $button)) {
             $button = "<a href=\"javascript:void(0)\">{$button}</a>";
         }
 

@@ -16,13 +16,13 @@ class Checkbox extends AbstractDisplayer
         $this->value = Helper::array($this->value);
 
         return Admin::view('admin::grid.displayer.checkbox', [
-            'options'  => $options,
-            'key'      => $this->getKey(),
-            'column'   => $this->column->getName(),
-            'value'    => $this->value,
-            'class'    => $this->getElementClass(),
+            'options' => $options,
+            'key' => $this->getKey(),
+            'column' => $this->column->getName(),
+            'value' => $this->value,
+            'class' => $this->getElementClass(),
             'resource' => $this->resource(),
-            'refresh'  => $refresh,
+            'refresh' => $refresh,
         ]);
     }
 

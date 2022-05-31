@@ -68,7 +68,7 @@ trait HasNames
      */
     public function getNamePrefix()
     {
-        if (! $name = $this->getName()) {
+        if (!$name = $this->getName()) {
             return;
         }
 

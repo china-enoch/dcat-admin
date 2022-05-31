@@ -23,8 +23,6 @@ trait HasPaginator
     /**
      * Paginate the grid.
      *
-     * @param int $perPage
-     *
      * @return void
      */
     public function paginate(int $perPage = 20)
@@ -49,7 +47,7 @@ trait HasPaginator
      */
     public function paginator()
     {
-        if (! $this->options['show_pagination']) {
+        if (!$this->options['show_pagination']) {
             return;
         }
 
@@ -68,8 +66,6 @@ trait HasPaginator
 
     /**
      * Set per-page options.
-     *
-     * @param array $perPages
      */
     public function perPages(array $perPages)
     {
@@ -103,20 +99,18 @@ trait HasPaginator
      */
     public function disablePagination(bool $disable = true)
     {
-        $this->model->usePaginate(! $disable);
+        $this->model->usePaginate(!$disable);
 
-        return $this->option('show_pagination', ! $disable);
+        return $this->option('show_pagination', !$disable);
     }
 
     /**
      * Show grid pagination.
      *
-     * @param bool $val
-     *
      * @return $this
      */
     public function showPagination(bool $val = true)
     {
-        return $this->disablePagination(! $val);
+        return $this->disablePagination(!$val);
     }
 }

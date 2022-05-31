@@ -19,10 +19,10 @@ class DropdownActions extends Actions
      * @var array
      */
     protected $defaultActions = [
-        'view'      => Show::class,
-        'edit'      => Edit::class,
+        'view' => Show::class,
+        'edit' => Edit::class,
         'quickEdit' => QuickEdit::class,
-        'delete'    => Delete::class,
+        'delete' => Delete::class,
     ];
 
     public function prepend($action)
@@ -51,7 +51,7 @@ class DropdownActions extends Actions
     {
         $action = Helper::render($action);
 
-        if (mb_strpos($action, '</a>') === false) {
+        if (false === mb_strpos($action, '</a>')) {
             return "<a>$action</a>";
         }
 
@@ -64,7 +64,7 @@ class DropdownActions extends Actions
     protected function prependDefaultActions()
     {
         foreach ($this->actions as $action => $enable) {
-            if (! $enable) {
+            if (!$enable) {
                 continue;
             }
 
@@ -90,8 +90,8 @@ class DropdownActions extends Actions
         $this->prependDefaultActions();
 
         $actions = [
-            'default'  => $this->default,
-            'custom'   => $this->appends,
+            'default' => $this->default,
+            'custom' => $this->appends,
             'selector' => ".{$this->grid->getRowName()}-checkbox",
         ];
 

@@ -10,7 +10,9 @@ use Laravel\Dusk\TestCase as BaseTestCase;
 
 abstract class DuskTestCase extends BaseTestCase
 {
-    use CreatesApplication, BrowserExtension, InteractsWithDatabase;
+    use CreatesApplication;
+    use BrowserExtension;
+    use InteractsWithDatabase;
 
     /**
      * @var Administrator
@@ -47,6 +49,7 @@ abstract class DuskTestCase extends BaseTestCase
      * Prepare for Dusk test execution.
      *
      * @beforeClass
+     *
      * @return void
      */
     public static function prepare()
@@ -79,7 +82,7 @@ abstract class DuskTestCase extends BaseTestCase
      */
     protected function driver()
     {
-        $options = (new ChromeOptions)->addArguments([
+        $options = (new ChromeOptions())->addArguments([
             '--disable-gpu',
             '--headless',
             '--window-size=1920,1080',
@@ -95,7 +98,6 @@ abstract class DuskTestCase extends BaseTestCase
     /**
      * Build the process to run the Chromedriver.
      *
-     * @param  array  $arguments
      * @return \Symfony\Component\Process\Process
      *
      * @throws \RuntimeException

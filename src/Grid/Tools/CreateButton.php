@@ -23,7 +23,7 @@ class CreateButton implements Renderable
 
     protected function renderDialogCreateButton()
     {
-        if ($this->mode !== Grid::CREATE_MODE_DIALOG) {
+        if (Grid::CREATE_MODE_DIALOG !== $this->mode) {
             return;
         }
 
@@ -43,7 +43,7 @@ class CreateButton implements Renderable
 
     protected function renderCreateButton()
     {
-        if ($this->mode && $this->mode !== Grid::CREATE_MODE_DEFAULT) {
+        if ($this->mode && Grid::CREATE_MODE_DEFAULT !== $this->mode) {
             return;
         }
 

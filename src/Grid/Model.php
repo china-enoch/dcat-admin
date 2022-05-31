@@ -125,7 +125,6 @@ class Model
      * Create a new grid model instance.
      *
      * @param Repository|\Illuminate\Database\Eloquent\Model $repository
-     * @param Request                                        $request
      */
     public function __construct(Request $request, $repository = null)
     {
@@ -162,8 +161,6 @@ class Model
     }
 
     /**
-     * @param Collection $query
-     *
      * @return void
      */
     public function setQueries(Collection $query)
@@ -239,9 +236,6 @@ class Model
         return $this->grid->makeName($this->perPageName);
     }
 
-    /**
-     * @param int $perPage
-     */
     public function setPerPage(int $perPage)
     {
         $this->perPage = $perPage;
@@ -294,8 +288,6 @@ class Model
     /**
      * Set parent grid instance.
      *
-     * @param Grid $grid
-     *
      * @return $this
      */
     public function setGrid(Grid $grid)
@@ -336,8 +328,6 @@ class Model
     }
 
     /**
-     * @param array $constraints
-     *
      * @return $this
      */
     public function setConstraints(array $constraints)
@@ -349,8 +339,6 @@ class Model
 
     /**
      * Build.
-     *
-     * @param bool $toArray
      *
      * @return array|Collection|mixed
      */
@@ -399,8 +387,6 @@ class Model
     /**
      * Add conditions to grid model.
      *
-     * @param array $conditions
-     *
      * @return $this
      */
     public function addConditions(array $conditions)
@@ -443,8 +429,6 @@ class Model
     }
 
     /**
-     * @param AbstractPaginator $paginator
-     *
      * @return void
      */
     protected function setPaginator(AbstractPaginator $paginator)
@@ -455,8 +439,6 @@ class Model
     }
 
     /**
-     * @param Collection $collection
-     *
      * @return Collection
      */
     protected function stdObjToArray(Collection $collection)
@@ -472,8 +454,6 @@ class Model
 
     /**
      * If current page is greater than last page, then redirect to last page.
-     *
-     * @param LengthAwarePaginator $paginator
      *
      * @return void
      */
@@ -499,16 +479,13 @@ class Model
      */
     public function getCurrentPage()
     {
-        if (! $this->usePaginate) {
+        if (!$this->usePaginate) {
             return;
         }
 
         return $this->currentPage ?: ($this->currentPage = ($this->request->get($this->getPageName()) ?: 1));
     }
 
-    /**
-     * @param int $currentPage
-     */
     public function setCurrentPage(int $currentPage)
     {
         $this->currentPage = $currentPage;
@@ -523,7 +500,7 @@ class Model
      */
     public function getPerPage()
     {
-        if (! $this->usePaginate) {
+        if (!$this->usePaginate) {
             return;
         }
 
@@ -625,15 +602,12 @@ class Model
     }
 
     /**
-     * @param string $method
-     * @param array  $arguments
-     *
      * @return $this
      */
     public function addQuery(string $method, array $arguments = [])
     {
         $this->queries->push([
-            'method'    => $method,
+            'method' => $method,
             'arguments' => $arguments,
         ]);
 

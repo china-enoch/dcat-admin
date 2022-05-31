@@ -180,7 +180,7 @@ abstract class AbstractFilter
     {
         $columns = explode('.', $column);
 
-        if (count($columns) == 1) {
+        if (1 == count($columns)) {
             $name = $columns[0];
         } else {
             $name = array_shift($columns);
@@ -204,9 +204,6 @@ abstract class AbstractFilter
         return $this->parent->grid()->makeName('filter-column-'.str_replace('.', '-', $columns));
     }
 
-    /**
-     * @param Filter $filter
-     */
     public function setParent(Filter $filter)
     {
         $this->parent = $filter;
@@ -231,7 +228,7 @@ abstract class AbstractFilter
      */
     public function siblings($index = null)
     {
-        if (! is_null($index)) {
+        if (!is_null($index)) {
             return Arr::get($this->parent->filters(), $index);
         }
 
@@ -277,7 +274,7 @@ abstract class AbstractFilter
     {
         $value = Arr::get($inputs, $this->column);
 
-        if ($value === null) {
+        if (null === $value) {
             return;
         }
 
@@ -321,8 +318,6 @@ abstract class AbstractFilter
     }
 
     /**
-     * @param LazyRenderable $table
-     *
      * @return Filter\Presenter\SelectTable
      */
     public function selectTable(LazyRenderable $table)
@@ -331,8 +326,6 @@ abstract class AbstractFilter
     }
 
     /**
-     * @param LazyRenderable $table
-     *
      * @return Filter\Presenter\MultipleSelectTable
      */
     public function multipleSelectTable(LazyRenderable $table)
@@ -425,8 +418,6 @@ abstract class AbstractFilter
     /**
      * Set presenter object of filter.
      *
-     * @param Presenter $presenter
-     *
      * @return mixed
      */
     public function setPresenter(Presenter $presenter)
@@ -445,7 +436,7 @@ abstract class AbstractFilter
      */
     protected function presenter()
     {
-        if (! $this->presenter) {
+        if (!$this->presenter) {
             $this->setupDefaultPresenter();
         }
 
@@ -565,7 +556,7 @@ abstract class AbstractFilter
 
         $column = explode('.', $this->column);
 
-        if (count($column) == 1) {
+        if (1 == count($column)) {
             return [$this->query => &$params];
         }
 
@@ -599,22 +590,22 @@ abstract class AbstractFilter
     protected function defaultVariables()
     {
         return array_merge([
-            'id'        => $this->id,
-            'name'      => $this->formatName($this->column),
-            'label'     => $this->label,
-            'value'     => $this->normalizeValue(),
-            'width'     => $this->width,
-            'style'     => $this->style,
+            'id' => $this->id,
+            'name' => $this->formatName($this->column),
+            'label' => $this->label,
+            'value' => $this->normalizeValue(),
+            'width' => $this->width,
+            'style' => $this->style,
         ], $this->presenter()->variables());
     }
 
     protected function normalizeValue()
     {
-        if ($this->value === '' || $this->value === null) {
+        if ('' === $this->value || null === $this->value) {
             $this->value = Arr::get($this->parent->inputs(), $this->column);
         }
 
-        return $this->value === '' || $this->value === null ? $this->defaultValue : $this->value;
+        return '' === $this->value || null === $this->value ? $this->defaultValue : $this->value;
     }
 
     /**
@@ -667,8 +658,6 @@ abstract class AbstractFilter
             return $this->presenter()->{$method}(...$params);
         }
 
-        throw new RuntimeException(sprintf(
-            'Call to undefined method %s::%s()', static::class, $method
-        ));
+        throw new RuntimeException(sprintf('Call to undefined method %s::%s()', static::class, $method));
     }
 }

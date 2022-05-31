@@ -61,13 +61,13 @@ class AdminServiceProvider extends ServiceProvider
      * @var array
      */
     protected $routeMiddleware = [
-        'admin.auth'       => Http\Middleware\Authenticate::class,
-        'admin.pjax'       => Http\Middleware\Pjax::class,
+        'admin.auth' => Http\Middleware\Authenticate::class,
+        'admin.pjax' => Http\Middleware\Pjax::class,
         'admin.permission' => Http\Middleware\Permission::class,
-        'admin.bootstrap'  => Http\Middleware\Bootstrap::class,
-        'admin.session'    => Http\Middleware\Session::class,
-        'admin.upload'     => Http\Middleware\WebUploader::class,
-        'admin.app'        => Http\Middleware\Application::class,
+        'admin.bootstrap' => Http\Middleware\Bootstrap::class,
+        'admin.session' => Http\Middleware\Session::class,
+        'admin.upload' => Http\Middleware\WebUploader::class,
+        'admin.app' => Http\Middleware\Application::class,
     ];
 
     /**
@@ -113,7 +113,7 @@ class AdminServiceProvider extends ServiceProvider
 
     protected function aliasAdmin()
     {
-        if (! class_exists(\Admin::class)) {
+        if (!class_exists(\Admin::class)) {
             class_alias(Admin::class, \Admin::class);
         }
     }
@@ -194,13 +194,13 @@ class AdminServiceProvider extends ServiceProvider
     protected function registerDefaultSections()
     {
         Content::composing(function () {
-            if (! admin_has_default_section(Admin::SECTION['NAVBAR_USER_PANEL'])) {
+            if (!admin_has_default_section(Admin::SECTION['NAVBAR_USER_PANEL'])) {
                 admin_inject_default_section(Admin::SECTION['NAVBAR_USER_PANEL'], function () {
                     return view('admin::partials.navbar-user-panel', ['user' => Admin::user()]);
                 });
             }
 
-            if (! admin_has_default_section(Admin::SECTION['LEFT_SIDEBAR_USER_PANEL'])) {
+            if (!admin_has_default_section(Admin::SECTION['LEFT_SIDEBAR_USER_PANEL'])) {
                 admin_inject_default_section(Admin::SECTION['LEFT_SIDEBAR_USER_PANEL'], function () {
                     return view('admin::partials.sidebar-user-panel', ['user' => Admin::user()]);
                 });
@@ -269,11 +269,11 @@ PHP;
             $router->aliasMiddleware($key, $middleware);
         }
 
-        $disablePermission = ! config('admin.permission.enable');
+        $disablePermission = !config('admin.permission.enable');
 
         // register middleware group.
         foreach ($this->middlewareGroups as $key => $middleware) {
-            if ($disablePermission && $middleware == 'admin.permission') {
+            if ($disablePermission && 'admin.permission' == $middleware) {
                 continue;
             }
             $router->middlewareGroup($key, $middleware);

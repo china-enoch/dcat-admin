@@ -39,7 +39,7 @@ abstract class RowAction extends GridAction
      */
     public function row($key = null)
     {
-        if (func_num_args() == 0) {
+        if (0 == func_num_args()) {
             return $this->row;
         }
 
@@ -66,8 +66,6 @@ abstract class RowAction extends GridAction
     }
 
     /**
-     * @param Column $column
-     *
      * @return $this
      */
     public function setColumn(Column $column)

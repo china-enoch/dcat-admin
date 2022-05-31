@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | dcat-admin name
@@ -57,7 +56,6 @@ return [
     |
     */
     'route' => [
-
         'prefix' => env('ADMIN_ROUTE_PREFIX', 'admin'),
 
         'namespace' => 'App\\Admin\\Controllers',
@@ -125,7 +123,7 @@ return [
 
         'guards' => [
             'admin' => [
-                'driver'   => 'session',
+                'driver' => 'session',
                 'provider' => 'admin',
             ],
         ],
@@ -133,7 +131,7 @@ return [
         'providers' => [
             'admin' => [
                 'driver' => 'eloquent',
-                'model'  => Dcat\Admin\Models\Administrator::class,
+                'model' => Dcat\Admin\Models\Administrator::class,
             ],
         ],
 
@@ -146,11 +144,9 @@ return [
             'auth/login',
             'auth/logout',
         ],
-
     ],
 
     'grid' => [
-
         /*
         |--------------------------------------------------------------------------
         | The global Grid action display class.
@@ -188,7 +184,6 @@ return [
             'auth/logout',
             'auth/setting',
         ],
-
     ],
 
     /*
@@ -201,12 +196,11 @@ return [
         'cache' => [
             // enable cache or not
             'enable' => false,
-            'store'  => 'file',
+            'store' => 'file',
         ],
 
         // Whether enable menu bind to a permission.
         'bind_permission' => true,
-
     ],
 
     /*
@@ -219,14 +213,13 @@ return [
     |
     */
     'upload' => [
-
         // Disk in `config/filesystem.php`.
         'disk' => 'public',
 
         // Image and file upload path under the disk above.
         'directory' => [
             'image' => 'images',
-            'file'  => 'files',
+            'file' => 'files',
         ],
     ],
 
@@ -239,7 +232,6 @@ return [
     |
     */
     'database' => [
-
         // Database connection for following tables.
         'connection' => '',
 
@@ -260,12 +252,12 @@ return [
         'menu_model' => Dcat\Admin\Models\Menu::class,
 
         // Pivot table for table above.
-        'role_users_table'       => 'admin_role_users',
+        'role_users_table' => 'admin_role_users',
         'role_permissions_table' => 'admin_role_permissions',
-        'role_menu_table'        => 'admin_role_menu',
-        'permission_menu_table'  => 'admin_permission_menu',
-        'settings_table'         => 'admin_settings',
-        'extensions_table'       => 'admin_extensions',
+        'role_menu_table' => 'admin_role_menu',
+        'permission_menu_table' => 'admin_permission_menu',
+        'settings_table' => 'admin_settings',
+        'extensions_table' => 'admin_extensions',
         'extension_histories_table' => 'admin_extension_histories',
     ],
 

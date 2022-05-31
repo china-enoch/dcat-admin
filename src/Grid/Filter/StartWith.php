@@ -19,7 +19,7 @@ class StartWith extends AbstractFilter
     {
         $value = Arr::get($inputs, $this->column);
 
-        if ($value === null) {
+        if (null === $value) {
             return;
         }
 

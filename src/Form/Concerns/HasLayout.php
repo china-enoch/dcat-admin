@@ -14,7 +14,6 @@ trait HasLayout
 
     /**
      * @param int|float $width
-     * @param Closure   $callback
      *
      * @return $this
      */

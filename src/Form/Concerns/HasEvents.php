@@ -18,8 +18,6 @@ trait HasEvents
     /**
      * 监听创建页面访问事件.
      *
-     * @param Closure $callback
-     *
      * @return $this
      */
     public function creating(Closure $callback)
@@ -31,8 +29,6 @@ trait HasEvents
 
     /**
      * 监听编辑页面访问时间.
-     *
-     * @param Closure $callback
      *
      * @return $this
      */
@@ -46,8 +42,6 @@ trait HasEvents
     /**
      * 监听提交事件.
      *
-     * @param Closure $callback
-     *
      * @return $this
      */
     public function submitted(Closure $callback)
@@ -59,8 +53,6 @@ trait HasEvents
 
     /**
      * 保存.
-     *
-     * @param Closure $callback
      *
      * @return $this
      */
@@ -74,8 +66,6 @@ trait HasEvents
     /**
      * 保存完成.
      *
-     * @param Closure $callback
-     *
      * @return $this
      */
     public function saved(Closure $callback)
@@ -87,8 +77,6 @@ trait HasEvents
 
     /**
      * 删除.
-     *
-     * @param Closure $callback
      *
      * @return $this
      */
@@ -102,8 +90,6 @@ trait HasEvents
     /**
      * 删除完成.
      *
-     * @param Closure $callback
-     *
      * @return $this
      */
     public function deleted(Closure $callback)
@@ -115,8 +101,6 @@ trait HasEvents
 
     /**
      * 文件上传.
-     *
-     * @param \Closure $callback
      *
      * @return $this
      */
@@ -130,8 +114,6 @@ trait HasEvents
     /**
      * 上传完成.
      *
-     * @param \Closure $callback
-     *
      * @return $this
      */
     public function uploaded(Closure $callback)
@@ -143,8 +125,6 @@ trait HasEvents
 
     /**
      * 删除文件.
-     *
-     * @param \Closure $callback
      *
      * @return $this
      */
@@ -158,8 +138,6 @@ trait HasEvents
     /**
      * 删除文件完成.
      *
-     * @param \Closure $callback
-     *
      * @return $this
      */
     public function fileDeleted(Closure $callback)
@@ -170,8 +148,6 @@ trait HasEvents
     }
 
     /**
-     * @param \Closure $callback
-     *
      * @return \Closure
      */
     protected function makeListener(Closure $callback)
@@ -326,7 +302,6 @@ trait HasEvents
 
     /**
      * @param string $name
-     * @param array  $payload
      *
      * @return RedirectResponse|\Illuminate\Http\Response|void
      */

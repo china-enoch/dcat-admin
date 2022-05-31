@@ -36,9 +36,6 @@ class Row implements Renderable
 
     /**
      * Row constructor.
-     *
-     * @param \Closure $callback
-     * @param Show $show
      */
     public function __construct(\Closure $callback, Show $show)
     {
@@ -139,7 +136,7 @@ class Row implements Renderable
     protected function pushField($field)
     {
         $this->fields->push([
-            'width'   => $this->defaultFieldWidth,
+            'width' => $this->defaultFieldWidth,
             'element' => $field,
         ]);
     }

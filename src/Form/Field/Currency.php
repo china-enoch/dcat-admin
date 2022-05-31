@@ -12,11 +12,11 @@ class Currency extends Text
      * @var array
      */
     protected $options = [
-        'alias'              => 'currency',
-        'radixPoint'         => '.',
-        'prefix'             => '',
+        'alias' => 'currency',
+        'radixPoint' => '.',
+        'prefix' => '',
         'removeMaskOnSubmit' => true,
-        'rightAlign'         => false,
+        'rightAlign' => false,
     ];
 
     /**

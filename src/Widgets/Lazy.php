@@ -23,8 +23,6 @@ class Lazy extends Widget
     /**
      * 设置是否立即加载.
      *
-     * @param bool $value
-     *
      * @return $this
      */
     public function load(bool $value)

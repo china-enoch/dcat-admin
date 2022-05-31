@@ -46,10 +46,8 @@ class Selector
     }
 
     /**
-     * @param string         $column
      * @param string|array   $label
      * @param array|\Closure $options
-     * @param null|\Closure  $query
      *
      * @return $this
      */
@@ -59,10 +57,8 @@ class Selector
     }
 
     /**
-     * @param string        $column
-     * @param string|array  $label
-     * @param array         $options
-     * @param null|\Closure $query
+     * @param string|array $label
+     * @param array        $options
      *
      * @return $this
      */
@@ -72,7 +68,6 @@ class Selector
     }
 
     /**
-     * @param string $column
      * @param string $label
      * @param array  $options
      * @param null   $query
@@ -112,8 +107,6 @@ class Selector
     /**
      * Get all selectors.
      *
-     * @param bool $formatKey
-     *
      * @return array|Collection
      */
     public function all(bool $formatKey = false)
@@ -132,17 +125,17 @@ class Selector
      */
     public function parseSelected()
     {
-        if (! is_null($this->selected)) {
+        if (!is_null($this->selected)) {
             return $this->selected;
         }
 
         $selected = $this->request->get($this->getQueryName(), []);
-        if (! is_array($selected)) {
+        if (!is_array($selected)) {
             return [];
         }
 
         $selected = array_filter($selected, function ($value) {
-            return ! is_null($value);
+            return !is_null($value);
         });
 
         foreach ($selected as &$value) {
@@ -191,7 +184,7 @@ class Selector
             array_push($options, $value);
         }
 
-        if (! empty($options)) {
+        if (!empty($options)) {
             Arr::set($query, $queryName, implode(',', $options));
         } else {
             Arr::forget($query, $queryName);
@@ -206,7 +199,7 @@ class Selector
     public function render()
     {
         return view('admin::grid.selector', [
-            'self'     => $this,
+            'self' => $this,
             'selected' => $this->parseSelected(),
         ]);
     }

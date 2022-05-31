@@ -76,7 +76,7 @@ class Bar extends RadialBar
                 'bar' => [
                     'columnWidth' => '44%',
                     'distributed' => true,
-                    //'endingShape' => 'rounded',
+                    // 'endingShape' => 'rounded',
                 ],
             ],
             'tooltip' => [

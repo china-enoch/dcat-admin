@@ -78,8 +78,6 @@ class Manager
     /**
      * 判断扩展是否启用.
      *
-     * @param string|null $name
-     *
      * @return bool
      */
     public function enabled(?string $name)
@@ -90,9 +88,6 @@ class Manager
     /**
      * 启用或禁用扩展.
      *
-     * @param string|null $name
-     * @param bool        $enable
-     *
      * @return void
      */
     public function enable(?string $name, bool $enable = true)
@@ -101,7 +96,7 @@ class Manager
 
         $extension = Extension::where('name', $name)->first();
 
-        if (! $extension) {
+        if (!$extension) {
             throw new RuntimeException(sprintf('Please install the extension(%s) first!', $name));
         }
 
@@ -140,7 +135,7 @@ class Manager
      */
     public function path($name, $path = null)
     {
-        if (! $extension = $this->get($name)) {
+        if (!$extension = $this->get($name)) {
             return;
         }
 
@@ -182,7 +177,7 @@ class Manager
      */
     protected function formatName($name)
     {
-        if (! is_string($name)) {
+        if (!is_string($name)) {
             return $name;
         }
 
@@ -212,9 +207,6 @@ class Manager
     /**
      * 加载扩展.
      *
-     * @param string $directory
-     * @param bool   $addPsr4
-     *
      * @return ServiceProvider|null
      */
     public function loadExtension(string $directory, bool $addPsr4 = true)
@@ -235,9 +227,6 @@ class Manager
     /**
      * 获取扩展类实例.
      *
-     * @param string $directory
-     * @param bool   $addPsr4
-     *
      * @return ServiceProvider
      */
     public function resolveExtension(string $directory, bool $addPsr4 = true)
@@ -247,7 +236,7 @@ class Manager
         $serviceProvider = $composerProperty->get('extra.dcat-admin');
         $psr4 = $composerProperty->get('autoload.psr-4');
 
-        if (! $serviceProvider || ! $psr4) {
+        if (!$serviceProvider || !$psr4) {
             return;
         }
 
@@ -273,7 +262,7 @@ class Manager
 
         $dirPath = $dirPath ?: admin_extension_path();
 
-        if (! is_dir($dirPath)) {
+        if (!is_dir($dirPath)) {
             return $extensions;
         }
 
@@ -284,7 +273,7 @@ class Manager
         $it->rewind();
 
         while ($it->valid()) {
-            if ($it->getDepth() > 1 && $it->getFilename() === 'composer.json') {
+            if ($it->getDepth() > 1 && 'composer.json' === $it->getFilename()) {
                 $extensions[] = dirname($it->getPathname());
             }
 
@@ -301,10 +290,10 @@ class Manager
      */
     public function addExtension(ServiceProvider $serviceProvider)
     {
-        if (! $serviceProvider->getName()) {
+        if (!$serviceProvider->getName()) {
             $json = dirname(dirname(Helper::guessClassFileName($serviceProvider))).'/composer.json';
 
-            if (! is_file($json)) {
+            if (!is_file($json)) {
                 throw new RuntimeException(sprintf('Error extension "%s"', get_class($serviceProvider)));
             }
 
@@ -337,7 +326,6 @@ class Manager
      * 解压缩扩展包.
      *
      * @param string $filePath
-     * @param bool   $force
      *
      * @return string
      */
@@ -354,7 +342,6 @@ class Manager
 
     /**
      * @param string $filePath
-     * @param bool   $force
      *
      * @return bool
      */
@@ -366,7 +353,7 @@ class Manager
         try {
             $filePath = is_file($filePath) ? $filePath : $this->getFilePath($filePath);
 
-            if (! Zip::extract($filePath, $tempPath)) {
+            if (!Zip::extract($filePath, $tempPath)) {
                 throw new AdminException(sprintf('Unable to extract core file \'%s\'.', $filePath));
             }
 
@@ -375,16 +362,16 @@ class Manager
             // 无上层目录
             $directory = $tempPath;
 
-            if (count($extensions) === 1) {
+            if (1 === count($extensions)) {
                 // 双层目录
                 $directory = current($extensions);
-            } elseif (count($results = $this->scandir($tempPath)) === 1) {
+            } elseif (1 === count($results = $this->scandir($tempPath))) {
                 // 单层目录
                 $directory = current($results);
             }
 
             // 验证扩展包内容是否正确.
-            if (! $this->checkFiles($directory)) {
+            if (!$this->checkFiles($directory)) {
                 throw new RuntimeException(sprintf('Error extension file "%s".', $filePath));
             }
 
@@ -392,11 +379,11 @@ class Manager
 
             $extensionDir = admin_extension_path($composerProperty->name);
 
-            if (! $force && is_dir($extensionDir)) {
+            if (!$force && is_dir($extensionDir)) {
                 throw new RuntimeException(sprintf('The extension [%s] already exist!', $composerProperty->name));
             }
 
-            if (! is_dir($extensionDir)) {
+            if (!is_dir($extensionDir)) {
                 $this->files->makeDirectory($extensionDir, 0755, true);
             }
 
@@ -418,16 +405,16 @@ class Manager
     protected function checkFiles($directory)
     {
         if (
-            ! is_dir($directory.'/src')
-            || ! is_file($directory.'/composer.json')
-            || ! is_file($directory.'/version.php')
+            !is_dir($directory.'/src')
+            || !is_file($directory.'/composer.json')
+            || !is_file($directory.'/version.php')
         ) {
             return false;
         }
 
         $composerProperty = Composer::parse($directory.'/composer.json');
 
-        if (! $composerProperty->name || ! $composerProperty->get('extra.dcat-admin')) {
+        if (!$composerProperty->name || !$composerProperty->get('extra.dcat-admin')) {
             return false;
         }
 
@@ -438,7 +425,8 @@ class Manager
      * 生成临时文件.
      *
      * @param string $fileCode A unique file code
-     * @return string           Full path on the disk
+     *
+     * @return string Full path on the disk
      */
     protected function getFilePath($fileCode)
     {
@@ -454,7 +442,7 @@ class Manager
      */
     public function settings()
     {
-        if ($this->settings === null) {
+        if (null === $this->settings) {
             try {
                 $this->settings = ExtensionModel::all()->keyBy('name');
             } catch (\Throwable $e) {
@@ -494,8 +482,8 @@ class Manager
     {
         $tempDir = storage_path('tmp/'.($dir ?: time().Str::random()));
 
-        if (! is_dir($tempDir)) {
-            if (! $this->files->makeDirectory($tempDir, 0777, true)) {
+        if (!is_dir($tempDir)) {
+            if (!$this->files->makeDirectory($tempDir, 0777, true)) {
                 throw new RuntimeException(sprintf('Cannot write to directory "%s"', storage_path()));
             }
         }
@@ -507,7 +495,6 @@ class Manager
      * 注册 PSR4 验证规则.
      *
      * @param string $directory
-     * @param array  $psr4
      */
     protected function registerPsr4($directory, array $psr4)
     {
@@ -522,8 +509,6 @@ class Manager
 
     /**
      * 上报异常.
-     *
-     * @param \Throwable $e
      */
     protected function reportException(\Throwable $e)
     {
@@ -541,8 +526,8 @@ class Manager
 
         foreach (scandir($dir) as $value) {
             if (
-                $value !== '.'
-                && $value !== '..'
+                '.' !== $value
+                && '..' !== $value
                 && is_dir($value = $dir.'/'.$value)
             ) {
                 $results[] = $value;

@@ -113,7 +113,7 @@ class NestedForm extends WidgetForm
         }
 
         foreach ($data as $value) {
-            if (! isset($value[$relatedKeyName])) {
+            if (!isset($value[$relatedKeyName])) {
                 continue;
             }
 
@@ -136,7 +136,7 @@ class NestedForm extends WidgetForm
     public function prepare($input)
     {
         foreach ($input as $key => $record) {
-            if (! array_key_exists(static::REMOVE_FLAG_NAME, $record)) {
+            if (!array_key_exists(static::REMOVE_FLAG_NAME, $record)) {
                 continue;
             }
 
@@ -199,7 +199,7 @@ class NestedForm extends WidgetForm
      */
     protected function prepareRecord($record)
     {
-        if ($record[static::REMOVE_FLAG_NAME] == 1) {
+        if (1 == $record[static::REMOVE_FLAG_NAME]) {
             return $record;
         }
 
@@ -211,7 +211,7 @@ class NestedForm extends WidgetForm
 
             $value = $this->fetchColumnValue($record, $columns);
 
-            if ($value === false) {
+            if (false === $value) {
                 continue;
             }
 
@@ -219,7 +219,7 @@ class NestedForm extends WidgetForm
                 $value = $field->prepare($value);
             }
 
-            if (($field instanceof Form\Field\Hidden) || ! Helper::equal($field->original(), $value)) {
+            if (($field instanceof Form\Field\Hidden) || !Helper::equal($field->original(), $value)) {
                 if (is_array($columns)) {
                     foreach ($columns as $name => $column) {
                         Arr::set($prepared, $column, $value[$name]);
@@ -246,7 +246,7 @@ class NestedForm extends WidgetForm
     protected function fetchColumnValue($data, $columns)
     {
         if (is_string($columns)) {
-            if (! Arr::has($data, $columns)) {
+            if (!Arr::has($data, $columns)) {
                 return false;
             }
 
@@ -256,7 +256,7 @@ class NestedForm extends WidgetForm
         if (is_array($columns)) {
             $value = [];
             foreach ($columns as $name => $column) {
-                if (! Arr::has($data, $column)) {
+                if (!Arr::has($data, $column)) {
                     continue;
                 }
                 $value[$name] = Arr::get($data, $column);
@@ -289,7 +289,7 @@ class NestedForm extends WidgetForm
 
         $field->setRelation([
             'relation' => $this->relationName,
-            'key'      => $this->key,
+            'key' => $this->key,
         ]);
 
         $field::requireAssets();
@@ -340,8 +340,6 @@ class NestedForm extends WidgetForm
 
     /**
      * Set `errorKey` `elementName` `elementClass` for fields inside hasmany fields.
-     *
-     * @param Field $field
      *
      * @return Field
      */

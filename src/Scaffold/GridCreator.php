@@ -6,7 +6,6 @@ trait GridCreator
 {
     /**
      * @param string $primaryKey
-     * @param array  $fields
      *
      * @return string
      */
@@ -14,7 +13,7 @@ trait GridCreator
     {
         $primaryKey = $primaryKey ?: request('primary_key', 'id');
         $fields = $fields ?: request('fields', []);
-        $timestamps = $timestamps === null ? request('timestamps') : $timestamps;
+        $timestamps = null === $timestamps ? request('timestamps') : $timestamps;
 
         $rows = [
             "\$grid->column('{$primaryKey}')->sortable();",

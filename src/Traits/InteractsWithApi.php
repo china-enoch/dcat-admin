@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 /**
  * Trait InteractsWithApi.
  *
- *
  * @method mixed handle(Request $request)
  * @method mixed valueResult()
  */
@@ -41,7 +40,7 @@ trait InteractsWithApi
      */
     protected $requestScripts = [
         'fetching' => [],
-        'fetched'  => [],
+        'fetched' => [],
     ];
 
     /**
@@ -51,8 +50,6 @@ trait InteractsWithApi
 
     /**
      * 返回请求附带参数.
-     *
-     * @return array
      */
     public function parameters(): array
     {
@@ -61,10 +58,6 @@ trait InteractsWithApi
 
     /**
      * 设置请求地址.
-     *
-     * @param string $method
-     * @param string $url
-     * @param array $query
      *
      * @return $this
      */
@@ -183,11 +176,11 @@ trait InteractsWithApi
     /**
      * 构建请求数据js代码.
      *
-     * @return null|string
+     * @return string|null
      */
     public function buildRequestScript()
     {
-        if (! $this->allowBuildRequest()) {
+        if (!$this->allowBuildRequest()) {
             return;
         }
 

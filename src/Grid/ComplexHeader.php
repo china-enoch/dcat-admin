@@ -98,8 +98,8 @@ class ComplexHeader extends Widget
 
     /**
      * @param string|\Closure $message
-     * @param null|string     $style     'green', 'blue', 'red', 'purple'
-     * @param null|string     $placement 'bottom', 'left', 'right', 'top'
+     * @param string|null     $style     'green', 'blue', 'red', 'purple'
+     * @param string|null     $placement 'bottom', 'left', 'right', 'top'
      *
      * @return $this
      */
@@ -112,7 +112,7 @@ class ComplexHeader extends Widget
     {
         $count = $this->columnNames->count();
 
-        if ($count == 1) {
+        if (1 == $count) {
             $this->htmlAttributes['rowspan'] = 2;
         } else {
             $this->htmlAttributes['colspan'] = $count;

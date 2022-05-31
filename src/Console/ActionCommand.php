@@ -38,12 +38,12 @@ class ActionCommand extends GeneratorCommand
      */
     protected $namespaceMap = [
         'grid-batch' => 'Grid',
-        'grid-row'   => 'Grid',
-        'grid-tool'  => 'Grid',
-        'form-tool'  => 'Form',
-        'show-tool'  => 'Show',
-        'tree-row'   => 'Tree',
-        'tree-tool'  => 'Tree',
+        'grid-row' => 'Grid',
+        'grid-tool' => 'Grid',
+        'form-tool' => 'Form',
+        'show-tool' => 'Show',
+        'tree-row' => 'Tree',
+        'tree-tool' => 'Tree',
     ];
 
     public function handle()
@@ -57,7 +57,7 @@ class ActionCommand extends GeneratorCommand
 
         $this->className = ucfirst(trim($this->ask('Please enter a name of action class')));
 
-        if (! $this->className) {
+        if (!$this->className) {
             goto INPUT_NAME;
         }
 

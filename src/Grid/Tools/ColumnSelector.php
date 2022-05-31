@@ -26,8 +26,6 @@ class ColumnSelector extends AbstractTool
 
     /**
      * Create a new Export button instance.
-     *
-     * @param Grid $grid
      */
     public function __construct(Grid $grid)
     {
@@ -64,9 +62,9 @@ class ColumnSelector extends AbstractTool
         );
 
         return Admin::view('admin::grid.column-selector', [
-            'checkbox'   => $list,
-            'defaults'   => $this->grid->getDefaultVisibleColumnNames(),
-            'selectAll'  => $selectAll,
+            'checkbox' => $list,
+            'defaults' => $this->grid->getDefaultVisibleColumnNames(),
+            'selectAll' => $selectAll,
             'columnName' => $this->grid->getColumnSelectorQueryName(),
         ]);
     }
@@ -80,7 +78,7 @@ class ColumnSelector extends AbstractTool
 
         $columns = $this->grid->getComplexHeaderNames() ?: $this->grid->getColumnNames();
 
-        if (! empty($visible)) {
+        if (!empty($visible)) {
             array_push($visible, Grid\Column::SELECT_COLUMN_NAME, Grid\Column::ACTION_COLUMN_NAME);
 
             $columns = collect($columns)->filter(function ($column) use ($visible) {
@@ -89,7 +87,7 @@ class ColumnSelector extends AbstractTool
         }
 
         return array_filter($columns, function ($v) {
-            return ! in_array($v, [Grid\Column::SELECT_COLUMN_NAME, Grid\Column::ACTION_COLUMN_NAME]);
+            return !in_array($v, [Grid\Column::SELECT_COLUMN_NAME, Grid\Column::ACTION_COLUMN_NAME]);
         });
     }
 

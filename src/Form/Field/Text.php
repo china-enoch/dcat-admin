@@ -12,7 +12,7 @@ class Text extends Field
 
     public function __construct($column, $arguments = [])
     {
-        if (static::class === self::class) {
+        if (self::class === static::class) {
             $this->prepend('<i class="feather icon-edit-2"></i>');
         }
 
@@ -36,7 +36,7 @@ class Text extends Field
 
         $this->addVariables([
             'prepend' => $this->prepend,
-            'append'  => $this->append,
+            'append' => $this->append,
         ]);
 
         return parent::render();
@@ -44,8 +44,6 @@ class Text extends Field
 
     /**
      * Set input type.
-     *
-     * @param string $type
      *
      * @return $this
      */
@@ -76,7 +74,7 @@ class Text extends Field
         }
 
         $attributes = [
-            'data-match'       => $field->getElementClassSelector(),
+            'data-match' => $field->getElementClassSelector(),
             'data-match-error' => str_replace(
                 [':attribute', ':other'],
                 [$field->label(), $this->label()],
@@ -88,9 +86,6 @@ class Text extends Field
     }
 
     /**
-     * @param int         $length
-     * @param string|null $error
-     *
      * @return $this
      */
     public function minLength(int $length, ?string $error = null)
@@ -98,7 +93,7 @@ class Text extends Field
         $this->rules('nullable|min:'.$length);
 
         return $this->attribute([
-            'data-minlength'       => $length,
+            'data-minlength' => $length,
             'data-minlength-error' => str_replace(
                 [':attribute', ':min'],
                 [$this->label, $length],
@@ -108,9 +103,6 @@ class Text extends Field
     }
 
     /**
-     * @param int         $length
-     * @param string|null $error
-     *
      * @return $this
      */
     public function maxLength(int $length, ?string $error = null)
@@ -126,7 +118,7 @@ JS
         $this->rules('max:'.$length);
 
         return $this->attribute([
-            'data-maxlength'       => $length,
+            'data-maxlength' => $length,
             'data-maxlength-error' => str_replace(
                 [':attribute', ':max'],
                 [$this->label, $length],

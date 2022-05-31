@@ -73,8 +73,6 @@ abstract class Action implements Renderable
     /**
      * 是否禁用动作.
      *
-     * @param bool $disable
-     *
      * @return $this
      */
     public function disable(bool $disable = true)
@@ -89,7 +87,7 @@ abstract class Action implements Renderable
      */
     public function allowed()
     {
-        return ! $this->disabled;
+        return !$this->disabled;
     }
 
     /**
@@ -193,8 +191,8 @@ HTML;
     protected function prepareHandler()
     {
         if (
-            ! $this->allowHandler
-            || ! method_exists($this, 'handle')
+            !$this->allowHandler
+            || !method_exists($this, 'handle')
         ) {
             return;
         }
@@ -207,7 +205,7 @@ HTML;
      */
     public function render()
     {
-        if (! $this->allowed()) {
+        if (!$this->allowed()) {
             return '';
         }
 

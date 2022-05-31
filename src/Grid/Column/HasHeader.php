@@ -87,11 +87,11 @@ trait HasHeader
     {
         $valueKey = is_string($filter) || $filter instanceof \Closure ? $filter : null;
 
-        if (! $filter || $valueKey) {
+        if (!$filter || $valueKey) {
             $filter = Grid\Column\Filter\Equal::make()->valueFilter($valueKey);
         }
 
-        if (! $filter instanceof Grid\Column\Filter) {
+        if (!$filter instanceof Grid\Column\Filter) {
             throw new RuntimeException('The "$filter" must be a type of '.Grid\Column\Filter::class.'.');
         }
 
@@ -116,8 +116,8 @@ trait HasHeader
      * Add a help tooltip to column header.
      *
      * @param string|\Closure $message
-     * @param null|string     $style     'green', 'blue', 'red', 'purple'
-     * @param null|string     $placement 'bottom', 'left', 'right', 'top'
+     * @param string|null     $style     'green', 'blue', 'red', 'purple'
+     * @param string|null     $placement 'bottom', 'left', 'right', 'top'
      *
      * @return $this
      */
@@ -128,8 +128,6 @@ trait HasHeader
 
     /**
      * Add a binding based on filter to the model query.
-     *
-     * @param Model $model
      */
     public function bindFilterQuery(Model $model)
     {
@@ -145,7 +143,7 @@ trait HasHeader
      */
     public function renderHeader()
     {
-        if (! $this->headers) {
+        if (!$this->headers) {
             return '';
         }
         $headers = implode(

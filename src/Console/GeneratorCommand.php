@@ -23,7 +23,8 @@ abstract class GeneratorCommand extends BaseCommand
     /**
      * Get the destination class path.
      *
-     * @param  string  $name
+     * @param string $name
+     *
      * @return string
      */
     protected function getPath($name)
@@ -52,7 +53,7 @@ abstract class GeneratorCommand extends BaseCommand
      */
     protected function askBaseDirectory()
     {
-        if (! Str::startsWith(config('admin.route.namespace'), 'App')) {
+        if (!Str::startsWith(config('admin.route.namespace'), 'App')) {
             $dir = explode('\\', config('admin.route.namespace'))[0];
 
             $this->baseDirectory = trim($this->ask('Please enter the application path', Helper::slug($dir)));

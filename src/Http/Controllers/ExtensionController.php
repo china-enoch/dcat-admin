@@ -39,7 +39,7 @@ class ExtensionController extends Controller
             $grid->column('description')->displayUsing(Extensions\Description::class)->width('58%');
 
             $grid->column('authors')->display(function ($v) {
-                if (! $v) {
+                if (!$v) {
                     return;
                 }
 
@@ -92,7 +92,7 @@ class ExtensionController extends Controller
             return [
                 'required',
                 function ($attribute, $value, $fail) {
-                    if (! Helper::validateExtensionName($value)) {
+                    if (!Helper::validateExtensionName($value)) {
                         return $fail(
                             "[$value] is not a valid package name, please type a name like \"vendor/name\""
                         );
@@ -131,9 +131,9 @@ class ExtensionController extends Controller
         $output = new StringOutput();
 
         Artisan::call('admin:ext-make', [
-            'name'        => $package,
+            'name' => $package,
             '--namespace' => $namespace ?: 'default',
-            '--theme'     => $type == 2,
+            '--theme' => 2 == $type,
         ], $output);
 
         return sprintf('<pre class="bg-transparent text-white">%s</pre>', (string) $output->getContent());

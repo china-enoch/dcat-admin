@@ -27,8 +27,6 @@ class SectionManager
      *
      * @param string                              $section
      * @param string|Renderable|Htmlable|callable $content
-     * @param bool                                $append
-     * @param int                                 $priority
      *
      * @return void
      */
@@ -38,7 +36,6 @@ class SectionManager
     }
 
     /**
-     * @param string                              $section
      * @param string|Renderable|Htmlable|callable $content
      *
      * @return void
@@ -55,41 +52,36 @@ class SectionManager
     /**
      * Set content to a given section.
      *
-     * @param string                              $section
      * @param string|Renderable|Htmlable|callable $content
-     * @param bool                                $append
-     * @param int                                 $priority
      *
      * @return void
      */
     protected function put(string $section, $content, bool $append = false, int $priority = 10)
     {
-        if (! $section) {
+        if (!$section) {
             throw new RuntimeException('Section name is required.');
         }
 
-        if (! isset($this->sections[$section])) {
+        if (!isset($this->sections[$section])) {
             unset($this->defaultSections[$section]);
 
             $this->sections[$section] = [];
         }
 
-        if (! isset($this->sections[$section][$priority])) {
+        if (!isset($this->sections[$section][$priority])) {
             $this->sections[$section][$priority] = [];
         }
 
         $this->sections[$section][$priority][] = [
             'append' => $append,
-            'value'  => &$content,
+            'value' => &$content,
         ];
     }
 
     /**
      * Get the string contents of a section.
      *
-     * @param string $section
-     * @param mixed  $default
-     * @param array  $options
+     * @param mixed $default
      *
      * @return string
      */
@@ -97,7 +89,7 @@ class SectionManager
     {
         $defaultSection = $this->defaultSections[$section] ?? null;
 
-        if (! $this->hasSection($section) && $defaultSection === null) {
+        if (!$this->hasSection($section) && null === $defaultSection) {
             return Helper::render($default, [new Fluent()]);
         }
 
@@ -109,8 +101,6 @@ class SectionManager
     /**
      * Get all of the sections for a given name.
      *
-     * @param string $name
-     *
      * @return array
      */
     public function getSections(string $name)
@@ -120,8 +110,6 @@ class SectionManager
 
     /**
      * Sort the listeners for a given event by priority.
-     *
-     * @param string $name
      *
      * @return array
      */
@@ -141,8 +129,6 @@ class SectionManager
     /**
      * Check if section exists.
      *
-     * @param string $name
-     *
      * @return bool
      */
     public function hasSection(string $name)
@@ -153,8 +139,6 @@ class SectionManager
     /**
      * Check if default section exists.
      *
-     * @param string $name
-     *
      * @return bool
      */
     public function hasDefaultSection(string $name)
@@ -163,9 +147,7 @@ class SectionManager
     }
 
     /**
-     * @param string $name
-     * @param mixed  $content
-     * @param array  $options
+     * @param mixed $content
      *
      * @return string
      */
@@ -175,7 +157,7 @@ class SectionManager
             return $content;
         }
 
-        if (! is_array($content)) {
+        if (!is_array($content)) {
             $content = [['append' => true, 'value' => $content]];
         }
 
@@ -188,7 +170,7 @@ class SectionManager
             $value = Helper::render($item['value'] ?? '', [$options]);
             $append = $item['append'] ?? false;
 
-            if (! $append) {
+            if (!$append) {
                 $result = '';
             }
             $result .= $value;

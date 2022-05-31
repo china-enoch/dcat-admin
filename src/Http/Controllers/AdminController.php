@@ -49,8 +49,6 @@ class AdminController extends Controller
     /**
      * Index interface.
      *
-     * @param Content $content
-     *
      * @return Content
      */
     public function index(Content $content)
@@ -64,8 +62,7 @@ class AdminController extends Controller
     /**
      * Show interface.
      *
-     * @param mixed   $id
-     * @param Content $content
+     * @param mixed $id
      *
      * @return Content
      */
@@ -80,8 +77,7 @@ class AdminController extends Controller
     /**
      * Edit interface.
      *
-     * @param mixed   $id
-     * @param Content $content
+     * @param mixed $id
      *
      * @return Content
      */
@@ -95,8 +91,6 @@ class AdminController extends Controller
 
     /**
      * Create interface.
-     *
-     * @param Content $content
      *
      * @return Content
      */

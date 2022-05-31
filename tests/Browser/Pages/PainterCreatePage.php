@@ -20,7 +20,6 @@ class PainterCreatePage extends Page
     /**
      * Assert that the browser is on the page.
      *
-     * @param  Browser  $browser
      * @return void
      */
     public function assert(Browser $browser)
@@ -53,9 +52,6 @@ class PainterCreatePage extends Page
     /**
      * 注入表单.
      *
-     * @param Browser $browser
-     * @param array $input
-     *
      * @return Browser
      */
     public function fill(Browser $browser, array $input)
@@ -73,7 +69,7 @@ class PainterCreatePage extends Page
                     continue;
                 }
 
-                if ($key === 'paintings') {
+                if ('paintings' === $key) {
                     $browser->within(new HasMany($key), function (Browser $browser) use ($value) {
                         foreach ($value as $input) {
                             $browser->add();
@@ -92,8 +88,6 @@ class PainterCreatePage extends Page
 
     /**
      * 提交表单.
-     *
-     * @param Browser $browser
      *
      * @return Browser
      */

@@ -38,8 +38,6 @@ class Checkbox extends MultipleSelect
     /**
      * "info", "primary", "inverse", "danger", "success", "purple".
      *
-     * @param string $style
-     *
      * @return $this
      */
     public function style(string $style)
@@ -106,7 +104,7 @@ class Checkbox extends MultipleSelect
 
     protected function makeCheckAllCheckbox()
     {
-        if (! $this->canCheckAll) {
+        if (!$this->canCheckAll) {
             return;
         }
 

@@ -50,8 +50,6 @@ trait HasFormResponse
     /**
      * 获取当前URL.
      *
-     * @param Request|null $request
-     *
      * @return string
      */
     protected function getCurrentUrl(Request $request = null)

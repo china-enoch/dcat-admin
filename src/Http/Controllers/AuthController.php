@@ -45,8 +45,6 @@ class AuthController extends Controller
     /**
      * Handle a login request.
      *
-     * @param Request $request
-     *
      * @return mixed
      */
     public function postLogin(Request $request)
@@ -56,8 +54,8 @@ class AuthController extends Controller
 
         /** @var \Illuminate\Validation\Validator $validator */
         $validator = Validator::make($credentials, [
-            $this->username()   => 'required',
-            'password'          => 'required',
+            $this->username() => 'required',
+            'password' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -95,8 +93,6 @@ class AuthController extends Controller
     /**
      * User setting page.
      *
-     * @param Content $content
-     *
      * @return Content
      */
     public function getSetting(Content $content)
@@ -122,7 +118,7 @@ class AuthController extends Controller
     {
         $form = $this->settingForm();
 
-        if (! $this->validateCredentialsWhenUpdatingPassword()) {
+        if (!$this->validateCredentialsWhenUpdatingPassword()) {
             $form->responseValidationMessages('old_password', trans('admin.old_password_error'));
         }
 
@@ -137,13 +133,13 @@ class AuthController extends Controller
         $newPassword = \request('password');
 
         if (
-            (! $newPassword)
+            (!$newPassword)
             || ($newPassword === $user->getAuthPassword())
         ) {
             return true;
         }
 
-        if (! $oldPassword) {
+        if (!$oldPassword) {
             return false;
         }
 
@@ -196,7 +192,7 @@ class AuthController extends Controller
                     $form->password = bcrypt($form->password);
                 }
 
-                if (! $form->password) {
+                if (!$form->password) {
                     $form->deleteInput('password');
                 }
             });
@@ -232,8 +228,6 @@ class AuthController extends Controller
 
     /**
      * Send the response after the user was authenticated.
-     *
-     * @param \Illuminate\Http\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */

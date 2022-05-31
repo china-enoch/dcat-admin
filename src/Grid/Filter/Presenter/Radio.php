@@ -62,16 +62,13 @@ class Radio extends Presenter
     {
     }
 
-    /**
-     * @return array
-     */
     public function defaultVariables(): array
     {
         $this->prepare();
 
         return [
-            'options'   => $this->options,
-            'inline'    => $this->inline,
+            'options' => $this->options,
+            'inline' => $this->inline,
             'showLabel' => $this->showLabel,
         ];
     }

@@ -17,7 +17,7 @@ class HandleFormController
     {
         $form = $this->resolveForm($request);
 
-        if (! $form->passesAuthorization()) {
+        if (!$form->passesAuthorization()) {
             return $form->failedAuthorization();
         }
 
@@ -59,28 +59,26 @@ class HandleFormController
     }
 
     /**
-     * @param Request $request
-     *
      * @throws AdminException
      *
      * @return Form
      */
     protected function resolveForm(Request $request)
     {
-        if (! $request->has(Form::REQUEST_NAME)) {
+        if (!$request->has(Form::REQUEST_NAME)) {
             throw new AdminException('Invalid form request.');
         }
 
         $formClass = $request->get(Form::REQUEST_NAME);
 
-        if (! class_exists($formClass)) {
+        if (!class_exists($formClass)) {
             throw new AdminException("Form [{$formClass}] does not exist.");
         }
 
         /** @var Form $form */
         $form = app($formClass);
 
-        if (! method_exists($form, 'handle')) {
+        if (!method_exists($form, 'handle')) {
             throw new AdminException("Form method {$formClass}::handle() does not exist.");
         }
 

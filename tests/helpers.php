@@ -1,6 +1,6 @@
 <?php
 
-if (! function_exists('test_path')) {
+if (!function_exists('test_path')) {
     /**
      * @param string $file
      *
@@ -12,7 +12,7 @@ if (! function_exists('test_path')) {
     }
 }
 
-if (! function_exists('test_resource_path')) {
+if (!function_exists('test_resource_path')) {
     /**
      * @param string $file
      *

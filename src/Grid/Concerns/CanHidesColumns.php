@@ -19,13 +19,11 @@ trait CanHidesColumns
     /**
      * Remove column selector on grid.
      *
-     * @param bool $disable
-     *
      * @return $this|mixed
      */
     public function disableColumnSelector(bool $disable = true)
     {
-        return $this->option('show_column_selector', ! $disable);
+        return $this->option('show_column_selector', !$disable);
     }
 
     /**
@@ -33,7 +31,7 @@ trait CanHidesColumns
      */
     public function showColumnSelector(bool $show = true)
     {
-        return $this->disableColumnSelector(! $show);
+        return $this->disableColumnSelector(!$show);
     }
 
     /**
@@ -49,7 +47,7 @@ trait CanHidesColumns
      */
     public function renderColumnSelector()
     {
-        if (! $this->allowColumnSelector()) {
+        if (!$this->allowColumnSelector()) {
             return '';
         }
 
@@ -97,7 +95,7 @@ trait CanHidesColumns
 
         $columns = $input = Helper::array($this->request->get($this->getColumnSelectorQueryName()));
 
-        if (! $input && ! $this->hasColumnSelectorRequestInput()) {
+        if (!$input && !$this->hasColumnSelectorRequestInput()) {
             $columns = $this->getVisibleColumnsFromStorage() ?: array_values(array_diff(
                 $this->getComplexHeaderNames() ?: $this->columnNames, $this->hiddenColumns
             ));
@@ -116,7 +114,7 @@ trait CanHidesColumns
 
         return $this->getComplexHeaders()
             ->map(function (Grid\ComplexHeader $header) use ($columns) {
-                if (! in_array($header->getName(), $columns, true)) {
+                if (!in_array($header->getName(), $columns, true)) {
                     return;
                 }
 
@@ -212,7 +210,7 @@ trait CanHidesColumns
 
     protected function storeVisibleColumns(array $input)
     {
-        if (! $this->hasColumnSelectorRequestInput()) {
+        if (!$this->hasColumnSelectorRequestInput()) {
             return;
         }
 
