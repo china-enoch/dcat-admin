@@ -18,12 +18,12 @@ class Tab extends Widget
      * @var array
      */
     protected $data = [
-        'id'       => '',
-        'title'    => '',
-        'tabs'     => [],
+        'id' => '',
+        'title' => '',
+        'tabs' => [],
         'dropDown' => [],
-        'active'   => 0,
-        'padding'  => null,
+        'active' => 0,
+        'padding' => null,
         'tabStyle' => '',
     ];
 
@@ -39,10 +39,10 @@ class Tab extends Widget
     public function add($title, $content, $active = false)
     {
         $this->data['tabs'][] = [
-            'id'      => mt_rand(),
-            'title'   => $title,
+            'id' => mt_rand(),
+            'title' => $title,
             'content' => $this->toString($this->formatRenderable($content)),
-            'type'    => static::TYPE_CONTENT,
+            'type' => static::TYPE_CONTENT,
         ];
 
         if ($active) {
@@ -64,10 +64,10 @@ class Tab extends Widget
     public function addLink($title, $href, $active = false)
     {
         $this->data['tabs'][] = [
-            'id'      => mt_rand(),
-            'title'   => $title,
-            'href'    => $href,
-            'type'    => static::TYPE_LINK,
+            'id' => mt_rand(),
+            'title' => $title,
+            'href' => $href,
+            'type' => static::TYPE_LINK,
         ];
 
         if ($active) {
@@ -79,8 +79,6 @@ class Tab extends Widget
 
     /**
      * Set tab content padding.
-     *
-     * @param string $padding
      */
     public function padding(string $padding)
     {
@@ -108,8 +106,6 @@ class Tab extends Widget
 
     /**
      * Set drop-down items.
-     *
-     * @param array $links
      *
      * @return $this
      */

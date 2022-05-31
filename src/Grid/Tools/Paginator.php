@@ -21,8 +21,6 @@ class Paginator implements Renderable
 
     /**
      * Create a new Paginator instance.
-     *
-     * @param Grid $grid
      */
     public function __construct(Grid $grid)
     {
@@ -62,7 +60,7 @@ class Paginator implements Renderable
      */
     protected function perPageSelector()
     {
-        if (! $this->grid->getPerPages()) {
+        if (!$this->grid->getPerPages()) {
             return;
         }
 
@@ -78,7 +76,7 @@ class Paginator implements Renderable
     {
         $parameters = [
             'first' => $this->paginator->firstItem(),
-            'last'  => $this->paginator->lastItem(),
+            'last' => $this->paginator->lastItem(),
             'total' => $this->paginator->total(),
         ];
 

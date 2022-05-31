@@ -53,7 +53,7 @@ trait HasFilter
      */
     public function filter(Closure $callback = null)
     {
-        if ($callback === null) {
+        if (null === $callback) {
             return $this->filter;
         }
 
@@ -69,7 +69,7 @@ trait HasFilter
      */
     public function renderFilter()
     {
-        if (! $this->options['show_filter']) {
+        if (!$this->options['show_filter']) {
             return '';
         }
 
@@ -97,25 +97,21 @@ trait HasFilter
     {
         $this->filter->disableCollapse($disable);
 
-        return $this->option('show_filter', ! $disable);
+        return $this->option('show_filter', !$disable);
     }
 
     /**
      * Show grid filter.
      *
-     * @param bool $val
-     *
      * @return $this
      */
     public function showFilter(bool $val = true)
     {
-        return $this->disableFilter(! $val);
+        return $this->disableFilter(!$val);
     }
 
     /**
      * Disable filter button.
-     *
-     * @param bool $disable
      *
      * @return $this
      */
@@ -129,12 +125,10 @@ trait HasFilter
     /**
      * Show filter button.
      *
-     * @param bool $val
-     *
      * @return $this
      */
     public function showFilterButton(bool $val = true)
     {
-        return $this->disableFilterButton(! $val);
+        return $this->disableFilterButton(!$val);
     }
 }

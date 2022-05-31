@@ -20,8 +20,6 @@ class MultipleSelectTable extends SelectTable
     /**
      * 设置最大选择数量.
      *
-     * @param int $max
-     *
      * @return $this
      */
     public function max(int $max)

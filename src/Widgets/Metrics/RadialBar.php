@@ -128,9 +128,6 @@ class RadialBar extends Card
     /**
      * 设置内容宽度.
      *
-     * @param int $left
-     * @param int $right
-     *
      * @return $this
      */
     public function contentWidth(int $left, int $right)
@@ -142,8 +139,6 @@ class RadialBar extends Card
 
     /**
      * 图表位置靠右.
-     *
-     * @param bool $value
      *
      * @return $this
      */

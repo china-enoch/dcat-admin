@@ -33,12 +33,10 @@ trait HasPermissions
      * Check if user has permission.
      *
      * @param $ability
-     *
-     * @return bool
      */
     public function can($ability): bool
     {
-        if (! $ability) {
+        if (!$ability) {
             return false;
         }
 
@@ -58,12 +56,10 @@ trait HasPermissions
      * Check if user has no permission.
      *
      * @param $permission
-     *
-     * @return bool
      */
     public function cannot(string $permission): bool
     {
-        return ! $this->can($permission);
+        return !$this->can($permission);
     }
 
     /**
@@ -78,8 +74,6 @@ trait HasPermissions
 
     /**
      * Check if user is $role.
-     *
-     * @param string $role
      *
      * @return mixed
      */
@@ -114,8 +108,6 @@ trait HasPermissions
      * If visible for roles.
      *
      * @param $roles
-     *
-     * @return bool
      */
     public function visible($roles = []): bool
     {

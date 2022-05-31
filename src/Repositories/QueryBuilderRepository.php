@@ -114,8 +114,6 @@ class QueryBuilderRepository extends Repository implements TreeRepository
     /**
      * 查询Grid表格数据.
      *
-     * @param Grid\Model $model
-     *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|Collection|array
      */
     public function get(Grid\Model $model)
@@ -126,9 +124,9 @@ class QueryBuilderRepository extends Repository implements TreeRepository
         $query = $this->newQuery();
 
         $model->getQueries()->unique()->each(function ($value) use (&$query) {
-            if ($value['method'] == 'paginate') {
+            if ('paginate' == $value['method']) {
                 $value['arguments'][1] = $this->getGridColumns();
-            } elseif ($value['method'] == 'get') {
+            } elseif ('get' == $value['method']) {
                 $value['arguments'] = [$this->getGridColumns()];
             }
 
@@ -140,8 +138,6 @@ class QueryBuilderRepository extends Repository implements TreeRepository
 
     /**
      * 设置表格数据排序.
-     *
-     * @param Grid\Model $model
      *
      * @return void
      */
@@ -165,9 +161,8 @@ class QueryBuilderRepository extends Repository implements TreeRepository
     /**
      * 设置关联数据排序.
      *
-     * @param Grid\Model $model
-     * @param string     $column
-     * @param string     $type
+     * @param string $column
+     * @param string $type
      *
      * @return void
      */
@@ -176,7 +171,7 @@ class QueryBuilderRepository extends Repository implements TreeRepository
         [$relationName, $relationColumn] = explode('.', $column);
 
         if ($model->getQueries()->contains(function ($query) use ($relationName) {
-            return $query['method'] == 'with' && in_array($relationName, $query['arguments']);
+            return 'with' == $query['method'] && in_array($relationName, $query['arguments']);
         })) {
             $model->addQuery('select', [$this->getGridColumns()]);
 
@@ -192,8 +187,6 @@ class QueryBuilderRepository extends Repository implements TreeRepository
     /**
      * 设置分页参数.
      *
-     * @param Grid\Model $model
-     *
      * @return void
      */
     protected function setPaginate(Grid\Model $model)
@@ -202,7 +195,7 @@ class QueryBuilderRepository extends Repository implements TreeRepository
 
         $model->rejectQuery(['paginate']);
 
-        if (! $model->allowPagination()) {
+        if (!$model->allowPagination()) {
             $model->addQuery('get', [$this->getGridColumns()]);
         } else {
             $model->addQuery('paginate', $this->resolvePerPage($model, $paginate));
@@ -212,7 +205,6 @@ class QueryBuilderRepository extends Repository implements TreeRepository
     /**
      * 获取分页参数.
      *
-     * @param Grid\Model $model
      * @param array|null $paginate
      *
      * @return array
@@ -237,10 +229,6 @@ class QueryBuilderRepository extends Repository implements TreeRepository
 
     /**
      * 查询编辑页面数据.
-     *
-     * @param Form $form
-     *
-     * @return array
      */
     public function edit(Form $form): array
     {
@@ -248,7 +236,7 @@ class QueryBuilderRepository extends Repository implements TreeRepository
             ->where($this->getKeyName(), $form->getKey())
             ->first($this->getFormColumns());
 
-        if (! $result) {
+        if (!$result) {
             abort(404);
         }
 
@@ -257,10 +245,6 @@ class QueryBuilderRepository extends Repository implements TreeRepository
 
     /**
      * 查询详情页面数据.
-     *
-     * @param Show $show
-     *
-     * @return array
      */
     public function detail(Show $show): array
     {
@@ -268,7 +252,7 @@ class QueryBuilderRepository extends Repository implements TreeRepository
             ->where($this->getKeyName(), $show->getKey())
             ->first($this->getDetailColumns());
 
-        if (! $result) {
+        if (!$result) {
             abort(404);
         }
 
@@ -277,8 +261,6 @@ class QueryBuilderRepository extends Repository implements TreeRepository
 
     /**
      * 新增记录.
-     *
-     * @param Form $form
      *
      * @return mixed
      */
@@ -296,10 +278,6 @@ class QueryBuilderRepository extends Repository implements TreeRepository
 
     /**
      * 查询更新前的行数据.
-     *
-     * @param Form $form
-     *
-     * @return array
      */
     public function updating(Form $form): array
     {
@@ -308,8 +286,6 @@ class QueryBuilderRepository extends Repository implements TreeRepository
 
     /**
      * 更新数据.
-     *
-     * @param Form $form
      *
      * @return bool
      */
@@ -350,8 +326,6 @@ class QueryBuilderRepository extends Repository implements TreeRepository
     /**
      * 删除数据.
      *
-     * @param Form $form
-     *
      * @return bool
      */
     public function delete(Form $form, array $deletingData)
@@ -363,7 +337,7 @@ class QueryBuilderRepository extends Repository implements TreeRepository
         collect(explode(',', $id))->filter()->each(function ($id) use ($form, $deletingData) {
             $data = $deletingData->get($id, []);
 
-            if (! $data) {
+            if (!$data) {
                 return;
             }
 
@@ -380,10 +354,6 @@ class QueryBuilderRepository extends Repository implements TreeRepository
 
     /**
      * 查询删除前的行数据.
-     *
-     * @param Form $form
-     *
-     * @return array
      */
     public function deleting(Form $form): array
     {

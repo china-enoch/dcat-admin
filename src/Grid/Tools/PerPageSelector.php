@@ -26,8 +26,6 @@ class PerPageSelector implements Renderable
 
     /**
      * Create a new PerPageSelector instance.
-     *
-     * @param Grid $grid
      */
     public function __construct(Grid $grid)
     {

@@ -27,8 +27,8 @@ class Bootstrap
     {
         if (
             config('admin.layout.dark_mode_switch')
-            && ! Helper::isAjaxRequest()
-            && ! request()->routeIs(admin_api_route('*'))
+            && !Helper::isAjaxRequest()
+            && !request()->routeIs(admin_api_route('*'))
         ) {
             Admin::navbar()->right((new DarkModeSwitcher())->render());
         }
@@ -62,10 +62,10 @@ class Bootstrap
     protected function storeCurrentUrl(Request $request)
     {
         if (
-            $request->method() === 'GET'
+            'GET' === $request->method()
             && $request->route()
-            && ! Helper::isAjaxRequest()
-            && ! $this->prefetch($request)
+            && !Helper::isAjaxRequest()
+            && !$this->prefetch($request)
         ) {
             Admin::addIgnoreQueryName(['_token', '_pjax']);
 
@@ -76,7 +76,7 @@ class Bootstrap
     }
 
     /**
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return bool
      */
@@ -86,7 +86,7 @@ class Bootstrap
             return $request->prefetch();
         }
 
-        return strcasecmp($request->server->get('HTTP_X_MOZ'), 'prefetch') === 0 ||
-            strcasecmp($request->headers->get('Purpose'), 'prefetch') === 0;
+        return 0 === strcasecmp($request->server->get('HTTP_X_MOZ'), 'prefetch') ||
+            0 === strcasecmp($request->headers->get('Purpose'), 'prefetch');
     }
 }

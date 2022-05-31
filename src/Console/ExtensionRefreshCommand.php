@@ -17,13 +17,13 @@ class ExtensionRefreshCommand extends Command
     {
         $name = $this->argument('name');
 
-        if (! Admin::extension()->has($name)) {
+        if (!Admin::extension()->has($name)) {
             throw new \InvalidArgumentException(sprintf('Plugin "%s" not found.', $name));
         }
 
         $confirmQuestion = 'Please confirm that you wish to reinstall this extension?';
 
-        if (! $this->confirm($confirmQuestion)) {
+        if (!$this->confirm($confirmQuestion)) {
             return;
         }
 

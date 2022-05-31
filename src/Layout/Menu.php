@@ -13,31 +13,31 @@ class Menu
      */
     protected static $helperNodes = [
         [
-            'id'        => 1,
-            'title'     => 'Helpers',
-            'icon'      => 'fa fa-keyboard-o',
-            'uri'       => '',
+            'id' => 1,
+            'title' => 'Helpers',
+            'icon' => 'fa fa-keyboard-o',
+            'uri' => '',
             'parent_id' => 0,
         ],
         [
-            'id'        => 2,
-            'title'     => 'Extensions',
-            'icon'      => '',
-            'uri'       => 'helpers/extensions',
+            'id' => 2,
+            'title' => 'Extensions',
+            'icon' => '',
+            'uri' => 'helpers/extensions',
             'parent_id' => 1,
         ],
         [
-            'id'        => 3,
-            'title'     => 'Scaffold',
-            'icon'      => '',
-            'uri'       => 'helpers/scaffold',
+            'id' => 3,
+            'title' => 'Scaffold',
+            'icon' => '',
+            'uri' => 'helpers/scaffold',
             'parent_id' => 1,
         ],
         [
-            'id'        => 4,
-            'title'     => 'Icons',
-            'icon'      => '',
-            'uri'       => 'helpers/icons',
+            'id' => 4,
+            'title' => 'Icons',
+            'icon' => '',
+            'uri' => 'helpers/icons',
             'parent_id' => 1,
         ],
     ];
@@ -52,7 +52,7 @@ class Menu
      */
     public function register()
     {
-        if (! admin_has_default_section(Admin::SECTION['LEFT_SIDEBAR_MENU'])) {
+        if (!admin_has_default_section(Admin::SECTION['LEFT_SIDEBAR_MENU'])) {
             admin_inject_default_section(Admin::SECTION['LEFT_SIDEBAR_MENU'], function () {
                 $menuModel = config('admin.database.menu_model');
 
@@ -66,9 +66,6 @@ class Menu
     }
 
     /**
-     * @param array $nodes
-     * @param int   $priority
-     *
      * @return void
      */
     public function add(array $nodes = [], int $priority = 10)
@@ -99,8 +96,6 @@ class Menu
     }
 
     /**
-     * @param string $view
-     *
      * @return $this
      */
     public function view(string $view)
@@ -121,8 +116,7 @@ class Menu
     }
 
     /**
-     * @param array       $item
-     * @param null|string $path
+     * @param array $item
      *
      * @return bool
      */
@@ -144,7 +138,7 @@ class Menu
             if ($path == trim($this->getPath($v['uri']), '/')) {
                 return true;
             }
-            if (! empty($v['children'])) {
+            if (!empty($v['children'])) {
                 if ($this->isActive($v, $path)) {
                     return true;
                 }
@@ -162,15 +156,15 @@ class Menu
     public function visible($item)
     {
         if (
-            ! $this->checkPermission($item)
-            || ! $this->checkExtension($item)
-            || ! $this->userCanSeeMenu($item)
+            !$this->checkPermission($item)
+            || !$this->checkExtension($item)
+            || !$this->userCanSeeMenu($item)
         ) {
             return false;
         }
 
         $show = $item['show'] ?? null;
-        if ($show !== null && ! $show) {
+        if (null !== $show && !$show) {
             return false;
         }
 
@@ -188,11 +182,11 @@ class Menu
     {
         $extension = $item['extension'] ?? null;
 
-        if (! $extension) {
+        if (!$extension) {
             return true;
         }
 
-        if (! $extension = Admin::extension($extension)) {
+        if (!$extension = Admin::extension($extension)) {
             return false;
         }
 
@@ -210,7 +204,7 @@ class Menu
     {
         $user = Admin::user();
 
-        if (! $user || ! method_exists($user, 'canSeeMenu')) {
+        if (!$user || !method_exists($user, 'canSeeMenu')) {
             return true;
         }
 
@@ -230,13 +224,13 @@ class Menu
         $roles = array_column(Helper::array($item['roles'] ?? []), 'slug');
         $permissions = array_column(Helper::array($item['permissions'] ?? []), 'slug');
 
-        if (! $permissionIds && ! $roles && ! $permissions) {
+        if (!$permissionIds && !$roles && !$permissions) {
             return true;
         }
 
         $user = Admin::user();
 
-        if (! $user || $user->visible($roles)) {
+        if (!$user || $user->visible($roles)) {
             return true;
         }
 

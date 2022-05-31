@@ -38,8 +38,6 @@ class QuickCreate implements Renderable
 
     /**
      * QuickCreate constructor.
-     *
-     * @param Grid $grid
      */
     public function __construct(Grid $grid)
     {
@@ -238,8 +236,6 @@ class QuickCreate implements Renderable
     }
 
     /**
-     * @param Field $field
-     *
      * @return Field
      */
     protected function addField(Field $field)
@@ -312,12 +308,12 @@ class QuickCreate implements Renderable
         }
 
         $vars = [
-            'columnCount'  => $columnCount,
-            'fields'       => $this->fields,
+            'columnCount' => $columnCount,
+            'fields' => $this->fields,
             'elementClass' => $this->getElementClass(),
-            'url'          => $this->action,
-            'method'       => $this->method,
-            'uniqueName'   => $this->parent->getName(),
+            'url' => $this->action,
+            'method' => $this->method,
+            'uniqueName' => $this->parent->getName(),
         ];
 
         return Admin::view('admin::grid.quick-create.form', $vars);

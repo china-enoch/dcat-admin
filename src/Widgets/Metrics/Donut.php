@@ -30,7 +30,7 @@ class Donut extends Card
     /**
      * 趋势图图表默认配置.
      *
-     * @return  array
+     * @return array
      */
     protected function defaultChartOptions()
     {
@@ -81,9 +81,6 @@ class Donut extends Card
 
     /**
      * 设置内容宽度.
-     *
-     * @param int $left
-     * @param int $right
      *
      * @return $this
      */

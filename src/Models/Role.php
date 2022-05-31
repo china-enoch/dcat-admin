@@ -19,8 +19,6 @@ class Role extends Model
 
     /**
      * Create a new Eloquent model instance.
-     *
-     * @param array $attributes
      */
     public function __construct(array $attributes = [])
     {
@@ -35,8 +33,6 @@ class Role extends Model
 
     /**
      * A role belongs to many users.
-     *
-     * @return BelongsToMany
      */
     public function administrators(): BelongsToMany
     {
@@ -49,8 +45,6 @@ class Role extends Model
 
     /**
      * A role belongs to many permissions.
-     *
-     * @return BelongsToMany
      */
     public function permissions(): BelongsToMany
     {
@@ -65,8 +59,6 @@ class Role extends Model
      * Check user has permission.
      *
      * @param $permission
-     *
-     * @return bool
      */
     public function can(?string $permission): bool
     {
@@ -77,24 +69,20 @@ class Role extends Model
      * Check user has no permission.
      *
      * @param $permission
-     *
-     * @return bool
      */
     public function cannot(?string $permission): bool
     {
-        return ! $this->can($permission);
+        return !$this->can($permission);
     }
 
     /**
      * Get id of the permission by id.
      *
-     * @param array $roleIds
-     *
      * @return \Illuminate\Support\Collection
      */
     public static function getPermissionId(array $roleIds)
     {
-        if (! $roleIds) {
+        if (!$roleIds) {
             return collect();
         }
         $related = config('admin.database.role_permissions_table');

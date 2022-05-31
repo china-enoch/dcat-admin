@@ -37,8 +37,6 @@ class Tools implements Renderable
 
     /**
      * Create a new Tools instance.
-     *
-     * @param Builder $builder
      */
     public function __construct(Builder $builder)
     {
@@ -98,7 +96,7 @@ class Tools implements Renderable
      */
     public function disableList(bool $disable = true)
     {
-        $this->tools['list'] = ! $disable;
+        $this->tools['list'] = !$disable;
 
         return $this;
     }
@@ -110,7 +108,7 @@ class Tools implements Renderable
      */
     public function disableDelete(bool $disable = true)
     {
-        $this->tools['delete'] = ! $disable;
+        $this->tools['delete'] = !$disable;
 
         return $this;
     }
@@ -122,7 +120,7 @@ class Tools implements Renderable
      */
     public function disableView(bool $disable = true)
     {
-        $this->tools['view'] = ! $disable;
+        $this->tools['view'] = !$disable;
 
         return $this;
     }

@@ -237,8 +237,6 @@ class Field implements Renderable
     }
 
     /**
-     * @param array $options
-     *
      * @return $this
      */
     public function setRelation(array $options = [])
@@ -349,8 +347,6 @@ class Field implements Renderable
 
     /**
      * custom format form column data when edit.
-     *
-     * @param \Closure $call
      *
      * @return $this
      */
@@ -541,7 +537,7 @@ class Field implements Renderable
     {
         if (is_null($value)) {
             if (
-                $this->value === null
+                null === $this->value
                 || (is_array($this->value) && empty($this->value))
             ) {
                 return $this->default();
@@ -565,7 +561,7 @@ class Field implements Renderable
     public function data(array $data = null)
     {
         if (is_null($data)) {
-            if (! $this->data || is_array($this->data)) {
+            if (!$this->data || is_array($this->data)) {
                 $this->data = new Fluent((array) $this->data);
             }
 
@@ -581,18 +577,17 @@ class Field implements Renderable
      * Get or set default value for field.
      *
      * @param mixed $default
-     * @param bool  $edit
      *
      * @return $this|mixed
      */
     public function default($default = null, bool $edit = false)
     {
-        if ($default === null) {
+        if (null === $default) {
             if (
                 $this->form
                 && method_exists($this->form, 'isCreating')
-                && ! $this->form->isCreating()
-                && ! $this->allowDefaultValueInEditPage
+                && !$this->form->isCreating()
+                && !$this->allowDefaultValueInEditPage
             ) {
                 return;
             }
@@ -646,7 +641,7 @@ class Field implements Renderable
      */
     public function label($label = null)
     {
-        if ($label == null) {
+        if (null == $label) {
             return $this->label;
         }
 
@@ -707,8 +702,6 @@ class Field implements Renderable
     }
 
     /**
-     * @param string $key
-     *
      * @return bool
      */
     public function hasAttribute(string $key)
@@ -717,8 +710,6 @@ class Field implements Renderable
     }
 
     /**
-     * @param string $key
-     *
      * @return mixed|null
      */
     public function getAttribute(string $key)
@@ -764,8 +755,6 @@ class Field implements Renderable
     /**
      * Set the field automatically get focus.
      *
-     * @param bool $value
-     *
      * @return $this
      */
     public function autofocus(bool $value = true)
@@ -776,8 +765,6 @@ class Field implements Renderable
     /**
      * Set the field as readonly mode.
      *
-     * @param bool $value
-     *
      * @return $this
      */
     public function readOnly(bool $value = true)
@@ -787,8 +774,6 @@ class Field implements Renderable
 
     /**
      * Set field as disabled.
-     *
-     * @param bool $value
      *
      * @return $this
      */
@@ -806,7 +791,7 @@ class Field implements Renderable
      */
     public function placeholder($placeholder = null)
     {
-        if ($placeholder === null) {
+        if (null === $placeholder) {
             return $this->placeholder ?: trans('admin.input').' '.$this->label;
         }
 
@@ -826,8 +811,6 @@ class Field implements Renderable
     }
 
     /**
-     * @param \Closure $closure
-     *
      * @return $this
      */
     public function saving(\Closure $closure)
@@ -890,15 +873,15 @@ class Field implements Renderable
     {
         if ($this->horizontal) {
             return [
-                'label'      => "col-md-{$this->width['label']} {$this->getLabelClass()}",
-                'field'      => "col-md-{$this->width['field']} {$this->getFieldClass()}",
+                'label' => "col-md-{$this->width['label']} {$this->getLabelClass()}",
+                'field' => "col-md-{$this->width['field']} {$this->getFieldClass()}",
                 'form-group' => "form-group row {$this->getFormGroupClass()}",
             ];
         }
 
         return [
-            'label'      => $this->getLabelClass(),
-            'field'      => $this->getFieldClass(),
+            'label' => $this->getLabelClass(),
+            'field' => $this->getFieldClass(),
             'form-group' => $this->getFormGroupClass(),
         ];
     }
@@ -924,7 +907,7 @@ class Field implements Renderable
      */
     public function getElementClass()
     {
-        if (! $this->elementClass) {
+        if (!$this->elementClass) {
             $this->elementClass = $this->normalizeElementClass((array) $this->getElementName());
         }
 
@@ -1057,7 +1040,6 @@ class Field implements Renderable
 
     /**
      * @param array|string $labelClass
-     * @param bool         $append
      *
      * @return $this|string
      */
@@ -1079,8 +1061,8 @@ class Field implements Renderable
     }
 
     /**
-     * @param  mixed  $value
-     * @param  callable  $callback
+     * @param mixed    $value
+     * @param callable $callback
      *
      * @return $this|mixed
      */
@@ -1129,20 +1111,20 @@ class Field implements Renderable
     public function defaultVariables()
     {
         return [
-            'name'        => $this->getElementName(),
-            'help'        => $this->help,
-            'class'       => $this->getElementClassString(),
-            'value'       => $this->value(),
-            'label'       => $this->label,
-            'viewClass'   => $this->getViewElementClasses(),
-            'column'      => $this->column,
-            'errorKey'    => $this->getErrorKey(),
-            'attributes'  => $this->formatAttributes(),
+            'name' => $this->getElementName(),
+            'help' => $this->help,
+            'class' => $this->getElementClassString(),
+            'value' => $this->value(),
+            'label' => $this->label,
+            'viewClass' => $this->getViewElementClasses(),
+            'column' => $this->column,
+            'errorKey' => $this->getErrorKey(),
+            'attributes' => $this->formatAttributes(),
             'placeholder' => $this->placeholder(),
-            'disabled'    => $this->attributes['disabled'] ?? false,
-            'formId'      => $this->getFormElementId(),
-            'selector'    => $this->getElementClassSelector(),
-            'options'     => $this->options,
+            'disabled' => $this->attributes['disabled'] ?? false,
+            'formId' => $this->getFormElementId(),
+            'selector' => $this->getElementClassSelector(),
+            'options' => $this->options,
         ];
     }
 
@@ -1214,7 +1196,7 @@ class Field implements Renderable
 
     protected function defaultAttribute($attribute, $value)
     {
-        if (! array_key_exists($attribute, $this->attributes)) {
+        if (!array_key_exists($attribute, $this->attributes)) {
             $this->attribute($attribute, $value);
         }
 
@@ -1234,7 +1216,7 @@ class Field implements Renderable
     public function saveAsJson($option = 0)
     {
         return $this->saving(function ($value) use ($option) {
-            if (! $value || is_scalar($value)) {
+            if (!$value || is_scalar($value)) {
                 return $value;
             }
 
@@ -1265,7 +1247,7 @@ class Field implements Renderable
      */
     public function render()
     {
-        if (! $this->shouldRender()) {
+        if (!$this->shouldRender()) {
             return '';
         }
 

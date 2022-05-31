@@ -23,7 +23,7 @@ JS;
         $this->value = Helper::htmlEntityEncode($this->value);
 
         // 数组
-        if ($this->value !== null && ! is_scalar($this->value)) {
+        if (null !== $this->value && !is_scalar($this->value)) {
             $value = Helper::array($this->value);
 
             if (count($value) <= $limit) {

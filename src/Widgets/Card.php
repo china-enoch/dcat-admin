@@ -19,7 +19,7 @@ class Card extends Widget
 
     public function __construct($title = '', $content = null)
     {
-        if ($content === null) {
+        if (null === $content) {
             $content = $title;
             $title = '';
         }
@@ -43,8 +43,6 @@ class Card extends Widget
 
     /**
      * 设置卡片间距.
-     *
-     * @param string $padding
      */
     public function padding(string $padding)
     {
@@ -116,13 +114,13 @@ class Card extends Widget
     public function defaultVariables()
     {
         return [
-            'title'      => $this->title,
-            'content'    => $this->toString($this->content),
-            'footer'     => $this->toString($this->footer),
-            'tools'      => $this->tools,
+            'title' => $this->title,
+            'content' => $this->toString($this->content),
+            'footer' => $this->toString($this->footer),
+            'tools' => $this->tools,
             'attributes' => $this->formatHtmlAttributes(),
-            'padding'    => $this->padding,
-            'divider'    => $this->divider,
+            'padding' => $this->padding,
+            'divider' => $this->divider,
         ];
     }
 }

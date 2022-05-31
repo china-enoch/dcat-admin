@@ -33,7 +33,6 @@ class BatchActions extends Component
     /**
      * 浏览器包含组件的断言
      *
-     * @param  Browser  $browser
      * @return void
      */
     public function assert(Browser $browser)
@@ -60,7 +59,6 @@ class BatchActions extends Component
     /**
      * 判断按钮是否已显示.
      *
-     * @param Browser $browser
      * @param null $number
      *
      * @return Browser
@@ -79,8 +77,7 @@ class BatchActions extends Component
     /**
      * 显示菜单.
      *
-     * @param Browser $browser
-     * @param int     $seconds
+     * @param int $seconds
      *
      * @return Browser
      */
@@ -102,8 +99,7 @@ JS
     /**
      * 关闭菜单.
      *
-     * @param Browser $browser
-     * @param int     $seconds
+     * @param int $seconds
      *
      * @return Browser
      */
@@ -123,8 +119,7 @@ JS
     /**
      * 点击选项.
      *
-     * @param  Browser $browser
-     * @param  string  $value
+     * @param string $value
      *
      * @return Browser
      */

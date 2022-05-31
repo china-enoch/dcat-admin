@@ -150,8 +150,8 @@ abstract class ServiceProvider extends LaravelServiceProvider
      */
     final public function getPackageName()
     {
-        if (! $this->packageName) {
-            if (! $this->composerProperty) {
+        if (!$this->packageName) {
+            if (!$this->composerProperty) {
                 return;
             }
 
@@ -214,10 +214,10 @@ abstract class ServiceProvider extends LaravelServiceProvider
      */
     public function path(?string $path = null)
     {
-        if (! $this->path) {
+        if (!$this->path) {
             $this->path = realpath(dirname((new \ReflectionClass(static::class))->getFileName()).'/..');
 
-            if (! is_dir($this->path)) {
+            if (!is_dir($this->path)) {
                 throw new RuntimeException("The {$this->path} is not a directory.");
             }
         }
@@ -244,7 +244,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
      */
     final public function disabled()
     {
-        return ! $this->enabled();
+        return !$this->enabled();
     }
 
     /**
@@ -257,7 +257,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
      */
     final public function config($key = null, $default = null)
     {
-        if ($this->config === null) {
+        if (null === $this->config) {
             $this->initConfig();
         }
 
@@ -267,7 +267,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
             return;
         }
 
-        if ($key === null) {
+        if (null === $key) {
             return $this->config;
         }
 
@@ -276,8 +276,6 @@ abstract class ServiceProvider extends LaravelServiceProvider
 
     /**
      * 保存配置.
-     *
-     * @param array $config
      */
     public function saveConfig(array $config)
     {
@@ -349,7 +347,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
     {
         Admin::app()->routes(function ($router) use ($callback) {
             $router->group([
-                'prefix'     => config('admin.route.prefix'),
+                'prefix' => config('admin.route.prefix'),
                 'middleware' => config('admin.route.middleware'),
             ], $callback);
         });
@@ -394,11 +392,11 @@ abstract class ServiceProvider extends LaravelServiceProvider
      */
     protected function addExceptRoutes()
     {
-        if (! empty($this->exceptRoutes['permission'])) {
+        if (!empty($this->exceptRoutes['permission'])) {
             Admin::context()->addMany('permission.except', (array) $this->exceptRoutes['permission']);
         }
 
-        if (! empty($this->exceptRoutes['auth'])) {
+        if (!empty($this->exceptRoutes['auth'])) {
             Admin::context()->addMany('auth.except', (array) $this->exceptRoutes['auth']);
         }
     }
@@ -448,8 +446,6 @@ abstract class ServiceProvider extends LaravelServiceProvider
     }
 
     /**
-     * @param ComposerProperty $composerProperty
-     *
      * @return $this
      */
     public function withComposerProperty(ComposerProperty $composerProperty)
@@ -512,7 +508,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
 
         if ($this->js || $this->css) {
             $asset->alias($this->getName(), [
-                'js'  => $this->formatAssetFiles($this->js),
+                'js' => $this->formatAssetFiles($this->js),
                 'css' => $this->formatAssetFiles($this->css),
             ]);
         }

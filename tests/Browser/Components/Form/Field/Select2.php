@@ -27,7 +27,6 @@ class Select2 extends Component
     /**
      * 浏览器包含组件的断言
      *
-     * @param  Browser  $browser
      * @return void
      */
     public function assert(Browser $browser)
@@ -52,8 +51,7 @@ class Select2 extends Component
     /**
      * 选中下拉选框.
      *
-     * @param  Browser  $browser
-     * @param  mixed    $value
+     * @param mixed $value
      *
      * @return Browser
      */

@@ -22,7 +22,7 @@ class ExtensionInstallCommand extends Command
         $manager = Admin::extension()->setOutput($this->output);
 
         if ($path) {
-            if (! is_file($path)) {
+            if (!is_file($path)) {
                 $path = rtrim($path, '/').sprintf('/%s.zip', str_replace('/', '.', $name));
             }
         } else {

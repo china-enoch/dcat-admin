@@ -83,28 +83,28 @@ class Filter implements Renderable
      * @var array
      */
     protected static $defaultFilters = [
-        'equal'        => Equal::class,
-        'notEqual'     => NotEqual::class,
-        'ilike'        => Ilike::class,
-        'like'         => Like::class,
-        'startWith'    => StartWith::class,
-        'endWith'      => EndWith::class,
-        'gt'           => Gt::class,
-        'lt'           => Lt::class,
-        'ngt'          => Ngt::class,
-        'nlt'          => Nlt::class,
-        'between'      => Between::class,
-        'group'        => Group::class,
-        'where'        => Where::class,
+        'equal' => Equal::class,
+        'notEqual' => NotEqual::class,
+        'ilike' => Ilike::class,
+        'like' => Like::class,
+        'startWith' => StartWith::class,
+        'endWith' => EndWith::class,
+        'gt' => Gt::class,
+        'lt' => Lt::class,
+        'ngt' => Ngt::class,
+        'nlt' => Nlt::class,
+        'between' => Between::class,
+        'group' => Group::class,
+        'where' => Where::class,
         'whereBetween' => WhereBetween::class,
-        'in'           => In::class,
-        'notIn'        => NotIn::class,
-        'date'         => Date::class,
-        'day'          => Day::class,
-        'month'        => Month::class,
-        'year'         => Year::class,
-        'hidden'       => Hidden::class,
-        'newline'      => Newline::class,
+        'in' => In::class,
+        'notIn' => NotIn::class,
+        'date' => Date::class,
+        'day' => Day::class,
+        'month' => Month::class,
+        'year' => Year::class,
+        'hidden' => Hidden::class,
+        'newline' => Newline::class,
     ];
 
     /**
@@ -200,8 +200,6 @@ class Filter implements Renderable
 
     /**
      * Create a new filter instance.
-     *
-     * @param Model $model
      */
     public function __construct(Model $model)
     {
@@ -259,8 +257,6 @@ class Filter implements Renderable
     }
 
     /**
-     * @param bool $disabled
-     *
      * @return $this
      */
     public function disableCollapse(bool $disabled = true)
@@ -271,8 +267,6 @@ class Filter implements Renderable
     }
 
     /**
-     * @param bool $disabled
-     *
      * @return $this
      */
     public function disableResetButton(bool $disabled = true)
@@ -294,7 +288,7 @@ class Filter implements Renderable
     {
         $inputs = $this->inputs();
 
-        if ($key === null) {
+        if (null === $key) {
             return $inputs;
         }
 
@@ -352,13 +346,11 @@ class Filter implements Renderable
     }
 
     /**
-     * @param string|null $mode
-     *
      * @return $this|string
      */
     public function mode(string $mode = null)
     {
-        if ($mode === null) {
+        if (null === $mode) {
             return $this->mode;
         }
 
@@ -404,7 +396,7 @@ class Filter implements Renderable
     {
         $this->filters = array_filter($this->filters, function (AbstractFilter $filter) use (&$column) {
             if (is_array($column)) {
-                return ! in_array($filter->column(), $column);
+                return !in_array($filter->column(), $column);
             }
 
             return $filter->column() != $column;
@@ -416,14 +408,14 @@ class Filter implements Renderable
      */
     public function inputs()
     {
-        if (! is_null($this->inputs)) {
+        if (!is_null($this->inputs)) {
             return $this->inputs;
         }
 
         $this->inputs = Arr::dot(request()->all());
 
         $this->inputs = array_filter($this->inputs, function ($input) {
-            return $input !== '' && ! is_null($input);
+            return '' !== $input && !is_null($input);
         });
 
         $this->sanitizeInputs($this->inputs);
@@ -444,7 +436,7 @@ class Filter implements Renderable
             return [];
         }
 
-        if ($this->conditions !== null) {
+        if (null !== $this->conditions) {
             return $this->conditions;
         }
 
@@ -461,7 +453,7 @@ class Filter implements Renderable
         }
 
         return tap(array_filter($conditions), function ($conditions) {
-            if (! empty($conditions)) {
+            if (!empty($conditions)) {
                 $this->expand();
 
                 $this->grid()->fireOnce(new ApplyFilter([$conditions]));
@@ -480,7 +472,7 @@ class Filter implements Renderable
      */
     protected function sanitizeInputs(&$inputs)
     {
-        if (! $prefix = $this->grid()->getNamePrefix()) {
+        if (!$prefix = $this->grid()->getNamePrefix()) {
             return;
         }
 
@@ -496,8 +488,6 @@ class Filter implements Renderable
     /**
      * Add a filter to grid.
      *
-     * @param AbstractFilter $filter
-     *
      * @return AbstractFilter
      */
     protected function addFilter(AbstractFilter $filter)
@@ -511,8 +501,6 @@ class Filter implements Renderable
 
     /**
      * Use a custom filter.
-     *
-     * @param AbstractFilter $filter
      *
      * @return AbstractFilter
      */
@@ -605,8 +593,6 @@ class Filter implements Renderable
     /**
      * Expand filter container.
      *
-     * @param bool $value
-     *
      * @return $this
      */
     public function expand(bool $value = true)
@@ -618,8 +604,6 @@ class Filter implements Renderable
 
     /**
      * Execute the filter with conditions.
-     *
-     * @param bool $toArray
      *
      * @return array|Collection|mixed
      */
@@ -706,18 +690,18 @@ class Filter implements Renderable
 
         $this->callComposing();
 
-        if (! $this->view) {
+        if (!$this->view) {
             $this->view = $this->mode === static::MODE_RIGHT_SIDE ? 'admin::filter.right-side-container' : 'admin::filter.container';
         }
 
         return view($this->view)->with([
-            'action'             => $this->action ?: $this->urlWithoutFilters(),
-            'layout'             => $this->layout,
-            'filterID'           => $this->disableCollapse ? '' : $this->filterID,
-            'expand'             => $this->expand,
-            'style'              => $this->style,
-            'border'             => $this->border,
-            'containerClass'     => $this->containerClass,
+            'action' => $this->action ?: $this->urlWithoutFilters(),
+            'layout' => $this->layout,
+            'filterID' => $this->disableCollapse ? '' : $this->filterID,
+            'expand' => $this->expand,
+            'style' => $this->style,
+            'border' => $this->border,
+            'containerClass' => $this->containerClass,
             'disableResetButton' => $this->disableResetButton,
         ])->render();
     }
@@ -769,9 +753,9 @@ class Filter implements Renderable
      */
     public function __call($method, $arguments)
     {
-        if (! empty(static::$supports[$method])) {
+        if (!empty(static::$supports[$method])) {
             $class = static::$supports[$method];
-            if (! is_subclass_of($class, AbstractFilter::class)) {
+            if (!is_subclass_of($class, AbstractFilter::class)) {
                 throw new RuntimeException("The class [{$class}] must be a type of ".AbstractFilter::class.'.');
             }
 

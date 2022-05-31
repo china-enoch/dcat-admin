@@ -32,18 +32,18 @@ class Actions implements Renderable
      * @var array
      */
     protected $actions = [
-        'delete'    => true,
+        'delete' => true,
         'quickEdit' => true,
-        'edit'      => false,
+        'edit' => false,
     ];
 
     /**
      * @var array
      */
     protected $defaultActions = [
-        'edit'      => Tree\Actions\Edit::class,
+        'edit' => Tree\Actions\Edit::class,
         'quickEdit' => Tree\Actions\QuickEdit::class,
-        'delete'    => Tree\Actions\Delete::class,
+        'delete' => Tree\Actions\Delete::class,
     ];
 
     /**
@@ -81,21 +81,21 @@ class Actions implements Renderable
 
     public function disableQuickEdit(bool $value = true)
     {
-        $this->actions['quickEdit'] = ! $value;
+        $this->actions['quickEdit'] = !$value;
 
         return $this;
     }
 
     public function disableEdit(bool $value = true)
     {
-        $this->actions['edit'] = ! $value;
+        $this->actions['edit'] = !$value;
 
         return $this;
     }
 
     public function disableDelete(bool $value = true)
     {
-        $this->actions['delete'] = ! $value;
+        $this->actions['delete'] = !$value;
 
         return $this;
     }
@@ -123,7 +123,7 @@ class Actions implements Renderable
     protected function prependDefaultActions()
     {
         foreach ($this->actions as $action => $enable) {
-            if (! $enable) {
+            if (!$enable) {
                 continue;
             }
 

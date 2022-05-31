@@ -46,8 +46,6 @@ class SelectTable extends Field
      *    $this->width('500px');
      *    $this->width('50%');
      *
-     * @param string $width
-     *
      * @return $this
      */
     public function dialogWidth(string $width)
@@ -59,8 +57,6 @@ class SelectTable extends Field
 
     /**
      * 设置表格异步渲染实例.
-     *
-     * @param LazyRenderable $renderable
      *
      * @return $this
      */
@@ -86,16 +82,12 @@ class SelectTable extends Field
     /**
      * 设置选中数据显示.
      *
-     * @param string $model
-     * @param string $id
-     * @param string $text
-     *
      * @return $this
      */
     public function model(string $model, string $id = 'id', string $text = 'title')
     {
         return $this->options(function ($v) use ($model, $id, $text) {
-            if (! $v) {
+            if (!$v) {
                 return [];
             }
 
@@ -115,7 +107,7 @@ class SelectTable extends Field
 
         foreach (Helper::array($this->options) as $id => $label) {
             foreach ($value as $v) {
-                if ($v == $id && $v !== null) {
+                if ($v == $id && null !== $v) {
                     $values[] = ['id' => $v, 'label' => $label];
                 }
             }
@@ -142,11 +134,11 @@ class SelectTable extends Field
             ->defaultAttribute('name', $this->getElementName());
 
         $this->addVariables([
-            'prepend'        => $this->prepend,
-            'append'         => $this->append,
-            'style'          => $this->style,
-            'dialog'         => $this->dialog->render(),
-            'placeholder'    => $this->placeholder(),
+            'prepend' => $this->prepend,
+            'append' => $this->append,
+            'style' => $this->style,
+            'dialog' => $this->dialog->render(),
+            'placeholder' => $this->placeholder(),
             'dialogSelector' => $this->dialog->getElementSelector(),
         ]);
 

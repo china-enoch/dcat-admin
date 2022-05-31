@@ -35,7 +35,7 @@ class LinkCommand extends Command
      */
     protected function linkTests($files)
     {
-        if (! is_file(base_path('phpunit.dusk.xml'))) {
+        if (!is_file(base_path('phpunit.dusk.xml'))) {
             $files->copy(realpath(__DIR__.'/../../../phpunit.dusk.xml'), base_path('phpunit.dusk.xml'));
         }
 
@@ -45,7 +45,7 @@ class LinkCommand extends Command
         if (is_dir($target)) {
             $result = $this->ask("The [{$target}] directory already exists, are you sure to delete it? [yes/no]");
 
-            if (strtolower($result) !== 'yes') {
+            if ('yes' !== strtolower($result)) {
                 return;
             }
 
@@ -69,7 +69,7 @@ class LinkCommand extends Command
         $basePath = Admin::asset()->getRealPath('@admin');
         $publicPath = public_path($basePath);
 
-        if (! is_dir($publicPath.'/..')) {
+        if (!is_dir($publicPath.'/..')) {
             $files->makeDirectory($publicPath.'/..', 0755, true, true);
         }
 

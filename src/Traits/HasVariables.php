@@ -16,7 +16,7 @@ trait HasVariables
      */
     public function variables()
     {
-        if (! method_exists($this, 'defaultVariables')) {
+        if (!method_exists($this, 'defaultVariables')) {
             return $this->variables;
         }
 
@@ -25,8 +25,6 @@ trait HasVariables
 
     /**
      * 设置变量.
-     *
-     * @param array $variables
      *
      * @return $this
      */

@@ -6,7 +6,6 @@ trait FormCreator
 {
     /**
      * @param string $primaryKey
-     * @param array  $fields
      * @param bool   $timestamps
      *
      * @return string
@@ -15,13 +14,12 @@ trait FormCreator
     {
         $primaryKey = $primaryKey ?: request('primary_key', 'id');
         $fields = $fields ?: request('fields', []);
-        $timestamps = $timestamps === null ? request('timestamps') : $timestamps;
+        $timestamps = null === $timestamps ? request('timestamps') : $timestamps;
 
         $rows = [
             <<<EOF
 \$form->display('{$primaryKey}');
 EOF
-
         ];
 
         foreach ($fields as $field) {

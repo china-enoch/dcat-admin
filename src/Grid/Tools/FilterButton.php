@@ -33,7 +33,7 @@ class FilterButton extends AbstractTool
      */
     protected function getElementClassName()
     {
-        if (! $this->btnClassName) {
+        if (!$this->btnClassName) {
             $this->btnClassName = 'filter-btn-'.Str::random(8);
         }
 
@@ -48,7 +48,7 @@ class FilterButton extends AbstractTool
         $filter = $this->filter();
         $id = $filter->filterID();
 
-        if ($filter->mode() === Filter::MODE_RIGHT_SIDE) {
+        if (Filter::MODE_RIGHT_SIDE === $filter->mode()) {
             if ($this->filter()->grid()->model()->getCurrentPage() > 1) {
                 $expand = 'false';
             } else {
@@ -141,26 +141,26 @@ JS;
 
         $scopres = $filter->scopes();
         $filters = $filter->filters();
-        $valueCount = $filter->mode() === Filter::MODE_RIGHT_SIDE
+        $valueCount = Filter::MODE_RIGHT_SIDE === $filter->mode()
             ? count($this->parent->filter()->getConditions()) : 0;
 
-        if ($scopres->isEmpty() && ! $filters) {
+        if ($scopres->isEmpty() && !$filters) {
             return;
         }
 
         $this->addScript();
 
-        $onlyScopes = ((! $filters || $this->parent->option('show_filter') === false) && ! $scopres->isEmpty()) ? true : false;
+        $onlyScopes = ((!$filters || false === $this->parent->option('show_filter')) && !$scopres->isEmpty()) ? true : false;
 
         $variables = [
-            'scopes'           => $scopres,
-            'current_label'    => $this->currentScopeLabel(),
-            'url_no_scopes'    => $filter->urlWithoutScopes(),
-            'btn_class'        => $this->getElementClassName(),
-            'expand'           => $filter->expand,
+            'scopes' => $scopres,
+            'current_label' => $this->currentScopeLabel(),
+            'url_no_scopes' => $filter->urlWithoutScopes(),
+            'btn_class' => $this->getElementClassName(),
+            'expand' => $filter->expand,
             'show_filter_text' => true,
-            'only_scopes'      => $onlyScopes,
-            'valueCount'       => $valueCount,
+            'only_scopes' => $onlyScopes,
+            'valueCount' => $valueCount,
         ];
 
         return view($this->view, $variables)->render();

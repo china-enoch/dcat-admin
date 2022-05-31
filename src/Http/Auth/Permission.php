@@ -49,7 +49,7 @@ class Permission
             return true;
         }
 
-        if (! Admin::user()->inRoles($roles)) {
+        if (!Admin::user()->inRoles($roles)) {
             static::error();
         }
     }
@@ -87,7 +87,7 @@ class Permission
      */
     public static function error()
     {
-        if (! request()->pjax() && request()->ajax()) {
+        if (!request()->pjax() && request()->ajax()) {
             abort(403, trans('admin.deny'));
         }
 
@@ -103,6 +103,6 @@ class Permission
      */
     public static function isAdministrator()
     {
-        return ! config('admin.permission.enable') || Admin::user()->isRole(Role::ADMINISTRATOR);
+        return !config('admin.permission.enable') || Admin::user()->isRole(Role::ADMINISTRATOR);
     }
 }

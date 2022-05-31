@@ -34,8 +34,6 @@ class Permission extends Model implements Sortable
 
     /**
      * Create a new Eloquent model instance.
-     *
-     * @param array $attributes
      */
     public function __construct(array $attributes = [])
     {
@@ -50,8 +48,6 @@ class Permission extends Model implements Sortable
 
     /**
      * Permission belongs to many roles.
-     *
-     * @return BelongsToMany
      */
     public function roles(): BelongsToMany
     {
@@ -64,14 +60,10 @@ class Permission extends Model implements Sortable
 
     /**
      * If request should pass through the current permission.
-     *
-     * @param Request $request
-     *
-     * @return bool
      */
     public function shouldPassThrough(Request $request): bool
     {
-        if (! $this->http_path) {
+        if (!$this->http_path) {
             return false;
         }
 
@@ -99,8 +91,6 @@ class Permission extends Model implements Sortable
 
     /**
      * Get options for Select field in form.
-     *
-     * @param \Closure|null $closure
      *
      * @return array
      */
@@ -135,19 +125,14 @@ class Permission extends Model implements Sortable
 
     /**
      * If a request match the specific HTTP method and path.
-     *
-     * @param array   $match
-     * @param Request $request
-     *
-     * @return bool
      */
     protected function matchRequest(array $match, Request $request): bool
     {
-        if (! $path = trim($match['path'], '/')) {
+        if (!$path = trim($match['path'], '/')) {
             return false;
         }
 
-        if (! Helper::matchRequestPath($path)) {
+        if (!Helper::matchRequestPath($path)) {
             return false;
         }
 

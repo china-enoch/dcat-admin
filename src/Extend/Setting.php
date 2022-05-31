@@ -35,8 +35,6 @@ abstract class Setting extends Form implements LazyRenderable
     /**
      * 处理请求.
      *
-     * @param array $input
-     *
      * @return \Dcat\Admin\Http\JsonResponse
      */
     public function handle(array $input)
@@ -48,8 +46,6 @@ abstract class Setting extends Form implements LazyRenderable
 
     /**
      * 格式化配置信息.
-     *
-     * @param array $input
      *
      * @return array
      */
@@ -103,7 +99,7 @@ abstract class Setting extends Form implements LazyRenderable
      */
     public function extension()
     {
-        if (! empty($this->payload['_extension_'])) {
+        if (!empty($this->payload['_extension_'])) {
             return Admin::extension()->get($this->payload['_extension_']);
         }
 

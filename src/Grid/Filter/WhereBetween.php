@@ -28,9 +28,8 @@ class WhereBetween extends Between
     /**
      * Where constructor.
      *
-     * @param string   $column
-     * @param \Closure $query
-     * @param string   $label
+     * @param string $column
+     * @param string $label
      */
     public function __construct($column, \Closure $query, $label = '')
     {
@@ -51,8 +50,8 @@ class WhereBetween extends Between
         $value = Arr::get($inputs, $this->column) ?: [];
 
         if (
-            ! $value
-            || (! isset($value['start']) && ! isset($value['end']))
+            !$value
+            || (!isset($value['start']) && !isset($value['end']))
         ) {
             return;
         }

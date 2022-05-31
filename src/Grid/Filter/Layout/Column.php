@@ -30,8 +30,6 @@ class Column
 
     /**
      * Add a filter to this column.
-     *
-     * @param AbstractFilter $filter
      */
     public function addFilter(AbstractFilter $filter)
     {
@@ -55,7 +53,7 @@ class Column
      */
     public function width($width = null)
     {
-        if ($width === null) {
+        if (null === $width) {
             return $this->width;
         }
 

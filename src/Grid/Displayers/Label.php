@@ -11,7 +11,7 @@ class Label extends AbstractDisplayer
 
     public function display($style = 'primary', $max = null)
     {
-        if (! $value = $this->value($max)) {
+        if (!$value = $this->value($max)) {
             return;
         }
 
@@ -33,7 +33,7 @@ class Label extends AbstractDisplayer
     {
         $background = 'style="background:#d2d6de;color: #555"';
 
-        if ($style !== 'default') {
+        if ('default' !== $style) {
             $style = Admin::color()->get($style, $style);
 
             $background = "style='background:{$style}'";

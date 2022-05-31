@@ -62,8 +62,6 @@ trait ModelTree
     /**
      * Set query callback to model.
      *
-     * @param \Closure|null $query
-     *
      * @return $this
      */
     public function withQuery(\Closure $query = null)
@@ -80,7 +78,7 @@ trait ModelTree
      */
     public function toTree(array $nodes = null)
     {
-        if ($nodes === null) {
+        if (null === $nodes) {
             $nodes = $this->allNodes();
         }
 
@@ -122,8 +120,6 @@ trait ModelTree
 
     /**
      * Set the order of branches in the tree.
-     *
-     * @param array $order
      *
      * @return void
      */
@@ -188,7 +184,7 @@ trait ModelTree
             ->where($parentColumnName, $this->$parentColumnName)
             ->first();
 
-        if (! $swapWithModel) {
+        if (!$swapWithModel) {
             return false;
         }
 
@@ -213,7 +209,7 @@ trait ModelTree
 
         $sameOrderModel = $this->getSameOrderModel('<');
 
-        if (! $sameOrderModel) {
+        if (!$sameOrderModel) {
             return false;
         }
         $sameOrderModel->$orderColumnName = $sameOrderModel->$orderColumnName + 1;
@@ -264,8 +260,7 @@ trait ModelTree
     /**
      * Get options for Select field in form.
      *
-     * @param \Closure|null $closure
-     * @param string        $rootText
+     * @param string $rootText
      *
      * @return array
      */
@@ -281,7 +276,6 @@ trait ModelTree
     /**
      * Build options of select field in form.
      *
-     * @param array  $nodes
      * @param int    $parentId
      * @param string $prefix
      * @param string $space

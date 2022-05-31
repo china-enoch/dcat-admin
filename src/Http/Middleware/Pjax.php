@@ -15,7 +15,6 @@ class Pjax
      * Handle an incoming request.
      *
      * @param Request $request
-     * @param Closure $next
      *
      * @return Response
      */
@@ -23,11 +22,11 @@ class Pjax
     {
         $response = $next($request);
 
-        if (! $request->pjax() || $response->isRedirection() || Admin::guard()->guest()) {
+        if (!$request->pjax() || $response->isRedirection() || Admin::guard()->guest()) {
             return $response;
         }
 
-        if (! $response->isSuccessful()) {
+        if (!$response->isSuccessful()) {
             return $this->handleErrorResponse($response);
         }
 
@@ -41,8 +40,6 @@ class Pjax
 
     /**
      * Send a response through this middleware.
-     *
-     * @param Response $response
      */
     public static function respond(Response $response)
     {
@@ -58,8 +55,6 @@ class Pjax
     /**
      * Handle Response with exceptions.
      *
-     * @param Response $response
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     protected function handleErrorResponse(Response $response)
@@ -71,10 +66,10 @@ class Pjax
         $exception = $response->exception;
 
         $error = new MessageBag([
-            'type'    => get_class($exception),
+            'type' => get_class($exception),
             'message' => $exception->getMessage(),
-            'file'    => $exception->getFile(),
-            'line'    => $exception->getLine(),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
         ]);
 
         return back()->withInput()->withErrors($error, 'exception');
@@ -83,8 +78,7 @@ class Pjax
     /**
      * Prepare the PJAX-specific response content.
      *
-     * @param Response $response
-     * @param string   $container
+     * @param string $container
      *
      * @return $this
      */
@@ -126,7 +120,7 @@ class Pjax
     {
         $content = $crawler->filter($container);
 
-        if (! $content->count()) {
+        if (!$content->count()) {
             abort(422);
         }
 
@@ -149,9 +143,6 @@ class Pjax
 
     /**
      * Set the PJAX-URL header to the current uri.
-     *
-     * @param Response $response
-     * @param Request  $request
      */
     protected function setUriHeader(Response $response, Request $request)
     {

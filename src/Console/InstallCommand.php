@@ -53,7 +53,7 @@ class InstallCommand extends Command
 
         $userModel = config('admin.database.users_model');
 
-        if ($userModel::count() == 0) {
+        if (0 == $userModel::count()) {
             $this->call('db:seed', ['--class' => AdminTablesSeeder::class]);
         }
     }
@@ -145,12 +145,12 @@ class InstallCommand extends Command
     public function createMetricCards()
     {
         $map = [
-            '/Metrics/Examples/NewUsers.php'      => 'metrics/NewUsers',
-            '/Metrics/Examples/NewDevices.php'    => 'metrics/NewDevices',
+            '/Metrics/Examples/NewUsers.php' => 'metrics/NewUsers',
+            '/Metrics/Examples/NewDevices.php' => 'metrics/NewDevices',
             '/Metrics/Examples/ProductOrders.php' => 'metrics/ProductOrders',
-            '/Metrics/Examples/Sessions.php'      => 'metrics/Sessions',
-            '/Metrics/Examples/Tickets.php'       => 'metrics/Tickets',
-            '/Metrics/Examples/TotalUsers.php'    => 'metrics/TotalUsers',
+            '/Metrics/Examples/Sessions.php' => 'metrics/Sessions',
+            '/Metrics/Examples/Tickets.php' => 'metrics/Tickets',
+            '/Metrics/Examples/TotalUsers.php' => 'metrics/TotalUsers',
         ];
 
         $namespace = $this->namespace('Metrics\\Examples');

@@ -29,7 +29,7 @@ JS;
 
     protected function renderCheckbox()
     {
-        if (! $this->shouldDisplay()) {
+        if (!$this->shouldDisplay()) {
             return;
         }
 

@@ -22,7 +22,6 @@ class Dump extends Widget
      * Dump constructor.
      *
      * @param array|object|string $content
-     * @param string|null         $padding
      */
     public function __construct($content, string $padding = null)
     {
@@ -46,8 +45,6 @@ class Dump extends Widget
     }
 
     /**
-     * @param string|null $padding
-     *
      * @return $this
      */
     public function padding(?string $padding)
@@ -81,8 +78,8 @@ class Dump extends Widget
         if (
             is_string($content) &&
             (
-                (mb_strpos($content, '{') === 0 && mb_strpos($content, '}', -1) !== false) ||
-                (mb_strpos($content, '[') === 0 && mb_strpos($content, ']', -1) !== false)
+                (0 === mb_strpos($content, '{') && false !== mb_strpos($content, '}', -1)) ||
+                (0 === mb_strpos($content, '[') && false !== mb_strpos($content, ']', -1))
             )
         ) {
             return json_decode($content, true);

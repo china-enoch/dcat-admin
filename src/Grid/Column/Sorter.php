@@ -70,10 +70,10 @@ class Sorter implements Renderable
         $active = '';
 
         if ($this->isSorted()) {
-            $type = $this->sort['type'] == 'desc' ? 'asc' : 'desc';
+            $type = 'desc' == $this->sort['type'] ? 'asc' : 'desc';
             $active = 'active';
 
-            if ($this->sort['type'] === 'asc') {
+            if ('asc' === $this->sort['type']) {
                 $icon = 'down';
             }
         }
@@ -84,7 +84,7 @@ class Sorter implements Renderable
             $sort['cast'] = $this->cast;
         }
 
-        if (! $this->isSorted() || $this->sort['type'] != 'asc') {
+        if (!$this->isSorted() || 'asc' != $this->sort['type']) {
             $url = request()->fullUrlWithQuery([
                 $this->sortName => $sort,
             ]);

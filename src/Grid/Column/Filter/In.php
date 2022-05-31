@@ -16,15 +16,13 @@ class In extends Filter
 
     /**
      * CheckFilter constructor.
-     *
-     * @param array $options
      */
     public function __construct(array $options)
     {
         $this->options = $options;
 
         $this->class = [
-            'all'  => uniqid('column-filter-all-'),
+            'all' => uniqid('column-filter-all-'),
             'item' => uniqid('column-filter-item-'),
         ];
     }
@@ -33,7 +31,6 @@ class In extends Filter
      * Add a binding to the query.
      *
      * @param array $value
-     * @param Model $model
      */
     public function addBinding($value, Model $model)
     {

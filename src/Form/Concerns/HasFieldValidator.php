@@ -131,11 +131,11 @@ trait HasFieldValidator
             $rules = array_filter(explode('|', $rules));
         }
 
-        if (! $this->form) {
+        if (!$this->form) {
             return $rules;
         }
 
-        if (method_exists($this->form, 'key') || ! $id = $this->form->getKey()) {
+        if (method_exists($this->form, 'key') || !$id = $this->form->getKey()) {
             return $rules;
         }
 
@@ -177,7 +177,7 @@ trait HasFieldValidator
         if ($input instanceof \Closure) {
             $rules = $input;
         } else {
-            if (! empty($original)) {
+            if (!empty($original)) {
                 $original = $this->formatRules($original);
             }
             $rules = array_merge($original, $this->formatRules($input));
@@ -238,7 +238,7 @@ trait HasFieldValidator
             return;
         }
 
-        if (! is_string($rules)) {
+        if (!is_string($rules)) {
             return;
         }
 
@@ -296,7 +296,7 @@ trait HasFieldValidator
             return false;
         }
 
-        if (! is_string($rules)) {
+        if (!is_string($rules)) {
             return false;
         }
 
@@ -327,7 +327,7 @@ trait HasFieldValidator
             return false;
         }
 
-        if (! is_string($rules)) {
+        if (!is_string($rules)) {
             return false;
         }
 
@@ -341,8 +341,6 @@ trait HasFieldValidator
     /**
      * Set field validator.
      *
-     * @param callable $validator
-     *
      * @return $this
      */
     public function validator(callable $validator)
@@ -355,8 +353,6 @@ trait HasFieldValidator
     /**
      * Get validator for this field.
      *
-     * @param array $input
-     *
      * @return bool|Validator
      */
     public function getValidator(array $input)
@@ -367,12 +363,12 @@ trait HasFieldValidator
 
         $rules = $attributes = [];
 
-        if (! $fieldRules = $this->getRules()) {
+        if (!$fieldRules = $this->getRules()) {
             return false;
         }
 
         if (is_string($this->column)) {
-            if (! Arr::has($input, $this->column)) {
+            if (!Arr::has($input, $this->column)) {
                 return false;
             }
 
@@ -384,7 +380,7 @@ trait HasFieldValidator
 
         if (is_array($this->column)) {
             foreach ($this->column as $key => $column) {
-                if (! array_key_exists($column, $input)) {
+                if (!array_key_exists($column, $input)) {
                     continue;
                 }
                 $input[$column.$key] = Arr::get($input, $column);
@@ -400,7 +396,6 @@ trait HasFieldValidator
      * Set validation messages for column.
      *
      * @param string $key
-     * @param array  $messages
      *
      * @return $this
      */
@@ -455,7 +450,6 @@ trait HasFieldValidator
      *
      * @see http://1000hz.github.io/bootstrap-validator/
      *
-     * @param string $error
      * @param string $key
      *
      * @return $this

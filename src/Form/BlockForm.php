@@ -9,7 +9,6 @@ use Dcat\Admin\Widgets\Form as WidgetForm;
 /**
  * Class BlockForm.
  *
- *
  * @mixin Form
  */
 class BlockForm extends WidgetForm
@@ -75,8 +74,6 @@ class BlockForm extends WidgetForm
     /**
      * 在当前列增加一块表单.
      *
-     * @param \Closure $callback
-     *
      * @return $this
      */
     public function next(\Closure $callback)
@@ -129,7 +126,7 @@ HTML;
 
     protected function renderHeader()
     {
-        if (! $this->title) {
+        if (!$this->title) {
             return;
         }
 

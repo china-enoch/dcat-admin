@@ -24,7 +24,7 @@ class Range extends Field
 
     protected function prepareInputValue($value)
     {
-        if ($value === '') {
+        if ('' === $value) {
             $value = null;
         }
 

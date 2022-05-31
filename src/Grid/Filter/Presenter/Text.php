@@ -33,16 +33,14 @@ class Text extends Presenter
 
     /**
      * Get variables for field template.
-     *
-     * @return array
      */
     public function defaultVariables(): array
     {
         return [
             'placeholder' => $this->placeholder,
-            'icon'        => $this->icon,
-            'type'        => $this->type,
-            'group'       => $this->filter->group,
+            'icon' => $this->icon,
+            'type' => $this->type,
+            'group' => $this->filter->group,
         ];
     }
 
@@ -106,8 +104,8 @@ class Text extends Presenter
     public function currency($options = [])
     {
         return $this->inputmask(array_merge($options, [
-            'alias'              => 'currency',
-            'prefix'             => '',
+            'alias' => 'currency',
+            'prefix' => '',
             'removeMaskOnSubmit' => true,
         ]));
     }

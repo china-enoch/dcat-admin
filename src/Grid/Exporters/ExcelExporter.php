@@ -12,7 +12,7 @@ class ExcelExporter extends AbstractExporter
     {
         parent::__construct($titles);
 
-        if (! class_exists(Excel::class)) {
+        if (!class_exists(Excel::class)) {
             throw new RuntimeException('To use exporter, please install [dcat/easy-excel] first.');
         }
     }
@@ -26,7 +26,7 @@ class ExcelExporter extends AbstractExporter
 
         $exporter = Excel::export();
 
-        if ($this->scope === Grid\Exporter::SCOPE_ALL) {
+        if (Grid\Exporter::SCOPE_ALL === $this->scope) {
             $exporter->chunk(function (int $times) {
                 return $this->buildData($times);
             });

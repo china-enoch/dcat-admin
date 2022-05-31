@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\URL;
  */
 class Administrator extends Model implements AuthenticatableContract
 {
-    use Authenticatable,
-        HasPermissions,
-        HasDateTimeFormatter;
+    use Authenticatable;
+    use HasPermissions;
+    use HasDateTimeFormatter;
 
     const DEFAULT_ID = 1;
 
@@ -28,8 +28,6 @@ class Administrator extends Model implements AuthenticatableContract
 
     /**
      * Create a new Eloquent model instance.
-     *
-     * @param array $attributes
      */
     public function __construct(array $attributes = [])
     {
@@ -52,7 +50,7 @@ class Administrator extends Model implements AuthenticatableContract
         $avatar = $this->avatar;
 
         if ($avatar) {
-            if (! URL::isValidUrl($avatar)) {
+            if (!URL::isValidUrl($avatar)) {
                 $avatar = Storage::disk(config('admin.upload.disk'))->url($avatar);
             }
 
@@ -64,8 +62,6 @@ class Administrator extends Model implements AuthenticatableContract
 
     /**
      * A user has and belongs to many roles.
-     *
-     * @return BelongsToMany
      */
     public function roles(): BelongsToMany
     {

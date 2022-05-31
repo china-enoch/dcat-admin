@@ -14,10 +14,6 @@ trait HasEvents
 
     /**
      * 监听事件.
-     *
-     * @param string $class
-     *
-     * @param \Closure $callback
      */
     public function listen(string $class, \Closure $callback)
     {

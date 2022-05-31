@@ -30,7 +30,7 @@ class JavaScript
      */
     public function value($script = null)
     {
-        if ($script === null) {
+        if (null === $script) {
             return static::$scripts[$this->id];
         }
 
@@ -59,8 +59,6 @@ class JavaScript
 
     /**
      * 删除代码.
-     *
-     * @param string $id
      */
     public static function delete(string $id)
     {
@@ -83,7 +81,7 @@ class JavaScript
         foreach (static::all() as $id => $script) {
             $id = "\"$id\"";
 
-            if (mb_strpos($value, $id) !== false) {
+            if (false !== mb_strpos($value, $id)) {
                 $value = str_replace($id, $script, $value);
 
                 static::delete($id);

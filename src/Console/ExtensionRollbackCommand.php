@@ -18,14 +18,14 @@ class ExtensionRollbackCommand extends Command
     {
         $name = $this->argument('name');
 
-        if (! Admin::extension()->has($name)) {
+        if (!Admin::extension()->has($name)) {
             throw new \InvalidArgumentException('Extension not found');
         }
 
         $stopOnVersion = ltrim(($this->argument('ver') ?: null), 'v');
 
         if ($stopOnVersion) {
-            if (! Admin::extension()->versionManager()->hasDatabaseVersion($name, $stopOnVersion)) {
+            if (!Admin::extension()->versionManager()->hasDatabaseVersion($name, $stopOnVersion)) {
                 throw new \InvalidArgumentException('Extension version not found');
             }
             $confirmQuestion = 'Please confirm that you wish to revert the extension to version '.$stopOnVersion.'. This may result in changes to your database and potential data loss.';

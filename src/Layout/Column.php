@@ -35,9 +35,9 @@ class Column implements Renderable
             $this->append($content);
         }
 
-        ///// set width.
+        // /// set width.
         // if null, or $this->width is empty array, set as "md" => "12"
-        if (is_null($width) || (is_array($width) && count($width) === 0)) {
+        if (is_null($width) || (is_array($width) && 0 === count($width))) {
             $this->width['md'] = 12;
         }
         // $this->width is number(old version), set as "md" => $width
@@ -76,7 +76,7 @@ class Column implements Renderable
      */
     public function row($content)
     {
-        if (! $content instanceof \Closure) {
+        if (!$content instanceof \Closure) {
             $row = new Row($content);
         } else {
             $row = new Row();

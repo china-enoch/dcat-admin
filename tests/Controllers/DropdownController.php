@@ -47,10 +47,10 @@ class DropdownController extends Controller
         $menu = Dropdown::make($this->tian);
 
         $menu->map(function ($v, $k) {
-            if ($k === 7) {
+            if (7 === $k) {
                 $this->divider();
             }
-            $k++;
+            ++$k;
 
             return "{$k}. $v";
         });
@@ -68,7 +68,7 @@ class DropdownController extends Controller
             ->click()
             ->buttonClass('btn btn-sm btn-light')
             ->map(function ($v, $k) {
-                $k++;
+                ++$k;
 
                 return "<a class='test_item' data-id='$k', data-value='{$v}' data-test='Hello world.' href='javascript:void(0)'>{$k}. $v</a>";
             });

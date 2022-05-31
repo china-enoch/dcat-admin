@@ -20,7 +20,7 @@ class Dropdown extends Widget
      * @var array
      */
     protected $button = [
-        'text'  => null,
+        'text' => null,
         'class' => 'btn btn-sm btn-white waves-effect',
         'style' => null,
     ];
@@ -53,14 +53,13 @@ class Dropdown extends Widget
     /**
      * Set the options of dropdown menus.
      *
-     * @param array       $options
-     * @param string|null $title
+     * @param array $options
      *
      * @return $this
      */
     public function options($options = [], ?string $title = null)
     {
-        if (! $options) {
+        if (!$options) {
             return $this;
         }
 
@@ -71,8 +70,6 @@ class Dropdown extends Widget
 
     /**
      * Set the button text.
-     *
-     * @param string|null $text
      *
      * @return $this
      */
@@ -142,8 +139,6 @@ class Dropdown extends Widget
     /**
      * Add click event listener.
      *
-     * @param string|null $defaultLabel
-     *
      * @return $this
      */
     public function click(?string $defaultLabel = null)
@@ -152,7 +147,7 @@ class Dropdown extends Widget
 
         $this->buttonId = 'dropd-'.Str::random(8);
 
-        if ($defaultLabel !== null) {
+        if (null !== $defaultLabel) {
             $this->button($defaultLabel);
         }
 
@@ -222,10 +217,10 @@ class Dropdown extends Widget
     public function render()
     {
         $this->addVariables([
-            'options'  => $this->renderOptions(),
-            'button'   => $this->button,
+            'options' => $this->renderOptions(),
+            'button' => $this->button,
             'buttonId' => $this->buttonId,
-            'click'    => $this->click,
+            'click' => $this->click,
         ]);
 
         return parent::render();

@@ -144,8 +144,6 @@ class EloquentRepository extends Repository implements TreeRepository
     /**
      * 查询Grid表格数据.
      *
-     * @param Grid\Model $model
-     *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|Collection|array
      */
     public function get(Grid\Model $model)
@@ -160,9 +158,9 @@ class EloquentRepository extends Repository implements TreeRepository
         }
 
         $model->getQueries()->unique()->each(function ($value) use (&$query) {
-            if ($value['method'] === 'paginate') {
+            if ('paginate' === $value['method']) {
                 $value['arguments'][1] = $this->getGridColumns();
-            } elseif ($value['method'] === 'get') {
+            } elseif ('get' === $value['method']) {
                 $value['arguments'] = [$this->getGridColumns()];
             }
 
@@ -174,8 +172,6 @@ class EloquentRepository extends Repository implements TreeRepository
 
     /**
      * 设置表格数据排序.
-     *
-     * @param Grid\Model $model
      *
      * @return void
      */
@@ -199,9 +195,8 @@ class EloquentRepository extends Repository implements TreeRepository
     /**
      * 设置关联数据排序.
      *
-     * @param Grid\Model $model
-     * @param string     $column
-     * @param string     $type
+     * @param string $column
+     * @param string $type
      *
      * @return void
      */
@@ -210,7 +205,7 @@ class EloquentRepository extends Repository implements TreeRepository
         [$relationName, $relationColumn] = explode('.', $column);
 
         if ($model->getQueries()->contains(function ($query) use ($relationName) {
-            return $query['method'] == 'with' && in_array($relationName, $query['arguments']);
+            return 'with' == $query['method'] && in_array($relationName, $query['arguments']);
         })) {
             $model->addQuery('select', [$this->getGridColumns()]);
 
@@ -226,8 +221,6 @@ class EloquentRepository extends Repository implements TreeRepository
     /**
      * 设置分页参数.
      *
-     * @param Grid\Model $model
-     *
      * @return void
      */
     protected function setPaginate(Grid\Model $model)
@@ -236,7 +229,7 @@ class EloquentRepository extends Repository implements TreeRepository
 
         $model->rejectQuery(['paginate']);
 
-        if (! $model->allowPagination()) {
+        if (!$model->allowPagination()) {
             $model->addQuery('get', [$this->getGridColumns()]);
         } else {
             $model->addQuery('paginate', $this->resolvePerPage($model, $paginate));
@@ -246,7 +239,6 @@ class EloquentRepository extends Repository implements TreeRepository
     /**
      * 获取分页参数.
      *
-     * @param Grid\Model $model
      * @param array|null $paginate
      *
      * @return array
@@ -272,8 +264,6 @@ class EloquentRepository extends Repository implements TreeRepository
     /**
      * 查询编辑页面数据.
      *
-     * @param Form $form
-     *
      * @return array|\Illuminate\Contracts\Support\Arrayable
      */
     public function edit(Form $form)
@@ -294,8 +284,6 @@ class EloquentRepository extends Repository implements TreeRepository
     /**
      * 查询详情页面数据.
      *
-     * @param Show $show
-     *
      * @return array|\Illuminate\Contracts\Support\Arrayable
      */
     public function detail(Show $show)
@@ -315,8 +303,6 @@ class EloquentRepository extends Repository implements TreeRepository
 
     /**
      * 新增记录.
-     *
-     * @param Form $form
      *
      * @return mixed
      */
@@ -350,8 +336,6 @@ class EloquentRepository extends Repository implements TreeRepository
     /**
      * 查询更新前的行数据.
      *
-     * @param Form $form
-     *
      * @return array|\Illuminate\Contracts\Support\Arrayable
      */
     public function updating(Form $form)
@@ -362,8 +346,6 @@ class EloquentRepository extends Repository implements TreeRepository
     /**
      * 更新数据.
      *
-     * @param Form $form
-     *
      * @return bool
      */
     public function update(Form $form)
@@ -371,7 +353,7 @@ class EloquentRepository extends Repository implements TreeRepository
         /* @var EloquentModel $builder */
         $model = $this->model();
 
-        if (! $model->getKey()) {
+        if (!$model->getKey()) {
             $model->exists = true;
 
             $model->setAttribute($model->getKeyName(), $form->getKey());
@@ -410,14 +392,8 @@ class EloquentRepository extends Repository implements TreeRepository
     {
         $model = $this->model();
 
-        if (! $model instanceof Sortable) {
-            throw new RuntimeException(
-                sprintf(
-                    'The model "%s" must be a type of %s.',
-                    get_class($model),
-                    Sortable::class
-                )
-            );
+        if (!$model instanceof Sortable) {
+            throw new RuntimeException(sprintf('The model "%s" must be a type of %s.', get_class($model), Sortable::class));
         }
 
         return $model->moveOrderUp() ? true : false;
@@ -432,14 +408,8 @@ class EloquentRepository extends Repository implements TreeRepository
     {
         $model = $this->model();
 
-        if (! $model instanceof Sortable) {
-            throw new RuntimeException(
-                sprintf(
-                    'The model "%s" must be a type of %s.',
-                    get_class($model),
-                    Sortable::class
-                )
-            );
+        if (!$model instanceof Sortable) {
+            throw new RuntimeException(sprintf('The model "%s" must be a type of %s.', get_class($model), Sortable::class));
         }
 
         return $model->moveOrderDown() ? true : false;
@@ -447,9 +417,6 @@ class EloquentRepository extends Repository implements TreeRepository
 
     /**
      * 删除数据.
-     *
-     * @param Form  $form
-     * @param array $originalData
      *
      * @return bool
      */
@@ -460,7 +427,7 @@ class EloquentRepository extends Repository implements TreeRepository
         collect(explode(',', $form->getKey()))->filter()->each(function ($id) use ($form, $models) {
             $model = $models->get($id);
 
-            if (! $model) {
+            if (!$model) {
                 return;
             }
 
@@ -471,7 +438,7 @@ class EloquentRepository extends Repository implements TreeRepository
                 $model->forceDelete();
 
                 return;
-            } elseif (! $this->isSoftDeletes) {
+            } elseif (!$this->isSoftDeletes) {
                 $form->deleteFiles($data);
             }
 
@@ -483,8 +450,6 @@ class EloquentRepository extends Repository implements TreeRepository
 
     /**
      * 查询删除前的行数据.
-     *
-     * @param Form $form
      *
      * @return array
      */
@@ -614,8 +579,6 @@ class EloquentRepository extends Repository implements TreeRepository
     }
 
     /**
-     * @param array $data
-     *
      * @return EloquentModel
      */
     public function createModel(array $data = [])
@@ -671,7 +634,7 @@ class EloquentRepository extends Repository implements TreeRepository
                 $relationColumn = $camelColumn;
             }
 
-            if (! $relationColumn) {
+            if (!$relationColumn) {
                 continue;
             }
 
@@ -690,11 +653,6 @@ class EloquentRepository extends Repository implements TreeRepository
     /**
      * 更新关联关系数据.
      *
-     * @param Form          $form
-     * @param EloquentModel $model
-     * @param array         $relationsData
-     * @param array         $relationKeyMap
-     *
      * @throws \Exception
      */
     protected function updateRelation(Form $form, EloquentModel $model, array $relationsData, array $relationKeyMap)
@@ -702,7 +660,7 @@ class EloquentRepository extends Repository implements TreeRepository
         foreach ($relationsData as $name => $values) {
             $relationName = $relationKeyMap[$name] ?? $name;
 
-            if (! method_exists($model, $relationName)) {
+            if (!method_exists($model, $relationName)) {
                 continue;
             }
 
@@ -726,7 +684,6 @@ class EloquentRepository extends Repository implements TreeRepository
                     }
                     break;
                 case $relation instanceof Relations\HasOne:
-
                     $related = $model->$relationName;
 
                     // if related is empty
@@ -745,7 +702,6 @@ class EloquentRepository extends Repository implements TreeRepository
                     break;
                 case $relation instanceof Relations\BelongsTo:
                 case $relation instanceof Relations\MorphTo:
-
                     $parent = $model->$relationName;
 
                     // if related is empty
@@ -761,7 +717,7 @@ class EloquentRepository extends Repository implements TreeRepository
 
                     // When in creating, associate two models
                     $foreignKeyMethod = version_compare(app()->version(), '5.8.0', '<') ? 'getForeignKey' : 'getForeignKeyName';
-                    if (! $model->{$relation->{$foreignKeyMethod}()}) {
+                    if (!$model->{$relation->{$foreignKeyMethod}()}) {
                         $model->{$relation->{$foreignKeyMethod}()} = $parent->getKey();
 
                         $model->save();
@@ -780,7 +736,6 @@ class EloquentRepository extends Repository implements TreeRepository
                     break;
                 case $relation instanceof Relations\HasMany:
                 case $relation instanceof Relations\MorphMany:
-
                     foreach ($prepared[$name] as $related) {
                         /** @var Relations\Relation $relation */
                         $relation = $model->$relationName();
@@ -789,7 +744,7 @@ class EloquentRepository extends Repository implements TreeRepository
 
                         $instance = $relation->findOrNew(Arr::get($related, $keyName));
 
-                        if (Arr::get($related, Form::REMOVE_FLAG_NAME) == 1) {
+                        if (1 == Arr::get($related, Form::REMOVE_FLAG_NAME)) {
                             $instance->delete();
 
                             continue;
@@ -798,7 +753,7 @@ class EloquentRepository extends Repository implements TreeRepository
                         Arr::forget($related, Form::REMOVE_FLAG_NAME);
 
                         $key = Arr::get($related, $relation->getModel()->getKeyName());
-                        if ($key === null || $key === '') {
+                        if (null === $key || '' === $key) {
                             Arr::forget($related, $relation->getModel()->getKeyName());
                         }
 

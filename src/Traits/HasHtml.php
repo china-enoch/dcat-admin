@@ -13,13 +13,13 @@ trait HasHtml
     /**
      * @param string|array $content
      *
-     * @return null|string
+     * @return string|null
      */
     public static function html($content = null)
     {
         $html = static::context()->html ?: [];
 
-        if ($content === null) {
+        if (null === $content) {
             return implode('', array_unique($html));
         }
 
@@ -30,10 +30,6 @@ trait HasHtml
     }
 
     /**
-     * @param string $view
-     * @param array  $data
-     * @param array  $data
-     *
      * @return string
      *
      * @throws \Throwable
@@ -46,7 +42,6 @@ trait HasHtml
     /**
      * @param string|\Illuminate\Contracts\Support\Renderable $content
      * @param array                                           $data
-     * @param array                                           $options
      *
      * @throws \Throwable
      *
@@ -72,8 +67,6 @@ trait HasHtml
     }
 
     /**
-     * @param string $html
-     *
      * @throws \Throwable
      *
      * @return DOMDocument
@@ -92,8 +85,6 @@ trait HasHtml
     }
 
     /**
-     * @param DOMElement $element
-     *
      * @return void|string
      */
     protected static function resolve(DOMElement $element)
@@ -104,8 +95,6 @@ trait HasHtml
     }
 
     /**
-     * @param DOMElement $element
-     *
      * @return string|void
      */
     protected static function resolveScript(DOMElement $element)
@@ -116,7 +105,7 @@ trait HasHtml
             return;
         }
 
-        if (! empty($script = trim($element->nodeValue))) {
+        if (!empty($script = trim($element->nodeValue))) {
             if ($require = $element->getAttribute('require')) {
                 static::asset()->require(explode(',', $require));
             }
@@ -138,13 +127,11 @@ trait HasHtml
     }
 
     /**
-     * @param DOMElement $element
-     *
      * @return void
      */
     protected static function resolveStyle(DOMElement $element)
     {
-        if (! empty(trim($element->nodeValue))) {
+        if (!empty(trim($element->nodeValue))) {
             static::style($element->nodeValue);
         }
     }
@@ -153,7 +140,7 @@ trait HasHtml
     {
         $html = $script = '';
 
-        if (! $element) {
+        if (!$element) {
             return ['html' => $html, 'script' => $script];
         }
 

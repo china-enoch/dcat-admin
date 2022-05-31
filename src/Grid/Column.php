@@ -70,27 +70,27 @@ class Column
      * @var array
      */
     protected static $displayers = [
-        'switch'           => Displayers\SwitchDisplay::class,
-        'switchGroup'      => Displayers\SwitchGroup::class,
-        'select'           => Displayers\Select::class,
-        'image'            => Displayers\Image::class,
-        'label'            => Displayers\Label::class,
-        'button'           => Displayers\Button::class,
-        'link'             => Displayers\Link::class,
-        'badge'            => Displayers\Badge::class,
-        'progressBar'      => Displayers\ProgressBar::class,
-        'radio'            => Displayers\Radio::class,
-        'checkbox'         => Displayers\Checkbox::class,
-        'table'            => Displayers\Table::class,
-        'expand'           => Displayers\Expand::class,
-        'modal'            => Displayers\Modal::class,
+        'switch' => Displayers\SwitchDisplay::class,
+        'switchGroup' => Displayers\SwitchGroup::class,
+        'select' => Displayers\Select::class,
+        'image' => Displayers\Image::class,
+        'label' => Displayers\Label::class,
+        'button' => Displayers\Button::class,
+        'link' => Displayers\Link::class,
+        'badge' => Displayers\Badge::class,
+        'progressBar' => Displayers\ProgressBar::class,
+        'radio' => Displayers\Radio::class,
+        'checkbox' => Displayers\Checkbox::class,
+        'table' => Displayers\Table::class,
+        'expand' => Displayers\Expand::class,
+        'modal' => Displayers\Modal::class,
         'showTreeInDialog' => Displayers\DialogTree::class,
-        'qrcode'           => Displayers\QRCode::class,
-        'downloadable'     => Displayers\Downloadable::class,
-        'copyable'         => Displayers\Copyable::class,
-        'orderable'        => Displayers\Orderable::class,
-        'limit'            => Displayers\Limit::class,
-        'editable'         => Displayers\Editable::class,
+        'qrcode' => Displayers\QRCode::class,
+        'downloadable' => Displayers\Downloadable::class,
+        'copyable' => Displayers\Copyable::class,
+        'orderable' => Displayers\Orderable::class,
+        'limit' => Displayers\Limit::class,
+        'editable' => Displayers\Editable::class,
     ];
 
     /**
@@ -195,7 +195,7 @@ class Column
 
     protected function formatName($name)
     {
-        if (! Str::contains($name, '.')) {
+        if (!Str::contains($name, '.')) {
             return $name;
         }
 
@@ -232,8 +232,6 @@ class Column
 
     /**
      * Set grid instance for column.
-     *
-     * @param Grid $grid
      */
     public function setGrid(Grid $grid)
     {
@@ -250,8 +248,6 @@ class Column
 
     /**
      * Set original data for column.
-     *
-     * @param Collection $collection
      */
     public static function setOriginalGridModels(Collection $collection)
     {
@@ -298,7 +294,7 @@ class Column
      *
      * @return Column\Condition
      */
-    public function if(\Closure $condition = null)
+    public function if(Closure $condition = null)
     {
         $condition = $condition ?: function ($column) {
             return $column->getValue();
@@ -309,8 +305,6 @@ class Column
 
     /**
      * Set column attributes.
-     *
-     * @param array $attributes
      *
      * @return $this
      */
@@ -457,12 +451,10 @@ class Column
      */
     public function hasDisplayCallbacks()
     {
-        return ! empty($this->displayCallbacks);
+        return !empty($this->displayCallbacks);
     }
 
     /**
-     * @param array $callbacks
-     *
      * @return void
      */
     public function setDisplayCallbacks(array $callbacks)
@@ -490,7 +482,7 @@ class Column
         foreach ($this->displayCallbacks as $callback) {
             [$callback, $params] = $callback;
 
-            if (! $callback instanceof \Closure) {
+            if (!$callback instanceof \Closure) {
                 $value = $callback;
                 continue;
             }
@@ -516,8 +508,6 @@ class Column
     /**
      * Set original grid data to column.
      *
-     * @param Closure $callback
-     *
      * @return Closure
      */
     protected function bindOriginalRowModel(Closure $callback)
@@ -527,15 +517,13 @@ class Column
 
     /**
      * Fill all data to every column.
-     *
-     * @param array $data
      */
     public function fill(array &$data)
     {
         $i = 0;
         foreach ($data as $key => &$row) {
-            $i++;
-            if (! isset($row['#'])) {
+            ++$i;
+            if (!isset($row['#'])) {
                 $row['#'] = $i;
             }
 
@@ -674,8 +662,6 @@ class Column
     /**
      * Set column title attributes.
      *
-     * @param array $attributes
-     *
      * @return $this
      */
     public function setHeaderAttributes(array $attributes = [])
@@ -687,8 +673,6 @@ class Column
 
     /**
      * Set column title default attributes.
-     *
-     * @param array $attributes
      *
      * @return $this
      */
@@ -719,8 +703,8 @@ class Column
     }
 
     /**
-     * @param  mixed  $value
-     * @param  callable  $callback
+     * @param mixed    $value
+     * @param callable $callback
      *
      * @return $this|mixed
      */
@@ -746,7 +730,7 @@ class Column
     public function __call($method, $arguments)
     {
         if (
-            ! isset(static::$displayers[$method])
+            !isset(static::$displayers[$method])
             && static::hasMacro($method)
         ) {
             return $this->__macroCall($method, $arguments);

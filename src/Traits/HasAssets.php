@@ -36,9 +36,6 @@ trait HasAssets
 
     /**
      * Set base css.
-     *
-     * @param array $css
-     * @param bool $merge
      */
     public static function baseCss(array $css, bool $merge = true)
     {
@@ -71,9 +68,6 @@ trait HasAssets
 
     /**
      * Set base js.
-     *
-     * @param array $js
-     * @param bool $merge
      */
     public static function baseJs(array $js, bool $merge = true)
     {
@@ -82,7 +76,6 @@ trait HasAssets
 
     /**
      * @param string $script
-     * @param bool   $direct
      *
      * @return void
      */

@@ -35,9 +35,6 @@ abstract class Filter implements Renderable
      */
     protected $display = true;
 
-    /**
-     * @param Column $column
-     */
     public function setParent(Column $column)
     {
         $this->parent = $column;
@@ -64,8 +61,6 @@ abstract class Filter implements Renderable
     }
 
     /**
-     * @param \Closure $callback
-     *
      * @return $this
      */
     public function resolving(\Closure $callback)
@@ -76,8 +71,6 @@ abstract class Filter implements Renderable
     }
 
     /**
-     * @param string $name
-     *
      * @return $this
      */
     public function setColumnName(string $name)
@@ -129,7 +122,6 @@ abstract class Filter implements Renderable
 
     /**
      * @param mixed $model
-     * @param string $query
      * @param mixed array $params
      *
      * @return void
@@ -145,7 +137,7 @@ abstract class Filter implements Renderable
     protected function addResetButton()
     {
         $value = $this->value();
-        if ($value === '' || $value === null) {
+        if ('' === $value || null === $value) {
             return;
         }
 
@@ -198,7 +190,7 @@ HMLT;
     /**
      * @param string $key
      *
-     * @return array|null|string
+     * @return array|string|null
      */
     protected function trans($key)
     {
@@ -206,8 +198,6 @@ HMLT;
     }
 
     /**
-     * @param bool $value
-     *
      * @return $this
      */
     public function display(bool $value)
@@ -237,11 +227,9 @@ HMLT;
      * Add a query binding.
      *
      * @param mixed $value
-     * @param Model $model
      */
     public function addBinding($value, Model $model)
     {
-        //
     }
 
     /**
@@ -249,7 +237,6 @@ HMLT;
      */
     public function render()
     {
-        //
     }
 
     /**

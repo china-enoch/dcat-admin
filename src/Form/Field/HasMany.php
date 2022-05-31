@@ -59,8 +59,8 @@ class HasMany extends Field
      */
     protected $views = [
         'default' => 'admin::form.hasmany',
-        'tab'     => 'admin::form.hasmanytab',
-        'table'   => 'admin::form.hasmanytable',
+        'tab' => 'admin::form.hasmanytab',
+        'table' => 'admin::form.hasmanytable',
     ];
 
     /**
@@ -89,12 +89,12 @@ class HasMany extends Field
 
         $this->columnClass = $this->formatClass($relationName);
 
-        if (count($arguments) == 1) {
+        if (1 == count($arguments)) {
             $this->label = $this->formatLabel();
             $this->builder = $arguments[0];
         }
 
-        if (count($arguments) == 2) {
+        if (2 == count($arguments)) {
             [$this->label, $this->builder] = $arguments;
         }
     }
@@ -107,13 +107,11 @@ class HasMany extends Field
     /**
      * Get validator for this field.
      *
-     * @param array $input
-     *
      * @return bool|Validator
      */
     public function getValidator(array $input)
     {
-        if (! Arr::has($input, $this->column)) {
+        if (!Arr::has($input, $this->column)) {
             return false;
         }
 
@@ -123,7 +121,7 @@ class HasMany extends Field
 
         /* @var Field $field */
         foreach ($form->fields() as $field) {
-            if (! $fieldRules = $field->getRules()) {
+            if (!$fieldRules = $field->getRules()) {
                 continue;
             }
 
@@ -193,9 +191,6 @@ class HasMany extends Field
     /**
      * Format validation messages.
      *
-     * @param array $input
-     * @param array $messages
-     *
      * @return array
      */
     protected function formatValidationMessages(array $input, array $messages)
@@ -251,10 +246,9 @@ class HasMany extends Field
     /**
      * Reset input key for validation.
      *
-     * @param array $input
      * @param array $column $column is the column name array set
      *
-     * @return void.
+     * @return void
      */
     protected function resetInputKey(array &$input, array $column)
     {
@@ -279,7 +273,6 @@ class HasMany extends Field
          * in the HasMany relation, has many data/field set, $set is field set in the below
          */
         foreach (Arr::get($input, $this->column) as $index => $set) {
-
             /*
              * foreach the field set to find the corresponding $column
              */
@@ -287,7 +280,7 @@ class HasMany extends Field
                 /*
                  * if doesn't have column name, continue to the next loop
                  */
-                if (! array_key_exists($name, $column)) {
+                if (!array_key_exists($name, $column)) {
                     continue;
                 }
 
@@ -331,7 +324,7 @@ class HasMany extends Field
     /**
      * Build a Nested form.
      *
-     * @param null     $key
+     * @param null $key
      *
      * @return NestedForm
      */
@@ -377,7 +370,7 @@ class HasMany extends Field
     /**
      * Set view mode.
      *
-     * @param string $mode currently support `tab` mode.
+     * @param string $mode currently support `tab` mode
      *
      * @return $this
      *
@@ -468,7 +461,7 @@ class HasMany extends Field
 
     public function value($value = null)
     {
-        if ($value === null) {
+        if (null === $value) {
             return Helper::array(parent::value($value));
         }
 
@@ -484,11 +477,11 @@ class HasMany extends Field
      */
     public function render()
     {
-        if (! $this->shouldRender()) {
+        if (!$this->shouldRender()) {
             return '';
         }
 
-        if ($this->viewMode == 'table') {
+        if ('table' == $this->viewMode) {
             return $this->renderTable();
         }
 
@@ -496,12 +489,12 @@ class HasMany extends Field
         $this->view = $this->views[$this->viewMode];
 
         $this->addVariables([
-            'forms'          => $this->buildRelatedForms(),
-            'template'       => $this->buildNestedForm()->render(),
-            'relationName'   => $this->relationName,
-            'options'        => $this->options,
-            'count'          => count($this->value()),
-            'columnClass'    => $this->columnClass,
+            'forms' => $this->buildRelatedForms(),
+            'template' => $this->buildNestedForm()->render(),
+            'relationName' => $this->relationName,
+            'options' => $this->options,
+            'count' => count($this->value()),
+            'columnClass' => $this->columnClass,
         ]);
 
         return parent::render();
@@ -547,13 +540,13 @@ class HasMany extends Field
         $this->view = $this->views[$this->viewMode];
 
         $this->addVariables([
-            'headers'      => $headers,
-            'forms'        => $this->buildRelatedForms(),
-            'template'     => $template,
+            'headers' => $headers,
+            'forms' => $this->buildRelatedForms(),
+            'template' => $template,
             'relationName' => $this->relationName,
-            'options'      => $this->options,
-            'count'        => count($this->value()),
-            'columnClass'  => $this->columnClass,
+            'options' => $this->options,
+            'count' => count($this->value()),
+            'columnClass' => $this->columnClass,
         ]);
 
         return parent::render();

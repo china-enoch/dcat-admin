@@ -21,11 +21,11 @@ class Markdown extends Widget
      * @var array
      */
     protected $options = [
-        'htmlDecode'      => 'style,script,iframe',
-        'emoji'           => true,
-        'taskList'        => true,
-        'tex'             => true,
-        'flowChart'       => true,
+        'htmlDecode' => 'style,script,iframe',
+        'emoji' => true,
+        'taskList' => true,
+        'tex' => true,
+        'flowChart' => true,
         'sequenceDiagram' => true,
     ];
 
@@ -56,7 +56,7 @@ class Markdown extends Widget
     public function render()
     {
         $this->addVariables([
-            'id'      => $this->id(),
+            'id' => $this->id(),
             'content' => $this->renderContent(),
         ]);
 

@@ -44,8 +44,6 @@ class QuickSearch extends AbstractTool
     }
 
     /**
-     * @param int $width
-     *
      * @return $this
      */
     public function width(int $width)
@@ -90,8 +88,6 @@ class QuickSearch extends AbstractTool
     }
 
     /**
-     * @param bool $value
-     *
      * @return $this
      */
     public function auto(bool $value = true)
@@ -109,12 +105,12 @@ class QuickSearch extends AbstractTool
         $this->setupScript();
 
         $data = [
-            'action'      => $this->formAction(),
-            'key'         => $this->getQueryName(),
-            'value'       => $this->value(),
+            'action' => $this->formAction(),
+            'key' => $this->getQueryName(),
+            'value' => $this->value(),
             'placeholder' => $this->placeholder ?: trans('admin.search'),
-            'width'       => $this->width,
-            'auto'        => $this->autoSubmit,
+            'width' => $this->width,
+            'auto' => $this->autoSubmit,
         ];
 
         return view($this->view, $data);

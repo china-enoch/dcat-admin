@@ -138,8 +138,6 @@ class Builder
 
     /**
      * Builder constructor.
-     *
-     * @param Form $form
      */
     public function __construct(Form $form)
     {
@@ -165,8 +163,6 @@ class Builder
     }
 
     /**
-     * @param Closure $closure
-     *
      * @return $this;
      */
     public function wrap(Closure $closure)
@@ -227,7 +223,7 @@ class Builder
      */
     public function mode(string $mode = null)
     {
-        if ($mode === null) {
+        if (null === $mode) {
             return $this->mode;
         }
 
@@ -301,10 +297,10 @@ class Builder
      */
     public function resource($slice = null)
     {
-        if ($this->mode == self::MODE_CREATE) {
+        if (self::MODE_CREATE == $this->mode) {
             return $this->form->resource(-1);
         }
-        if ($slice !== null) {
+        if (null !== $slice) {
             return $this->form->resource($slice);
         }
 
@@ -344,7 +340,7 @@ class Builder
      */
     public function action($action = null)
     {
-        if ($action !== null) {
+        if (null !== $action) {
             $this->action = admin_url($action);
 
             return;
@@ -388,7 +384,7 @@ class Builder
      */
     public function title($title = null)
     {
-        if ($title !== null) {
+        if (null !== $title) {
             $this->title = $title;
 
             return $this;
@@ -460,7 +456,7 @@ class Builder
      */
     public function hasRows()
     {
-        return ! empty($this->form->rows());
+        return !empty($this->form->rows());
     }
 
     /**
@@ -490,8 +486,6 @@ class Builder
     }
 
     /**
-     * @param Field $field
-     *
      * @return void
      */
     public function addHiddenField(Field $field)
@@ -525,7 +519,7 @@ class Builder
      */
     public function option($option, $value = null)
     {
-        if (func_num_args() == 1) {
+        if (1 == func_num_args()) {
             return Arr::get($this->options, $option);
         }
 
@@ -533,23 +527,19 @@ class Builder
     }
 
     /**
-     * @param bool $disable
-     *
      * @return void
      */
     public function disableHeader(bool $disable = true)
     {
-        $this->showHeader = ! $disable;
+        $this->showHeader = !$disable;
     }
 
     /**
-     * @param bool $disable
-     *
      * @return void
      */
     public function disableFooter(bool $disable = true)
     {
-        $this->showFooter = ! $disable;
+        $this->showFooter = !$disable;
     }
 
     /**
@@ -595,13 +585,13 @@ class Builder
     {
         $previous = Helper::getPreviousUrl();
 
-        if (! $previous || $previous == URL::current()) {
+        if (!$previous || $previous == URL::current()) {
             return;
         }
 
         if (
             Str::contains($previous, url($this->resource()))
-            && ! Helper::urlHasQuery($previous, [DialogForm::QUERY_NAME])
+            && !Helper::urlHasQuery($previous, [DialogForm::QUERY_NAME])
         ) {
             $this->addHiddenField(
                 (new Hidden(static::PREVIOUS_URL_KEY))->value($previous)
@@ -679,7 +669,7 @@ class Builder
      */
     protected function removeReservedFields()
     {
-        if (! $this->isMode(static::MODE_CREATE)) {
+        if (!$this->isMode(static::MODE_CREATE)) {
             return;
         }
 
@@ -709,7 +699,7 @@ class Builder
 
         if ($this->form->hasTab()) {
             $this->form->getTab()->getTabs()->transform(function ($item) use ($reject) {
-                if (! empty($item['fields'])) {
+                if (!empty($item['fields'])) {
                     $item['fields'] = $item['fields']->reject($reject);
                 }
 
@@ -735,7 +725,7 @@ class Builder
      */
     public function renderFooter()
     {
-        if (! $this->showFooter) {
+        if (!$this->showFooter) {
             return;
         }
 
@@ -745,14 +735,14 @@ class Builder
     protected function defaultVariables()
     {
         return [
-            'form'       => $this,
-            'tabObj'     => $this->form->getTab(),
-            'width'      => $this->width,
-            'elementId'  => $this->getElementId(),
+            'form' => $this,
+            'tabObj' => $this->form->getTab(),
+            'width' => $this->width,
+            'elementId' => $this->getElementId(),
             'showHeader' => $this->showHeader,
-            'fields'     => $this->fields,
-            'rows'       => $this->rows(),
-            'layout'     => $this->layout(),
+            'fields' => $this->fields,
+            'rows' => $this->rows(),
+            'layout' => $this->layout(),
         ];
     }
 
@@ -768,7 +758,7 @@ class Builder
 
         $tabObj = $this->form->getTab();
 
-        if (! $tabObj->isEmpty()) {
+        if (!$tabObj->isEmpty()) {
             $tabObj->addScript();
         }
 
@@ -781,7 +771,7 @@ class Builder
         if ($this->layout->hasColumns()) {
             $content = $this->doWrap(view($this->view, $this->variables()));
         } else {
-            if (! $this->layout->hasBlocks()) {
+            if (!$this->layout->hasBlocks()) {
                 $this->layout->prepend(
                     12,
                     $this->doWrap(view($this->view, $this->variables()))
@@ -808,8 +798,6 @@ EOF;
     }
 
     /**
-     * @param Renderable $view
-     *
      * @return string
      */
     protected function doWrap(Renderable $view)

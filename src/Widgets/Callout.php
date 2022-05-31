@@ -110,8 +110,6 @@ class Callout extends Widget
     /**
      * Show close button.
      *
-     * @param bool $value
-     *
      * @return $this
      */
     public function removable(bool $value = true)
@@ -143,9 +141,9 @@ class Callout extends Widget
         $this->class("callout callout-{$this->style} alert alert-dismissable");
 
         return [
-            'title'        => $this->title,
-            'content'      => $this->content,
-            'attributes'   => $this->formatHtmlAttributes(),
+            'title' => $this->title,
+            'content' => $this->content,
+            'attributes' => $this->formatHtmlAttributes(),
             'showCloseBtn' => $this->showCloseBtn,
         ];
     }

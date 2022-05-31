@@ -12,11 +12,11 @@ class Tree extends Field
 {
     protected $options = [
         'plugins' => ['checkbox', 'types'],
-        'core'    => [
+        'core' => [
             'check_callback' => true,
 
             'themes' => [
-                'name'       => 'proton',
+                'name' => 'proton',
                 'responsive' => true,
             ],
         ],
@@ -24,7 +24,7 @@ class Tree extends Field
             'keep_selected_style' => false,
         ],
         'types' => [
-            'default'  => [
+            'default' => [
                 'icon' => false,
             ],
         ],
@@ -37,8 +37,8 @@ class Tree extends Field
     protected $expand = true;
 
     protected $columnNames = [
-        'id'     => 'id',
-        'text'   => 'name',
+        'id' => 'id',
+        'text' => 'name',
         'parent' => 'parent_id',
     ];
 
@@ -70,8 +70,6 @@ class Tree extends Field
 
     /**
      * 过滤父节点.
-     *
-     * @param bool $value
      *
      * @return $this
      */
@@ -123,7 +121,7 @@ class Tree extends Field
             $this->nodes = Helper::array($this->nodes->call($this->values(), $value, $this));
         }
 
-        if (! $this->nodes) {
+        if (!$this->nodes) {
             return;
         }
 
@@ -156,10 +154,10 @@ class Tree extends Field
             }
 
             $nodes[] = [
-                'id'     => $v[$idColumn],
-                'text'   => $v[$textColumn] ?? null,
+                'id' => $v[$idColumn],
+                'text' => $v[$textColumn] ?? null,
                 'parent' => $parentId,
-                'state'  => $v['state'],
+                'state' => $v['state'],
             ];
         }
 
@@ -174,8 +172,6 @@ class Tree extends Field
     /**
      * Set type.
      *
-     * @param array $value
-     *
      * @return $this
      */
     public function type(array $value)
@@ -188,8 +184,6 @@ class Tree extends Field
     /**
      * Set plugins.
      *
-     * @param array $value
-     *
      * @return $this
      */
     public function plugins(array $value)
@@ -200,8 +194,6 @@ class Tree extends Field
     }
 
     /**
-     * @param bool $value
-     *
      * @return $this
      */
     public function expand(bool $value = true)
@@ -244,10 +236,10 @@ class Tree extends Field
 
         $this->addVariables([
             'checkboxes' => $checkboxes,
-            'nodes'      => $this->nodes,
-            'expand'     => $this->expand,
-            'disabled'   => empty($this->attributes['disabled']) ? '' : 'disabled',
-            'parents'    => $this->parents,
+            'nodes' => $this->nodes,
+            'expand' => $this->expand,
+            'disabled' => empty($this->attributes['disabled']) ? '' : 'disabled',
+            'parents' => $this->parents,
         ]);
 
         return parent::render();

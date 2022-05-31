@@ -104,10 +104,10 @@ class Tooltip extends Widget
     public function placement(string $placement = 'auto')
     {
         $map = [
-            'top'    => 1,
-            'right'  => 2,
+            'top' => 1,
+            'right' => 2,
             'bottom' => 3,
-            'left'   => 4,
+            'left' => 4,
         ];
 
         $this->placement = $map[$placement] ?? 1;

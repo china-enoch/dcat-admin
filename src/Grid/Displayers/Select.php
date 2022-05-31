@@ -13,9 +13,9 @@ class Select extends AbstractDisplayer
         }
 
         return Admin::view('admin::grid.displayer.select', [
-            'column'  => $this->column->getName(),
-            'value'   => $this->value,
-            'url'     => $this->url(),
+            'column' => $this->column->getName(),
+            'value' => $this->value,
+            'url' => $this->url(),
             'options' => $options,
             'refresh' => $refresh,
         ]);
