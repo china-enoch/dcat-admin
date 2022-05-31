@@ -17,9 +17,7 @@ class DropdownController extends Controller
     public function index(Content $content)
     {
         return $content->header('Dropdown Menu')
-            ->row(function (Row $row) {
-                $row->column(3, $this->example1());
-                $row->column(3, $this->example2());
+            ->row(function (Row $row) {$row->column(3, $this->example1());$row->column(3, $this->example2());
                 $row->column(3, $this->example3());
             });
     }
